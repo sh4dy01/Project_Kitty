@@ -5,7 +5,7 @@ export default class startScene extends Phaser.Scene {
 
     init() {
         this.walkSpeed = 1;
-        this.runSpeed = 10;
+        this.runSpeed = 20;
         this.playerSpeed = this.walkSpeed;
         this.canLoadNextScene = true;
         this.lives = 3;
@@ -32,7 +32,9 @@ export default class startScene extends Phaser.Scene {
         // const walls = map.createLayer("walls", tileset); // Créé un layer pour les murs
 
         const start = map.filterObjects('PlayerPoints', obj => obj.name === 'SpawnPoint')[0];
+        console.log(start);
         const end = map.filterObjects('PlayerPoints', obj => obj.name === 'NextLevel')[0];
+        console.log(end);
 
         this.nextLevel = this.matter.add.sprite(
             this.ConvertXCartesianToIsometric(end.x, end.y),
@@ -67,7 +69,7 @@ export default class startScene extends Phaser.Scene {
         this.CheckPlayerInputs();
         this.CheckHitBoxes();
         this.playerInfoText.setText([
-            'Character position: ' + 'x: ' + this.player.x.toFixed(2) + ' y: ' + this.player.x.toFixed(2),
+            'Character position: ' + 'x: ' + this.player.x.toFixed(2) + ' y: ' + this.player.y.toFixed(2),
             'Lives: ' + this.lives, 
             'Scene: ' + this.scene.key, 
         ])
@@ -112,7 +114,7 @@ export default class startScene extends Phaser.Scene {
     }
 
     ConvertXCartesianToIsometric(x, y) {
-        var tempX = x - y;
+        var tempX = x - y/1.1;
 
         return tempX
     }
