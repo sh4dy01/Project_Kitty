@@ -5,8 +5,11 @@ export default class startScene extends Phaser.Scene {
 
     init() {
         this.walkSpeed = 1;
-        this.runSpeed = 20;
+        this.runSpeedMultiplier = 2;
         this.playerSpeed = this.walkSpeed;
+        this.offsetOrientation = 0.75;
+        this.singleDirectionSpeedMultiplier = 2.25;
+
         this.canLoadNextScene = true;
         this.lives = 3;
     }
@@ -70,6 +73,7 @@ export default class startScene extends Phaser.Scene {
         this.CheckHitBoxes();
         this.playerInfoText.setText([
             'Character position: ' + 'x: ' + this.player.x.toFixed(2) + ' y: ' + this.player.y.toFixed(2),
+            'Player Speed: ' + 'x: ' + this.player.body.velocity.x + ' y: ' + this.player.body.velocity.y, 
             'Lives: ' + this.lives, 
             'Scene: ' + this.scene.key, 
         ])
@@ -79,23 +83,34 @@ export default class startScene extends Phaser.Scene {
         this.player.setVelocity(0);
 
         if (this.cursors.shift.isDown) {
-            this.playerSpeed = this.runSpeed;
+            this.playerSpeed = this.runSpeedMultiplier;
         } else {
             this.playerSpeed = this.walkSpeed;
         }
         
-        if (this.cursors.up.isDown) {
-            this.player.setVelocityY(-this.playerSpeed);
+        if (this.cursors.up.isDown && !this.cursors.left.isDown && !this.cursors.right.isDown) {
+            this.player.setVelocity(this.playerSpeed + this.offsetOrientation * this.playerSpeed, -this.playerSpeed);
         } 
-        else if (this.cursors.down.isDown) {
-            this.player.setVelocityY(this.playerSpeed);
+        else if (this.cursors.right.isDown && !this.cursors.up.isDown && !this.cursors.down.isDown) {
+            this.player.setVelocity(this.playerSpeed + this.offsetOrientation * this.playerSpeed, this.playerSpeed );
         }
-
-        if (this.cursors.right.isDown) {
-            this.player.setVelocityX(this.playerSpeed);
+        else if (this.cursors.down.isDown && !this.cursors.right.isDown && !this.cursors.left.isDown) {
+            this.player.setVelocity(-this.playerSpeed - this.offsetOrientation * this.playerSpeed, this.playerSpeed);
         } 
-        else if (this.cursors.left.isDown) {
-            this.player.setVelocityX(-this.playerSpeed);
+        else if (this.cursors.left.isDown && !this.cursors.down.isDown && !this.cursors.up.isDown) {
+            this.player.setVelocity(-this.playerSpeed - this.offsetOrientation * this.playerSpeed, -this.playerSpeed);
+        }
+        else if (this.cursors.up.isDown && this.cursors.right.isDown) {
+            this.player.setVelocity(this.playerSpeed * this.singleDirectionSpeedMultiplier, 0);
+        }
+        else if (this.cursors.right.isDown && this.cursors.down.isDown) {
+            this.player.setVelocity(0, this.playerSpeed * this.singleDirectionSpeedMultiplier);
+        }
+        else if (this.cursors.down.isDown && this.cursors.left.isDown) {
+            this.player.setVelocity(-this.playerSpeed * this.singleDirectionSpeedMultiplier, 0);
+        }
+        else if (this.cursors.left.isDown && this.cursors.up.isDown) {
+            this.player.setVelocity(0, -this.playerSpeed * this.singleDirectionSpeedMultiplier);
         }
     }
 
@@ -114,7 +129,7 @@ export default class startScene extends Phaser.Scene {
     }
 
     ConvertXCartesianToIsometric(x, y) {
-        var tempX = x - y/1.1;
+        var tempX = x - y / 1.1;
 
         return tempX
     }

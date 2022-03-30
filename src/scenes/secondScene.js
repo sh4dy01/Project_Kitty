@@ -71,7 +71,7 @@ export default class secondScene extends Phaser.Scene {
         ])
     }
 
-    CheckPlayerInputs() {
+    CheckPlayerInputs(){
         this.player.setVelocity(0);
 
         if (this.cursors.shift.isDown) {
@@ -96,19 +96,21 @@ export default class secondScene extends Phaser.Scene {
     }
 
     CheckHitBoxes() {
-        this.matter.world.on("collisionstart", (event, bodyA, bodyB) => {
-            if((bodyA.label == "player" && bodyB.label == "nextLevel") == (bodyB.label == "nextLevel" && bodyA.label == "player")) {
-                this.canLoadNextScene = false;
-                this.cameras.main.fadeOut(1000, 0, 0, 0)
-                this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-                    this.scene.start('secondScene');
-                })
-            }
-        })
+        if (this.canLoadNextScene) {
+            this.matter.world.on("collisionstart", (event, bodyA, bodyB) => {
+                if((bodyA.label == "player" && bodyB.label == "nextLevel") == (bodyB.label == "nextLevel" && bodyA.label == "player")) {
+                    this.canLoadNextScene = false;
+                    this.cameras.main.fadeOut(1000, 0, 0, 0)
+                    this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                        this.scene.start('startScene');
+                    })
+                }
+            })
+        }
     }
 
     ConvertXCartesianToIsometric(x, y) {
-        var tempX = x - y;
+        var tempX = x - y / 1.1;
 
         return tempX
     }
