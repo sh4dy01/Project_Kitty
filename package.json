@@ -13,6 +13,8 @@
     "webpack-dev-server": "^2.11.0"
   },
   "dependencies": {
-    "phaser": "^3.3.0"
+    "phaser": "^3.3.0",
+    "phaser-matter-collision-plugin": "^1.0.0",
+    "phaser3-plugin-isometric": "^0.0.7"
   }
 }
