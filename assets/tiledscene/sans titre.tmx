@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="left-up" width="10" height="12" tilewidth="128" tileheight="64" infinite="0" nextlayerid="4" nextobjectid="3">
+ <editorsettings>
+  <export target="test/assets/tiledmap/testmap.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="corridor" tilewidth="128" tileheight="64" tilecount="56" columns="8">
+  <image source="grass_green_128x64.png" width="1024" height="448"/>
+ </tileset>
+ <tileset firstgid="57" name="forest" tilewidth="64" tileheight="32" tilecount="56" columns="8">
+  <grid orientation="orthogonal" width="128" height="64"/>
+  <image source="forest_ground_64x32.png" width="512" height="224"/>
+ </tileset>
+ <layer id="1" name="floors" width="10" height="12">
+  <data encoding="csv">
+0,0,0,0,1,1,1,0,0,0,
+0,0,0,0,1,1,1,0,0,0,
+0,0,0,0,1,1,1,0,0,0,
+0,0,0,0,1,1,1,0,0,0,
+0,0,0,0,1,1,1,0,0,0,
+0,0,0,0,1,1,1,0,0,0,
+0,0,0,0,1,1,1,0,0,0,
+0,0,0,0,1,1,1,0,0,0,
+0,0,0,0,1,1,1,0,0,0,
+0,0,0,0,1,1,1,0,0,0,
+0,0,0,0,1,1,1,0,0,0,
+0,0,0,0,1,1,1,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="walls" width="10" height="12">
+  <data encoding="csv">
+0,0,0,26,0,0,0,3221225498,0,0,
+0,0,0,26,0,0,0,3221225498,0,0,
+0,0,0,26,0,0,0,3221225498,0,0,
+0,0,0,26,0,0,0,3221225498,0,0,
+0,0,0,26,0,0,0,3221225498,0,0,
+0,0,0,26,0,0,0,3221225498,0,0,
+0,0,0,26,0,0,0,3221225498,0,0,
+0,0,0,26,0,0,0,3221225498,0,0,
+0,0,0,26,0,0,0,3221225498,0,0,
+0,0,0,26,0,0,0,3221225498,0,0,
+0,0,0,26,0,0,0,3221225498,0,0,
+0,0,0,26,0,0,0,3221225498,0,0
+</data>
+ </layer>
+ <objectgroup id="3" name="collider">
+  <object id="1" name="collider" x="195" y="770">
+   <polygon points="0,0 -4,-772 32.6667,-771.333 33.3333,-1.33333"/>
+  </object>
+  <object id="2" name="collider" x="514" y="768.667">
+   <polygon points="0,0 -1.33333,-769.333 -38.6667,-769.333 -37.3333,-1.13687e-13"/>
+  </object>
+ </objectgroup>
+</map>
