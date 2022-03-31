@@ -16,7 +16,7 @@ export default class PlayerMovement{
      * @param {Phaser.Physics.Matter.Sprite} player
      * @param {Phaser.Types.Input.Keyboard.CursorKeys} cursors
      */
-    CheckPlayerInputs(player, cursors){
+    CheckPlayerInputs(player, cursors) {
         player.setVelocity(0);
 
         if (cursors.shift.isDown) {
@@ -49,5 +49,9 @@ export default class PlayerMovement{
         else if (cursors.left.isDown && cursors.up.isDown) {
             player.setVelocity(0, -this.playerSpeed * this.singleDirectionSpeedMultiplier);
         }
+    }
+
+    RemoveLife() {
+        this.lives--;
     }
 }
