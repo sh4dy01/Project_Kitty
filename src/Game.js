@@ -113,13 +113,14 @@ export default class Game extends Phaser.Scene {
             ConvertYCartesianToIsometric(button.x, button.y)
         ); 
         this.button.setStatic(true);
-        this.CanOpen = false;
 
-        this.collisionManager.CheckHitBoxes(this.canLoadNextScene, this.matter.world, this.cameras.main, this.CanOpen);
+        this.collisionManager.CheckHitBoxes(this.canLoadNextScene, this.matter.world, this.cameras.main);
+        this.collisionManager.CheckButton(this.matter.world, this.player.body)
     }
 
     update() {
         this.playerMovement.CheckPlayerInputs(this.player, this.cursors);
         this.UIManager.UpdatePlayerInfoText(this.playerInfoText, this.player);
+        this.playerMovement.UseButton(this.cursors, this.player.body);
     }
 }

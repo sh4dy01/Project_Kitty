@@ -8,8 +8,9 @@ export default class PlayerMovement{
         this.playerSpeed = this.walkSpeed;
         this.offsetOrientation = 0.75;
         this.singleDirectionSpeedMultiplier = 2.25;
-
         this.lives = 3;
+        this.CanOpen = false;
+
     }
     
     /**
@@ -59,12 +60,11 @@ export default class PlayerMovement{
         }
     }
 
-
-    UseButton(cursors, CanOpen){
-        if(CanOpen == true){
+    UseButton(cursors, player){
+        if(player.event == true){
             if (cursors.space.isDown) {
                 console.log("open the door");
-                CanOpen = false;
+                player.event = false;
             }
         }
     }
