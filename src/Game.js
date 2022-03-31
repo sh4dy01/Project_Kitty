@@ -13,9 +13,10 @@ export default class Game extends Phaser.Scene {
         super('game')
     }
 
-    init() {
+    init(data) {
+        this.sceneMapName = data.key;
         this.playerMovement = new PlayerMovement;
-        this.UIManager = new UIManager;
+        this.UIManager = new UIManager(this.sceneMapName);
         this.sceneManager = new SceneManager(this.scene.manager, this.scene.getIndex());
         this.collisionManager = new CollisionManager(this.sceneManager);
 
@@ -42,7 +43,7 @@ export default class Game extends Phaser.Scene {
 
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
 
-        this.map = LoadTilesAssets(this.add, this.matter);
+        this.map = LoadTilesAssets(this.add, this.matter, this.sceneMapName);
 
         const start = this.map.filterObjects('PlayerPoints', obj => obj.name === 'SpawnPoint')[0];
         const end = this.map.filterObjects('PlayerPoints', obj => obj.name === 'NextLevel')[0];
@@ -71,7 +72,6 @@ export default class Game extends Phaser.Scene {
         
         this.player.setCollisionCategory(this.matter.world.nextCategory());
         this.player.setCollidesWith(1);
-        this.player.setOnCollide(()=>console.log("enter"));
             
         console.log(this.matter.world.getAllBodies());
         
@@ -88,6 +88,9 @@ export default class Game extends Phaser.Scene {
         const boutonColor = new Phaser.Display.Color(155, 0, 0);
 
         const button = this.map.filterObjects('Interactions', obj => obj.name === 'Button')[0];
+        const linearEnemies = this.map.filterObjects('Enemies', obj => obj.name === 'EnemyLinear');
+        
+        
         
         this.boutonShow = this.add.circle(400, 300, 60, boutonColor.color);
         this.boutonShow.setPosition(
@@ -117,6 +120,6 @@ export default class Game extends Phaser.Scene {
 
     update() {
         this.playerMovement.CheckPlayerInputs(this.player, this.cursors);
-        this.UIManager.UpdatePlayerInfoText(this.playerInfoText, this.player, this.scene);
+        this.UIManager.UpdatePlayerInfoText(this.playerInfoText, this.player);
     }
 }

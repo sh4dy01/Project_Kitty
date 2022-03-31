@@ -4,9 +4,11 @@ import Phaser from "phaser";
 /**
     * @param {Phaser.GameObjects.GameObjectFactory} gameObjectFactory
     * @param {Phaser.Physics.Matter.MatterPhysics} matter
+    * @param {String} sceneName
 */
-export function LoadTilesAssets(gameObjectFactory, matter) {
-    const map = gameObjectFactory.tilemap("map");  // Ajoute les emplacements de chaque tile
+
+export function LoadTilesAssets(gameObjectFactory, matter, sceneName) {
+    const map = gameObjectFactory.tilemap(sceneName + " map");  // Ajoute les emplacements de chaque tile
     const floorTileset = map.addTilesetImage("floor", "floor");  // Ajoutes les tiles du sol
     const wallTileset = map.addTilesetImage("wall", "wall");  // Ajoutes les tiles des murs
 

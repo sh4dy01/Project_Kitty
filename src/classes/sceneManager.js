@@ -1,7 +1,7 @@
 //@ts-check
 import Phaser from "phaser";
 
-export default class SceneManager{
+export default class SceneManager {
     /**
         * @param {Phaser.Scenes.SceneManager} sceneManager
         * @param {Number} currentSceneIndex
@@ -17,13 +17,7 @@ export default class SceneManager{
     LoadNextScene(camera) {
         camera.fadeOut(1000, 0, 0, 0)
         camera.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-            let sceneToLoad = this.sceneManager.getAt(this.currentSceneIndex + 1)
-
-            console.log(this.currentSceneIndex);
-            console.log(this.sceneManager.getAt(this.currentSceneIndex + 1));
-
-            this.currentSceneIndex++;
-            this.sceneManager.start(sceneToLoad);
+            this.sceneManager.start(this.sceneManager.getAt(this.currentSceneIndex + 1).scene.key);
         })
     }
 

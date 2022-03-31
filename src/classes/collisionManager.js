@@ -11,6 +11,12 @@ export default class CollisionManager{
         this.sceneManager = sceneManager
     }
 
+    CheckNextLevel(canLoadNextScene, world, camera, CanOpen) {
+        if (canLoadNextScene) {
+            
+        }
+    }
+
     /**
         * @param {Boolean} canLoadNextScene
         * @param {Phaser.Physics.Matter.World} world

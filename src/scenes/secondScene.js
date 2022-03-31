@@ -10,14 +10,16 @@ export default class SecondScene extends Phaser.Scene {
     init() {
         this.mapPath = "assets/tiledmap/testmap.json";
         this.canLoadNextScene = true;
+        console.log('loaded: ' + this.mapPath)
     }
 
     preload() {
         this.load.image("floor", "assets/tiles/floor.png");
-        this.load.tilemapTiledJSON("map", this.mapPath)
+
+        this.load.tilemapTiledJSON(this.scene.key + " map", this.mapPath)
     }
 
     create() {
-        this.scene.start('game')
+        this.scene.start('game', { key: this.scene.key })
     }
 }
