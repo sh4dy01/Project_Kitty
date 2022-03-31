@@ -59,6 +59,16 @@ export default class PlayerMovement{
         }
     }
 
+
+    UseButton(cursors, CanOpen){
+        if(CanOpen == true){
+            if (cursors.space.isDown) {
+                console.log("open the door");
+                CanOpen = false;
+            }
+        }
+    }
+
     RemoveLife() {
         this.lives--;
     }

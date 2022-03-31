@@ -29,6 +29,9 @@ export default class Game extends Phaser.Scene {
         this.load.image('player-right', 'assets/sprites/cat/right.png');
         this.load.image('player-up', 'assets/sprites/cat/up.png');
 
+        this.load.image('cone', 'assets/sprites/bouton/Bouton.png');
+        this.load.image('bouton', 'assets/sprites/bouton/Bouton.png');
+
         this.load.image("exit-door", "assets/sprites/exit-door.png");
     }
 
@@ -61,6 +64,7 @@ export default class Game extends Phaser.Scene {
             ConvertXCartesianToIsometric(start.x, start.y), 
             ConvertYCartesianToIsometric(start.x, start.y)
         ); 
+        this.player.setFixedRotation();
 
         this.playerInfoText = this.add.text(0, 0, 'Character position: ');
         this.playerInfoText.setScrollFactor(0);
@@ -72,11 +76,47 @@ export default class Game extends Phaser.Scene {
         console.log(this.matter.world.getAllBodies());
         
         this.cameras.main.startFollow(this.player, false, 0.1, 0.1); // Permet que la caméra suit le joueur
+
+        this.cone = this.matter.add.sprite(200, 250, "cone");
+        this.cone.setPolygon(130,3, { 
+            label: "cone"
+        })
+        this.cone.isSensor();
+        this.cone.setSensor(true);
+        this.cone.setFixedRotation();
+
+        const boutonColor = new Phaser.Display.Color(155, 0, 0);
+
+        const button = this.map.filterObjects('Interactions', obj => obj.name === 'Button')[0];
+        
+        this.boutonShow = this.add.circle(400, 300, 60, boutonColor.color);
+        this.boutonShow.setPosition(
+            ConvertXCartesianToIsometric(button.x, button.y), 
+            ConvertYCartesianToIsometric(button.x, button.y)
+        ); 
+
+        this.boutonHit = this.matter.add.sprite(0,0, "boutonHit", 0)
+        this.boutonHit.setCircle(60, { label:"boutonHit" })
+        this.boutonHit.isSensor();
+        this.boutonHit.setSensor(true);
+        this.boutonHit.setPosition(
+            ConvertXCartesianToIsometric(button.x, button.y), 
+            ConvertYCartesianToIsometric(button.x, button.y)
+        ); 
+
+        this.button = this.matter.add.sprite(0, 0, "bouton", 0, { label:"bouton" });
+        this.button.setPosition(
+            ConvertXCartesianToIsometric(button.x, button.y), 
+            ConvertYCartesianToIsometric(button.x, button.y)
+        ); 
+        this.button.setStatic(true);
+        this.CanOpen = false;
+
+        this.collisionManager.CheckHitBoxes(this.canLoadNextScene, this.matter.world, this.cameras.main, this.CanOpen);
     }
 
     update() {
         this.playerMovement.CheckPlayerInputs(this.player, this.cursors);
-        this.collisionManager.CheckHitBoxes(this.canLoadNextScene, this.matter.world, this.cameras.main);
         this.UIManager.UpdatePlayerInfoText(this.playerInfoText, this.player, this.scene);
     }
 }

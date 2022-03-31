@@ -16,13 +16,24 @@ export default class CollisionManager{
         * @param {Phaser.Physics.Matter.World} world
         * @param {Phaser.Cameras.Scene2D.Camera} camera
     */
-    CheckHitBoxes(canLoadNextScene, world, camera) {
+    CheckHitBoxes(canLoadNextScene, world, camera, CanOpen) {
         if (canLoadNextScene) {
             world.on("collisionstart", (event, bodyA, bodyB) => {
-                if((bodyA.label == "player" && bodyB.label == "nextLevel") == (bodyB.label == "nextLevel" && bodyA.label == "player")) {
-                    this.sceneManager.LoadNextScene(camera);
+                if((bodyA.label == "player" && bodyB.label == "cone") || (bodyA.label == "cone" && bodyB.label == "player")) {
+                    console.log("vue!");
+                }
+    
+                if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
+                    console.log("on button area");
+                    this.CanOpen = true;
                 }
             })
+            world.on("collisionend", (event, bodyA, bodyB) => {
+                if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
+                    console.log("exit button area");
+                    this.CanOpen = false;
+                }
+            });
         }
     }
 }
