@@ -8,8 +8,8 @@ export default class StartScene extends Phaser.Scene {
     }
 
     init() {
-        this.mapPath = "assets/tiledmap/testmap2.json";
-        this.canLoadNextScene = true;
+        this.mapPath = "assets/tiledmap/testmap.json";
+
         console.log('loaded: ' + this.mapPath)
     }
 

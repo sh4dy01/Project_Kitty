@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="32" height="64" tilewidth="182" tileheight="104" infinite="0" nextlayerid="10" nextobjectid="27">
  <editorsettings>
-  <export target="../tiledmap/testmap2.json" format="json"/>
+  <export target="../tiledmap/testmap.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="floor" tilewidth="182" tileheight="104" tilecount="4" columns="2">
   <image source="../tiles/floor.png" width="364" height="208"/>

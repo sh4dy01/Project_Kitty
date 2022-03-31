@@ -1,11 +1,12 @@
 //@ts-check
 import Phaser from "phaser";
 import CollisionManager from "./classes/collisionManager";
+import EnemyAIManager from "./classes/enemy";
 import PlayerMovement from "./classes/player"
 import SceneManager from "./classes/sceneManager";
 import UIManager from "./classes/UIManager";
+import TilesLoader from "./helpers/tilesLoader";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "./helpers/cartesianToIsometric";
-import { LoadTilesAssets } from "./helpers/tilesLoader";
 
 export default class Game extends Phaser.Scene {
 
@@ -15,11 +16,14 @@ export default class Game extends Phaser.Scene {
 
     init(data) {
         this.sceneMapName = data.key;
+
         this.playerMovement = new PlayerMovement;
         this.UIManager = new UIManager(this.sceneMapName);
         this.sceneManager = new SceneManager(this.scene.manager, this.scene.getIndex());
         this.collisionManager = new CollisionManager(this.sceneManager);
+        this.tilesLoader = new TilesLoader();
 
+        this.enemies = [];
         this.canLoadNextScene = true;
     }
 
@@ -43,7 +47,7 @@ export default class Game extends Phaser.Scene {
 
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
 
-        this.map = LoadTilesAssets(this.add, this.matter, this.sceneMapName);
+        this.map = this.tilesLoader.LoadTilesAssets(this.add, this.sceneMapName);
 
         const start = this.map.filterObjects('PlayerPoints', obj => obj.name === 'SpawnPoint')[0];
         const end = this.map.filterObjects('PlayerPoints', obj => obj.name === 'NextLevel')[0];
@@ -88,9 +92,21 @@ export default class Game extends Phaser.Scene {
         const boutonColor = new Phaser.Display.Color(155, 0, 0);
 
         const button = this.map.filterObjects('Interactions', obj => obj.name === 'Button')[0];
-        const linearEnemies = this.map.filterObjects('Enemies', obj => obj.name === 'EnemyLinear');
+        const linearTiledEnemies = this.map.filterObjects('Enemies', obj => obj.name === 'EnemyLinear');
         
-        
+        linearTiledEnemies.forEach((enemy)=>(
+            this.enemies.push(this.matter.add.sprite(
+                ConvertXCartesianToIsometric(enemy.x, enemy.y),
+                ConvertYCartesianToIsometric(enemy.x, enemy.y),
+                "car"
+            ))
+        ))
+
+        this.matter.world.convertTilemapLayer(this.tilesLoader.wallLayer);
+
+        // this.enemies.forEach((enemy)=>(
+            
+        // ))
         
         this.boutonShow = this.add.circle(400, 300, 60, boutonColor.color);
         this.boutonShow.setPosition(

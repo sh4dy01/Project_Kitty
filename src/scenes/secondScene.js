@@ -15,6 +15,7 @@ export default class SecondScene extends Phaser.Scene {
 
     preload() {
         this.load.image("floor", "assets/tiles/floor.png");
+        this.load.image("wall", "assets/tiles/wall2.png");
 
         this.load.tilemapTiledJSON(this.scene.key + " map", this.mapPath)
     }
