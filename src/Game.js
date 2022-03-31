@@ -34,6 +34,7 @@ export default class Game extends Phaser.Scene {
         this.load.image('player-right', 'assets/sprites/cat/right.png');
         this.load.image('player-up', 'assets/sprites/cat/up.png');
 
+        this.load.image('EnemyLinear', 'assets/sprites/car_2.png')
         this.load.image('cone', 'assets/sprites/bouton/Bouton.png');
         this.load.image('bouton', 'assets/sprites/bouton/Bouton.png');
 
@@ -51,7 +52,6 @@ export default class Game extends Phaser.Scene {
 
         const start = this.map.filterObjects('PlayerPoints', obj => obj.name === 'SpawnPoint')[0];
         const end = this.map.filterObjects('PlayerPoints', obj => obj.name === 'NextLevel')[0];
-
         this.nextLevel = this.matter.add.sprite(
             ConvertXCartesianToIsometric(end.x, end.y),
             ConvertYCartesianToIsometric(end.x, end.y),
@@ -92,46 +92,48 @@ export default class Game extends Phaser.Scene {
         const boutonColor = new Phaser.Display.Color(155, 0, 0);
 
         const button = this.map.filterObjects('Interactions', obj => obj.name === 'Button')[0];
-        const linearTiledEnemies = this.map.filterObjects('Enemies', obj => obj.name === 'EnemyLinear');
-        
-        linearTiledEnemies.forEach((enemy)=>(
-            this.enemies.push(this.matter.add.sprite(
-                ConvertXCartesianToIsometric(enemy.x, enemy.y),
-                ConvertYCartesianToIsometric(enemy.x, enemy.y),
-                "car"
-            ))
+        const linearTiledEnemies = this.map.filterObjects('Enemies', obj => obj.name === 'EnemyLinear').forEach((enemy)=>(
+                this.enemies.push(this.matter.add.sprite(
+                    ConvertXCartesianToIsometric(enemy.x, enemy.y),
+                    ConvertYCartesianToIsometric(enemy.x, enemy.y),
+                    "EnemyLinear"
+                )
+            )
         ))
 
         this.matter.world.convertTilemapLayer(this.tilesLoader.wallLayer);
 
-        // this.enemies.forEach((enemy)=>(
-            
-        // ))
+        this.enemies.forEach((enemy)=>(
+            enemy.setStatic(true)
+        ))
+
+        if (button) {
+            this.boutonShow = this.add.circle(400, 300, 60, boutonColor.color);
+            this.boutonShow.setPosition(
+                ConvertXCartesianToIsometric(button.x, button.y), 
+                ConvertYCartesianToIsometric(button.x, button.y)
+            ); 
+
+            this.boutonHit = this.matter.add.sprite(0,0, "boutonHit", 0)
+            this.boutonHit.setCircle(60, { label:"boutonHit" })
+            this.boutonHit.isSensor();
+            this.boutonHit.setSensor(true);
+            this.boutonHit.setPosition(
+                ConvertXCartesianToIsometric(button.x, button.y), 
+                ConvertYCartesianToIsometric(button.x, button.y)
+            ); 
+
+            this.button = this.matter.add.sprite(0, 0, "bouton", 0, { label:"bouton" });
+            this.button.setPosition(
+                ConvertXCartesianToIsometric(button.x, button.y), 
+                ConvertYCartesianToIsometric(button.x, button.y)
+            ); 
+
+            this.button.setStatic(true);
+            this.collisionManager.CheckButton(this.matter.world, this.player.body)
+        }
         
-        this.boutonShow = this.add.circle(400, 300, 60, boutonColor.color);
-        this.boutonShow.setPosition(
-            ConvertXCartesianToIsometric(button.x, button.y), 
-            ConvertYCartesianToIsometric(button.x, button.y)
-        ); 
-
-        this.boutonHit = this.matter.add.sprite(0,0, "boutonHit", 0)
-        this.boutonHit.setCircle(60, { label:"boutonHit" })
-        this.boutonHit.isSensor();
-        this.boutonHit.setSensor(true);
-        this.boutonHit.setPosition(
-            ConvertXCartesianToIsometric(button.x, button.y), 
-            ConvertYCartesianToIsometric(button.x, button.y)
-        ); 
-
-        this.button = this.matter.add.sprite(0, 0, "bouton", 0, { label:"bouton" });
-        this.button.setPosition(
-            ConvertXCartesianToIsometric(button.x, button.y), 
-            ConvertYCartesianToIsometric(button.x, button.y)
-        ); 
-        this.button.setStatic(true);
-
         this.collisionManager.CheckHitBoxes(this.canLoadNextScene, this.matter.world, this.cameras.main);
-        this.collisionManager.CheckButton(this.matter.world, this.player.body)
     }
 
     update() {

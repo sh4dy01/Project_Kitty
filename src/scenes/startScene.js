@@ -17,7 +17,7 @@ export default class StartScene extends Phaser.Scene {
         this.load.image("floor", "assets/tiles/floor.png");
         this.load.image("wall", "assets/tiles/wall.png");
 
-        this.load.tilemapTiledJSON(this.scene.key + " map", this.mapPath)
+        this.load.tilemapTiledJSON(this.scene.key, this.mapPath)
     }
 
     create() {

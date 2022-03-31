@@ -12,9 +12,9 @@ export default class TilesLoader {
     */
 
     LoadTilesAssets(gameObjectFactory, sceneName) {
-        const map = gameObjectFactory.tilemap(sceneName + " map");  // Ajoute les emplacements de chaque tile
+        const map = gameObjectFactory.tilemap(sceneName);  // Ajoute les emplacements de chaque tile
         const floorTileset = map.addTilesetImage("floor", "floor");  // Ajoutes les tiles du sol
-        const wallTileset = map.addTilesetImage("wall2", "wall");  // Ajoutes les tiles des murs
+        const wallTileset = map.addTilesetImage("wall", "wall");  // Ajoutes les tiles des murs
         console.log(wallTileset);
         console.log(floorTileset);
 

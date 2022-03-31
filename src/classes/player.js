@@ -10,7 +10,6 @@ export default class PlayerMovement{
         this.singleDirectionSpeedMultiplier = 2.25;
         this.lives = 3;
         this.CanOpen = false;
-
     }
     
     /**
