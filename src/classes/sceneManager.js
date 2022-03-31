@@ -18,6 +18,10 @@ export default class SceneManager{
         camera.fadeOut(1000, 0, 0, 0)
         camera.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
             let sceneToLoad = this.sceneManager.getAt(this.currentSceneIndex + 1)
+
+            console.log(this.currentSceneIndex);
+            console.log(this.sceneManager.getAt(this.currentSceneIndex + 1));
+
             this.currentSceneIndex++;
             this.sceneManager.start(sceneToLoad);
         })

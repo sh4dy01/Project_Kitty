@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="32" height="64" tilewidth="182" tileheight="104" infinite="0" nextlayerid="8" nextobjectid="11">
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="32" height="64" tilewidth="182" tileheight="104" infinite="0" nextlayerid="9" nextobjectid="13">
  <editorsettings>
   <export target="../tiledmap/testmap2.json" format="json"/>
  </editorsettings>
@@ -154,6 +154,9 @@
 </data>
  </layer>
  <objectgroup id="3" name="WorldCollider"/>
+ <objectgroup id="8" name="Interactions">
+  <object id="11" name="Button" x="1720.19" y="6111.81" width="41.3333" height="41.3333"/>
+ </objectgroup>
  <objectgroup id="5" name="Obstacles"/>
  <objectgroup id="6" name="Safezones"/>
  <objectgroup id="2" name="PlayerPoints">
