@@ -1,8 +1,8 @@
 import Phaser from "phaser";
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 
-import gameScene from "./scenes/gameScene";
-import secondScene from "./scenes/secondScene";
+import StartScene from "./scenes/startScene";
+import SecondScene from "./scenes/secondScene";
 
 const config = {
     type: Phaser.AUTO,
@@ -29,7 +29,7 @@ const config = {
 
 const game = new Phaser.Game(config);
 
-game.scene.add('startScene', gameScene);
-game.scene.add('secondScene', secondScene);
+game.scene.add('startScene', StartScene);
+game.scene.add('secondScene', SecondScene);
 
 game.scene.start('startScene');

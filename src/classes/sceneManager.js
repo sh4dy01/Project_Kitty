@@ -1,36 +1,36 @@
 //@ts-check
 import Phaser from "phaser";
 
-class Character extends Phaser.GameObjects.Sprite {
-    constructor(scene){
-        var x = scene.player.x;
-        var y = scene.player.y;
-
-        super(scene, x, y, "player");
-        scene.add.existing(this);
+export default class SceneManager{
+    /**
+        * @param {Phaser.Scenes.SceneManager} sceneManager
+        * @param {Number} currentSceneIndex
+    */
+    constructor(sceneManager, currentSceneIndex){
+        this.sceneManager = sceneManager;
+        this.currentSceneIndex = currentSceneIndex;
     }
 
-    CheckPlayerInputs(){
-        this.player.setVelocity(0);
+    /**
+        * @param {Phaser.Cameras.Scene2D.Camera} camera
+    */
+    LoadNextScene(camera) {
+        camera.fadeOut(1000, 0, 0, 0)
+        camera.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            let sceneToLoad = this.sceneManager.getAt(this.currentSceneIndex + 1)
+            this.currentSceneIndex++;
+            this.sceneManager.start(sceneToLoad);
+        })
+    }
 
-        if (this.cursors.shift.isDown) {
-            this.playerSpeed = this.runSpeed;
-        } else {
-            this.playerSpeed = this.walkSpeed;
-        }
-        
-        if (this.cursors.up.isDown) {
-            this.player.setVelocityY(-this.playerSpeed);
-        } 
-        else if (this.cursors.down.isDown) {
-            this.player.setVelocityY(this.playerSpeed);
-        }
-
-        if (this.cursors.right.isDown) {
-            this.player.setVelocityX(this.playerSpeed);
-        } 
-        else if (this.cursors.left.isDown) {
-            this.player.setVelocityX(-this.playerSpeed);
-        }
+    /**
+        * @param {Phaser.Cameras.Scene2D.Camera} camera
+        * @param {Phaser.Scenes.ScenePlugin} scene
+    */
+    RestartScene(camera, scene) {
+        camera.fadeOut(1000, 0, 0, 0)
+        camera.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            scene.restart();
+        })
     }
 }
