@@ -25,7 +25,12 @@ export default class StartScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('player', 'assets/sprites/cat-proto.png');
+        this.load.image('player-up-left', 'assets/sprites/cat/up-left.png');
+        this.load.image('player-down-right', 'assets/sprites/cat/down-right.png');
+        this.load.image('player-down', 'assets/sprites/cat/down.png');
+        this.load.image('player-right', 'assets/sprites/cat/right.png');
+        this.load.image('player-up', 'assets/sprites/cat/up.png');
+
         this.load.image("floor", "assets/tiles/floor.png");
         this.load.image("exit-door", "assets/sprites/exit-door.png");
 
@@ -60,7 +65,7 @@ export default class StartScene extends Phaser.Scene {
             this.physics.world.enable(collider);
         })*/ // Les collisions à travailler
 
-        this.player = this.matter.add.sprite(0, 0, 'player');
+        this.player = this.matter.add.sprite(0, 0, 'player-up-left').setFlipX(true);
         this.player.setRectangle(this.player.width, this.player.height, {label: "player"})
         this.player.setPosition(
             ConvertXCartesianToIsometric(start.x, start.y), 
