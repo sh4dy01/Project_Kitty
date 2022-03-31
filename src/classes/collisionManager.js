@@ -16,7 +16,6 @@ export default class CollisionManager{
         * @param {Phaser.Physics.Matter.World} world
         * @param {Phaser.Cameras.Scene2D.Camera} camera
     */
-
     CheckHitBoxes(canLoadNextScene, world, camera) {
         if (canLoadNextScene) {
             world.on("collisionstart", (event, bodyA, bodyB) => {

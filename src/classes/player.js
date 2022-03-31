@@ -4,7 +4,7 @@ import Phaser from "phaser";
 export default class PlayerMovement{
     constructor(){
         this.walkSpeed = 1;
-        this.runSpeedMultiplier = 2;
+        this.runSpeedMultiplier = 10;
         this.playerSpeed = this.walkSpeed;
         this.offsetOrientation = 0.75;
         this.singleDirectionSpeedMultiplier = 2.25;
