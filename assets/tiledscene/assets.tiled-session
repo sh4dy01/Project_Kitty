@@ -1,0 +1,108 @@
+{
+    "activeFile": "testmap2.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/maest/AppData/Roaming/Tiled/#corridor": {
+            "scaleInEditor": 1
+        },
+        "C:/Users/maest/AppData/Roaming/Tiled/#forest": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/sans titre.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 658,
+                "y": 409.3333333333333
+            }
+        },
+        "D:/Desktop/sans titre.tmx#corridor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/sans titre.tmx#forest": {
+            "scaleInDock": 1
+        },
+        "sans titre.tmx": {
+            "scale": 0.5377485795454545,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 766.1573004028264,
+                "y": 389.5872680446412
+            }
+        },
+        "sans titre.tmx#corridor": {
+            "scaleInDock": 1
+        },
+        "sans titre.tmx#forest": {
+            "scaleInDock": 1
+        },
+        "testmap2.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 2096.969696969697,
+                "y": 4318.181818181818
+            }
+        },
+        "testmap2.tmx#corridor": {
+            "scaleInDock": 1
+        },
+        "testmap2.tmx#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "testmap2.tmx#grass": {
+            "scaleInDock": 1
+        },
+        "testmap2.tmx#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "testmap2.tmx#wall2": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "testmap3.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1721.3333333333333,
+                "y": 3775.9999999999995
+            }
+        },
+        "testmap3.tmx#floor": {
+            "scaleInDock": 1
+        },
+        "testmap3.tmx#wall": {
+            "scaleInDock": 1
+        },
+        "testmap3.tmx#wall2": {
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap",
+    "last.imagePath": "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiles",
+    "map.lastUsedExportFilter": "Tous les Fichiers (*)",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+        "testmap2.tmx"
+    ],
+    "project": "assets.tiled-project",
+    "recentFiles": [
+        "sans titre.tmx",
+        "testmap2.tmx",
+        "D:/Desktop/sans titre.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 156,
+        "width": 91
+    }
+}

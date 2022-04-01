@@ -19,14 +19,9 @@ const config = {
             debug: true,
         },
     },
-    plugins: {
-        scene: [
-            {
-              plugin: PhaserMatterCollisionPlugin,
-              key: "matterCollision",
-              mapping: "matterCollision"
-            }
-          ]
+    fps: {
+        target: 60,
+        forceSetTimeOut: true
     },
 };
 

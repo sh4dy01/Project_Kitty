@@ -1,15 +1,27 @@
 //@ts-check
 import Phaser from "phaser";
+import SceneManager from "../classes/sceneManager";
 
-export default class PlayerMovement{
-    constructor(){
+export default class Player{
+    /**
+        * @param {SceneManager} sceneManager
+        * @param {Phaser.Physics.Matter.World} world
+        * @param {Phaser.Cameras.Scene2D.Camera} camera
+    */
+    constructor(sceneManager, world, camera){
         this.walkSpeed = 1;
-        this.runSpeedMultiplier = 10;
+        this.runSpeedMultiplier = 2.5;
         this.playerSpeed = this.walkSpeed;
         this.offsetOrientation = 0.75;
         this.singleDirectionSpeedMultiplier = 2.25;
 
         this.lives = 3;
+        this.canOpen = false;
+        this.canLoadNextScene = false;
+
+        this.sceneManager = sceneManager;
+        this.world = world;
+        this.camera = camera;
     }
     
     /**
@@ -59,13 +71,30 @@ export default class PlayerMovement{
         }
     }
 
-
-    UseButton(cursors, CanOpen){
-        if(CanOpen == true){
+    /**
+     * @param {Phaser.Types.Input.Keyboard.CursorKeys} cursors
+     */
+    UseButton(cursors, player){
+        if(player.event == true){
             if (cursors.space.isDown) {
-                console.log("open the door");
-                CanOpen = false;
+                this.canLoadNextScene = true;
+                this.CheckNextLevel(this.world, this.camera)
+                player.event = false;
             }
+        }
+    }
+
+    /**
+     * @param {Phaser.Physics.Matter.World} world
+     * @param {Phaser.Cameras.Scene2D.Camera} camera
+    */
+     CheckNextLevel(world, camera) {
+        if (this.canLoadNextScene) {
+            world.on("collisionstart", (event, bodyA, bodyB) => {
+                if((bodyA.label == "player" && bodyB.label == "NextLevel") || (bodyA.label == "NextLevel" && bodyB.label == "player")) {
+                    this.sceneManager.LoadNextScene(camera);
+                }
+            })
         }
     }
 

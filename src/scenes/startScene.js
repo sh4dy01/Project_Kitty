@@ -8,8 +8,8 @@ export default class StartScene extends Phaser.Scene {
     }
 
     init() {
-        this.mapPath = "assets/tiledmap/testmap2.json";
-        this.canLoadNextScene = true;
+        this.mapPath = "assets/tiledmap/testmap.json";
+
         console.log('loaded: ' + this.mapPath)
     }
 
@@ -17,7 +17,7 @@ export default class StartScene extends Phaser.Scene {
         this.load.image("floor", "assets/tiles/floor.png");
         this.load.image("wall", "assets/tiles/wall.png");
 
-        this.load.tilemapTiledJSON(this.scene.key + " map", this.mapPath)
+        this.load.tilemapTiledJSON(this.scene.key, this.mapPath)
     }
 
     create() {
