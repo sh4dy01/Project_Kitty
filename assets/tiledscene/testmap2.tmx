@@ -158,11 +158,31 @@
  <objectgroup id="8" name="Interactions">
   <object id="11" name="Button" x="1720.19" y="6111.81" width="41.3333" height="41.3333"/>
  </objectgroup>
- <objectgroup id="9" name="Enemies">
-  <object id="18" name="EnemyLinear" x="1914.1" y="5773.9" width="22.4762" height="22.4762"/>
-  <object id="19" name="EnemyLinear" x="1867.02" y="5688.17" width="22.4762" height="22.4762"/>
-  <object id="20" name="EnemyLinear" x="1965.4" y="5683.12" width="22.4762" height="22.4762"/>
-  <object id="21" name="EnemyLinear" x="1911.9" y="5605.62" width="22.4762" height="22.4762"/>
+ <objectgroup id="9" name="EnemiesLinear">
+  <object id="18" name="EnemyLinear" x="1914.1" y="5773.9" width="22.4762" height="22.4762">
+   <properties>
+    <property name="direction" value="bottom-left"/>
+    <property name="speed" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="19" name="EnemyLinear" x="1867.02" y="5688.17" width="22.4762" height="22.4762">
+   <properties>
+    <property name="direction" value="bottom-left"/>
+    <property name="speed" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="20" name="EnemyLinear" x="1965.4" y="5683.12" width="22.4762" height="22.4762">
+   <properties>
+    <property name="direction" value="bottom-left"/>
+    <property name="speed" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="21" name="EnemyLinear" x="1911.9" y="5605.62" width="22.4762" height="22.4762">
+   <properties>
+    <property name="direction" value="bottom-left"/>
+    <property name="speed" type="int" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="5" name="Obstacles"/>
  <objectgroup id="6" name="SafeZones">
@@ -170,7 +190,7 @@
   <object id="30" name="SafeZone" x="1393.52" y="6080.76" width="57.5238" height="57.5238"/>
  </objectgroup>
  <objectgroup id="2" name="PlayerPoints">
-  <object id="2" name="SpawnPoint" x="1944.14" y="6631.86" width="32" height="32"/>
+  <object id="2" name="SpawnPoint" x="1864.14" y="5869.19" width="32" height="32"/>
   <object id="10" name="NextLevel" x="1724.14" y="5401.86" width="32" height="32"/>
  </objectgroup>
 </map>

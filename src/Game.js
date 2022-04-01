@@ -7,6 +7,7 @@ import SceneManager from "./classes/sceneManager";
 import UIManager from "./classes/UIManager";
 import TilesLoader from "./helpers/tilesLoader";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "./helpers/cartesianToIsometric";
+import Enemy from "./classes/enemy";
 
 export default class Game extends Phaser.Scene {
 
@@ -27,9 +28,10 @@ export default class Game extends Phaser.Scene {
         this.tilesLoader = new TilesLoader();
 
         /**
-         * @type {Phaser.Physics.Matter.Sprite[]}
+         * @type {EnemyAIManager[]}
          */
-        this.enemies = [];
+        this.enemiesAI = [];
+        this.enemiesAIManager = [];
     }
 
     preload() {
@@ -108,20 +110,36 @@ export default class Game extends Phaser.Scene {
         this.cone.setSensor(true);
         this.cone.setFixedRotation();
 
-        map.filterObjects('Enemies', obj => obj.name === 'EnemyLinear').forEach((enemy)=>(
-                this.enemies.push(this.matter.add.sprite(
-                    ConvertXCartesianToIsometric(enemy.x, enemy.y),
-                    ConvertYCartesianToIsometric(enemy.x, enemy.y),
-                    "EnemyLinear"
-                )
-            )
-        ))
+        this.enemies = map.createFromObjects('EnemiesLinear', {
+            name: 'EnemyLinear',
+        })
 
-        this.enemies.forEach((enemy)=>(
-            enemy.setStatic(true),
-            this.field = this.matter.add.polygon(enemy.x-50, enemy.y+50, 3, 100, { isSensor:true, angle: 0.33, label: "field" })
-        ))
-        
+        let temp;
+        let enemyAI;
+        this.enemies.forEach(
+            /**
+             * @param {Phaser.GameObjects.Sprite} enemy
+            */
+            (enemy, index)=>(
+                enemy.setTexture('EnemyLinear'),
+                temp = enemy.x,
+                enemy.x = ConvertXCartesianToIsometric(temp, enemy.y),
+                enemy.y = ConvertYCartesianToIsometric(temp, enemy.y),
+                this.matter.add.polygon(enemy.x - 50, enemy.y + 50, 3, 100, { isSensor:true, angle: 0.33, label: "field" }),
+
+                enemyAI = new EnemyAIManager(enemy.getData('direction')),
+                this.enemiesAI.push(enemyAI),
+                this.enemiesAIManager.push(this.time.addEvent({ 
+                    delay: 2000,
+                    callback: this.enemiesAI[index].MoveTheEnemyLinear,
+                    args: [enemy, 1],
+                    loop: true 
+                }))
+            )
+        )       
+        console.log(this.enemiesAIManager)
+ 
+
         const boutonColor = new Phaser.Display.Color(155, 0, 0);
         const button = map.filterObjects('Interactions', obj => obj.name === 'Button')[0];
         if (button) {

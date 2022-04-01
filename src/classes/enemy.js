@@ -3,6 +3,9 @@ import Phaser from "phaser";
 
 export default class EnemyAIManager {
 
+    /**
+     * @param {String} enemyDirection
+     */
     constructor(enemyDirection) {
         this.enemyDirection = enemyDirection
     }
@@ -11,7 +14,8 @@ export default class EnemyAIManager {
      * @param {Phaser.Physics.Matter.Sprite} enemy
      * @param {Number} speed
     */
-    MoveTheEnnemiLinear(enemy, speed) {
+    MoveTheEnemyLinear(enemy, speed) {
+        console.log(this.enemyDirection);
         switch (this.enemyDirection) {
             case "top-left":
                 enemy.setVelocity(0, -speed)
@@ -54,7 +58,7 @@ export default class EnemyAIManager {
             break;
 
             default:
-                console.log("wrong position")
+                console.log(this.enemyDirection, "wrong position")
             break;
         }
     }

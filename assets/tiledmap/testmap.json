@@ -85,12 +85,23 @@
         {
          "draworder":"topdown",
          "id":9,
-         "name":"Enemies",
+         "name":"EnemiesLinear",
          "objects":[
                 {
                  "height":22.4762,
                  "id":18,
                  "name":"EnemyLinear",
+                 "properties":[
+                        {
+                         "name":"direction",
+                         "type":"string",
+                         "value":"bottom-left"
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"int",
+                         "value":1
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -102,6 +113,17 @@
                  "height":22.4762,
                  "id":19,
                  "name":"EnemyLinear",
+                 "properties":[
+                        {
+                         "name":"direction",
+                         "type":"string",
+                         "value":"bottom-left"
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"int",
+                         "value":1
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -113,6 +135,17 @@
                  "height":22.4762,
                  "id":20,
                  "name":"EnemyLinear",
+                 "properties":[
+                        {
+                         "name":"direction",
+                         "type":"string",
+                         "value":"bottom-left"
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"int",
+                         "value":1
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -124,6 +157,17 @@
                  "height":22.4762,
                  "id":21,
                  "name":"EnemyLinear",
+                 "properties":[
+                        {
+                         "name":"direction",
+                         "type":"string",
+                         "value":"bottom-left"
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"int",
+                         "value":1
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -194,8 +238,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1944.14,
-                 "y":6631.86
+                 "x":1864.14,
+                 "y":5869.19333333333
                 }, 
                 {
                  "height":32,

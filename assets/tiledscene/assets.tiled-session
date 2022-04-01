@@ -1,8 +1,13 @@
 {
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
     "activeFile": "testmap2.tmx",
     "expandedProjectPaths": [
         "."
     ],
+    "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
     "fileStates": {
         "": {
             "scaleInDock": 1,
@@ -44,18 +49,18 @@
             "scaleInDock": 1
         },
         "testmap2.tmx": {
-            "scale": 0.33,
-            "selectedLayer": 3,
+            "scale": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 2096.969696969697,
-                "y": 4318.181818181818
+                "x": 2486,
+                "y": 4082
             }
         },
         "testmap2.tmx#corridor": {
             "scaleInDock": 1
         },
         "testmap2.tmx#floor": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "testmap2.tmx#grass": {
@@ -95,9 +100,10 @@
         "testmap2.tmx"
     ],
     "project": "assets.tiled-project",
+    "property.type": "int",
     "recentFiles": [
-        "sans titre.tmx",
         "testmap2.tmx",
+        "sans titre.tmx",
         "D:/Desktop/sans titre.tmx"
     ],
     "tileset.embedInMap": true,

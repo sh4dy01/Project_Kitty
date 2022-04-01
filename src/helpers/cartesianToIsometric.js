@@ -3,7 +3,7 @@
  * @param {Number} y
 */
 export function ConvertXCartesianToIsometric(x, y) {
-    var tempX = x - y / 1.1;
+    var tempX = x - y / 1.108;
 
     return tempX
 }
