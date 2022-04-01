@@ -166,7 +166,7 @@
                 {
                  "height":1391.9080952381,
                  "id":25,
-                 "name":"top-left",
+                 "name":"topLeft",
                  "properties":[
                         {
                          "name":"angle",
@@ -183,7 +183,7 @@
                 {
                  "height":106.476190476191,
                  "id":31,
-                 "name":"top-right",
+                 "name":"topRight",
                  "rotation":0,
                  "type":"",
                  "visible":true,
