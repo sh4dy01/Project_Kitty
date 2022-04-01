@@ -118,7 +118,8 @@ export default class Game extends Phaser.Scene {
         ))
 
         this.enemies.forEach((enemy)=>(
-            enemy.setStatic(true)
+            enemy.setStatic(true),
+            this.field = this.matter.add.polygon(enemy.x-50, enemy.y+50, 3, 100, { isSensor:true, angle: 0.33, label: "field" })
         ))
         
         const boutonColor = new Phaser.Display.Color(155, 0, 0);

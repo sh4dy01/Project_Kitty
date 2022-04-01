@@ -8,6 +8,18 @@ export default class CollisionManager{
     /**
      * @param {Phaser.Physics.Matter.World} world
     */
+
+     CheckHitBoxes(canLoadNextScene, world, camera) {
+        if (canLoadNextScene) {
+        }
+
+        world.on("collisionstart", (event, bodyA, bodyB) => {
+            if((bodyA.label == "player" && bodyB.label == "field") || (bodyA.label == "field" && bodyB.label == "player")) {
+                console.log("vue");
+            }
+        });
+    }
+    
     CheckButton(world){
         world.on("collisionstart", (event, bodyA, bodyB) => {
             if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
