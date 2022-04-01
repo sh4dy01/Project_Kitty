@@ -154,26 +154,26 @@
          "name":"SafeZones",
          "objects":[
                 {
-                 "height":234.285714285714,
+                 "height":234.286,
                  "id":27,
                  "name":"SafeZone",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":309.714285714286,
-                 "x":1785.14285714286,
-                 "y":6502.85714285714
+                 "width":309.714,
+                 "x":1785.14,
+                 "y":6502.86
                 }, 
                 {
-                 "height":57.5238095238101,
+                 "height":57.5238,
                  "id":30,
                  "name":"SafeZone",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":57.5238095238101,
-                 "x":1393.52380952381,
-                 "y":6080.7619047619
+                 "width":57.5238,
+                 "x":1393.52,
+                 "y":6080.76
                 }],
          "opacity":1,
          "type":"objectgroup",
