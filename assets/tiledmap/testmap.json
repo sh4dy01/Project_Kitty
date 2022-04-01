@@ -164,9 +164,9 @@
          "name":"WorldCollider",
          "objects":[
                 {
-                 "height":1405.81285714286,
+                 "height":1391.9080952381,
                  "id":25,
-                 "name":"Collision",
+                 "name":"top-left",
                  "properties":[
                         {
                          "name":"angle",
@@ -174,33 +174,33 @@
                          "value":0.33
                         }],
                  "rotation":0,
-                 "type":"Collision",
+                 "type":"",
                  "visible":true,
-                 "width":56.2857,
-                 "x":1113.80095238095,
-                 "y":5285.32285714286
+                 "width":110.380938095238,
+                 "x":1086.1819047619,
+                 "y":5307.41809523809
                 }, 
                 {
-                 "height":76.1904761904761,
+                 "height":106.476190476191,
                  "id":31,
-                 "name":"Collision",
+                 "name":"top-right",
                  "rotation":0,
-                 "type":"Collision",
+                 "type":"",
                  "visible":true,
-                 "width":1438.47619047619,
-                 "x":1044,
-                 "y":5204
+                 "width":1460.95238095238,
+                 "x":1048.19047619048,
+                 "y":5194.47619047619
                 }, 
                 {
-                 "height":2.28571428571468,
+                 "height":0,
                  "id":32,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":2.28571428571422,
-                 "x":1620.38095238095,
-                 "y":5484
+                 "width":0,
+                 "x":1139.04761904762,
+                 "y":4546.28571428571
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -346,15 +346,15 @@
          "name":"SafeZones",
          "objects":[
                 {
-                 "height":245.571714285714,
+                 "height":234.286,
                  "id":27,
                  "name":"SafeZone",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":326.999714285714,
-                 "x":1729.23523809524,
-                 "y":6407.47904761905
+                 "width":309.714,
+                 "x":1785.14,
+                 "y":6502.86
                 }, 
                 {
                  "height":57.5238,
@@ -386,8 +386,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1885.64142857143,
-                 "y":6263.26857142857
+                 "x":1900.07,
+                 "y":6590.84
                 }, 
                 {
                  "height":32,
@@ -407,7 +407,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":34,
+ "nextobjectid":33,
  "orientation":"isometric",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",
