@@ -33,6 +33,7 @@ export default class Game extends Phaser.Scene {
         this.enemiesAI = [];
         this.enemiesAIManager = [];
         this.safezone = [];
+        this.collision = [];
     }
 
     preload() {
@@ -180,8 +181,19 @@ export default class Game extends Phaser.Scene {
                 SafeZoneObject.height,
                 { isSensor:true, angle:0.52, label: "safezone" }
             )
-        )
-    ))
+        )))
+
+        const Collision = map.filterObjects('Collisions', obj => obj.name === 'Collision');
+        console.log(map.filterObjects('Collisions', obj => obj.name === 'Collision'))
+        map.filterObjects('Collisions', obj => obj.name === 'Collision').forEach((Collision)=>(
+            this.collision.push(this.matter.add.rectangle(
+                ConvertXCartesianToIsometric(Collision.x, Collision.y)+(Collision.width-Collision.height)/2,
+                ConvertYCartesianToIsometric(Collision.x, Collision.y)+Collision.height/2,
+                Collision.width,
+                Collision.height,
+                { isSensor:true, angle:0.52, label: "collision" }
+            )
+        )))
 
         this.playerInteractions.CheckNextLevel(this.matter.world, this.cameras.main);
         this.collisionManager.CheckHitBoxes(this.matter.world, this.cameras.main);

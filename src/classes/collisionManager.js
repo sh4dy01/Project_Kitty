@@ -31,9 +31,6 @@ export default class CollisionManager{
                 console.log("not safe");
                 this.safe = false;
             }
-            if ((bodyA.label == "player" && bodyB.label == "collison") || (bodyA.label == "collision" && bodyB.label == "player")){
-                console.log("collision");
-            }
         });
     }
     
