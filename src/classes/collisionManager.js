@@ -9,9 +9,7 @@ export default class CollisionManager{
      * @param {Phaser.Physics.Matter.World} world
     */
 
-     CheckHitBoxes(canLoadNextScene, world, camera) {
-        if (canLoadNextScene) {
-        }
+     CheckHitBoxes(world, camera) {
 
         world.on("collisionstart", (event, bodyA, bodyB) => {
             if((bodyA.label == "player" && bodyB.label == "field") || (bodyA.label == "field" && bodyB.label == "player")) {

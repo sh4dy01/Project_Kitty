@@ -151,6 +151,7 @@ export default class Game extends Phaser.Scene {
         }
 
         this.playerInteractions.CheckNextLevel(this.matter.world, this.cameras.main);
+        this.collisionManager.CheckHitBoxes(this.matter.world, this.cameras.main);
     }
 
     update() {
