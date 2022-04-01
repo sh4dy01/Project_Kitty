@@ -18,6 +18,9 @@ export default class CollisionManager{
             if((bodyA.label == "player" && bodyB.label == "safezone") || (bodyA.label == "safezone" && bodyB.label == "player")) {
                 console.log("safe");
             }
+            if ((bodyA.label == "player" && bodyB.label == "collison") || (bodyA.label == "collision" && bodyB.label == "player")){
+                console.log("collision");
+            }
         });
     }
     

@@ -164,7 +164,7 @@
          "name":"WorldCollider",
          "objects":[
                 {
-                 "height":1384.67,
+                 "height":1405.81285714286,
                  "id":25,
                  "name":"Collision",
                  "properties":[
@@ -174,11 +174,33 @@
                          "value":0.33
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Collision",
                  "visible":true,
                  "width":56.2857,
-                 "x":1145.42,
-                 "y":5312.18
+                 "x":1113.80095238095,
+                 "y":5285.32285714286
+                }, 
+                {
+                 "height":76.1904761904761,
+                 "id":31,
+                 "name":"Collision",
+                 "rotation":0,
+                 "type":"Collision",
+                 "visible":true,
+                 "width":1438.47619047619,
+                 "x":1044,
+                 "y":5204
+                }, 
+                {
+                 "height":2.28571428571468,
+                 "id":32,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2.28571428571422,
+                 "x":1620.38095238095,
+                 "y":5484
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -324,15 +346,15 @@
          "name":"SafeZones",
          "objects":[
                 {
-                 "height":463.857428571428,
+                 "height":234.286,
                  "id":27,
                  "name":"SafeZone",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":529.285428571428,
-                 "x":1731.23523809524,
-                 "y":6191.19333333333
+                 "width":309.714,
+                 "x":1785.14,
+                 "y":6502.86
                 }, 
                 {
                  "height":57.5238,
@@ -364,8 +386,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1865.49857142857,
-                 "y":6493.41142857143
+                 "x":1864.14,
+                 "y":5869.19
                 }, 
                 {
                  "height":32,
@@ -385,10 +407,10 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":31,
+ "nextobjectid":34,
  "orientation":"isometric",
  "renderorder":"right-down",
- "tiledversion":"1.8.3",
+ "tiledversion":"1.8.4",
  "tileheight":104,
  "tilesets":[
         {
