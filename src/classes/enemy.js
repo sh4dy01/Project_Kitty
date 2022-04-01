@@ -9,51 +9,52 @@ export default class EnemyAIManager {
     constructor(enemyDirection) {
         this.enemyDirection = enemyDirection
     }
-
+    
     /**
      * @param {Phaser.Physics.Matter.Sprite} enemy
      * @param {Number} speed
-    */
-    MoveTheEnemyLinear(enemy, speed) {
-        switch (this.enemyDirection) {
+     */
+    MoveTheEnemyLinear(enemy, speed, dir) {
+        console.log(dir)
+        switch (dir) {
             case "top-left":
                 enemy.setVelocity(0, -speed)
-                this.enemyDirection = "bottom-right"
+                dir = "bottom-right"
             break;
 
             case "top":
                 enemy.setVelocity(speed, -speed)
-                this.enemyDirection = "bottom"
+                dir = "bottom"
             break;
 
             case "top-right":
                 enemy.setVelocity(speed, 0)
-                this.enemyDirection = "bottom-left"
+                dir = "bottom-left"
             break;
 
             case "left":
                 enemy.setVelocity(-speed, -speed)
-                this.enemyDirection = "right"
+                dir = "right"
             break;
 
             case "right":
                 enemy.setVelocity(speed, speed)
-                this.enemyDirection = "left"
+                dir = "left"
             break;
 
             case "bottom-left":
                 enemy.setVelocity(-speed, 0)
-                this.enemyDirection = "top-right"
+                dir = "top-right"
             break;
 
             case "bottom":
                 enemy.setVelocity(-speed, speed)
-                this.enemyDirection = "top"
+                dir = "top"
             break;
 
             case "bottom-right":
                 enemy.setVelocity(0, speed)
-                this.enemyDirection = "top-left"
+                dir = "top-left"
             break;
         }
     }

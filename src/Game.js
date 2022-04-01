@@ -16,10 +16,11 @@ export default class Game extends Phaser.Scene {
     }
     
     /**
-     * @param {{ key: String; }} data
+     * @param {{ key: String; life: Number}} data
      */
     init(data) {
         this.sceneMapName = data.key;
+        this.lives = data.life;
 
         this.UIManager = new UIManager(this.sceneMapName);
         this.sceneManager = new SceneManager(this.scene.manager, this.scene.getIndex(this.sceneMapName));
@@ -28,12 +29,27 @@ export default class Game extends Phaser.Scene {
         this.tilesLoader = new TilesLoader();
 
         /**
+            * @param {Phaser.Physics.Matter.Sprite} enemies
+        */
+        this.enemies = [];
+
+        /**
          * @type {EnemyAIManager[]}
-         */
+        */
         this.enemiesAI = [];
+
+        /**
+         * @type {Phaser.Time.TimerEvent[]}
+        */
         this.enemiesAIManager = [];
-        this.safezone = [];
-        this.collision = [];
+        /**
+         * @type {MatterJS.BodyType[]}
+        */
+        this.safeZones = [];
+        /**
+         * @type {MatterJS.BodyType[]}
+        */
+        this.worldCollider = [];
     }
 
     preload() {
@@ -112,15 +128,22 @@ export default class Game extends Phaser.Scene {
         this.cone.setSensor(true);
         this.cone.setFixedRotation();
 
-        this.enemies = map.createFromObjects('EnemiesLinear', {
+        this.enemiesLayer = map.createFromObjects('EnemiesLinear', {
             name: 'EnemyLinear',
         })
+        
+        this.enemiesLayer.forEach(
+            (enemy)=>{
+                this.enemies.push(this.matter.add.gameObject(enemy, {isSensor:true}))
+            }
+        )
 
         let temp;
         let enemyAI;
         this.enemies.forEach(
             /**
              * @param {Phaser.GameObjects.Sprite} enemy
+             * @param {Number} index
             */
             (enemy, index)=>(
                 enemy.setTexture('EnemyLinear'),
@@ -128,19 +151,17 @@ export default class Game extends Phaser.Scene {
                 enemy.x = ConvertXCartesianToIsometric(temp, enemy.y),
                 enemy.y = ConvertYCartesianToIsometric(temp, enemy.y),
                 this.matter.add.polygon(enemy.x - 50, enemy.y + 50, 3, 100, { isSensor:true, angle: 0.33, label: "field" }),
-
                 enemyAI = new EnemyAIManager(enemy.getData('direction')),
                 this.enemiesAI.push(enemyAI),
                 this.enemiesAIManager.push(this.time.addEvent({ 
                     delay: 2000,
                     callback: this.enemiesAI[index].MoveTheEnemyLinear,
-                    args: [enemy, 1],
-                    loop: true 
+                    args: [enemy, 1, enemy.getData('direction')],
+                    loop: true
                 }))
             )
-        )       
+        )
         console.log(this.enemiesAIManager)
- 
 
         const boutonColor = new Phaser.Display.Color(155, 0, 0);
         const button = map.filterObjects('Interactions', obj => obj.name === 'Button')[0];
@@ -170,35 +191,38 @@ export default class Game extends Phaser.Scene {
             this.collisionManager.CheckButton(this.matter.world)
         }
 
-
-        const SafeZoneObject = map.filterObjects('SafeZones', obj => obj.name === 'SafeZone');
-        console.log(map.filterObjects('SafeZones', obj => obj.name === 'SafeZone'))
         map.filterObjects('SafeZones', obj => obj.name === 'SafeZone').forEach((SafeZoneObject)=>(
-            this.safezone.push(this.matter.add.rectangle(
+            this.safeZones.push(this.matter.add.rectangle(
                 ConvertXCartesianToIsometric(SafeZoneObject.x, SafeZoneObject.y)+(SafeZoneObject.width-SafeZoneObject.height)/2,
                 ConvertYCartesianToIsometric(SafeZoneObject.x, SafeZoneObject.y)+SafeZoneObject.height/2,
                 SafeZoneObject.width,
                 SafeZoneObject.height,
-                { isSensor:true, angle:0.52, label: "safezone" }
+                { isSensor:true, angle:0.52, label: "safezone", isStatic: true }
+            ))
+        ))      
+        
+        map.filterObjects('WorldCollider', obj => obj.name === 'topLeft').forEach((topLeft)=>(
+            this.worldCollider.push(this.matter.add.rectangle(
+                ConvertXCartesianToIsometric(topLeft.x, topLeft.y),
+                ConvertYCartesianToIsometric(topLeft.x, topLeft.y),
+                topLeft.width,
+                topLeft.height,
+                { angle:1, label: "collision", isStatic:true }
             )
         )))
 
-        const Collision = map.filterObjects('Collisions', obj => obj.name === 'Collision');
-        console.log(map.filterObjects('WorldCollider', obj => obj.name === 'Collision'))
-        map.filterObjects('WorldCollider', obj => obj.name === 'Collision').forEach((Collision)=>(
-            this.collision.push(this.matter.add.rectangle(
-                ConvertXCartesianToIsometric(Collision.x, Collision.y)+(Collision.width-Collision.height)/2,
-                ConvertYCartesianToIsometric(Collision.x, Collision.y)-Collision.height/2,
-                Collision.width,
-                Collision.height,
-                { angle:1, label: "collision", isStatic:true }
+        map.filterObjects('WorldCollider', obj => obj.name === 'topRight').forEach((topRight)=>(
+            this.worldCollider.push(this.matter.add.rectangle(
+                ConvertXCartesianToIsometric(topRight.x, topRight.y),
+                ConvertYCartesianToIsometric(topRight.x, topRight.y),
+                topRight.width,
+                topRight.height,
+                { angle:2, label: "collision", isStatic:true }
             )
         )))
 
         this.playerInteractions.CheckNextLevel(this.matter.world, this.cameras.main);
         this.collisionManager.CheckHitBoxes(this.matter.world, this.cameras.main);
-
-        
     }
 
     update() {

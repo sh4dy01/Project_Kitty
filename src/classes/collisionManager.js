@@ -8,9 +8,7 @@ export default class CollisionManager{
     /**
      * @param {Phaser.Physics.Matter.World} world
     */
-
      CheckHitBoxes(world, camera) {
-
         world.on("collisionstart", (event, bodyA, bodyB) => {
             if((bodyA.label == "player" && bodyB.label == "field") || (bodyA.label == "field" && bodyB.label == "player")) {
                 if(this.safe == true){
@@ -25,7 +23,11 @@ export default class CollisionManager{
                 this.safe = true
             }
 
-            if((bodyA.label == "player" && bodyB.label == "collision") || (bodyA.label == "collision" && bodyB.label == "player")) {
+            if((bodyA.label == "player" && bodyB.label == "topLeft") || (bodyA.label == "topLeft" && bodyB.label == "player")) {
+                console.log("test");
+            }
+
+            if((bodyA.label == "player" && bodyB.label == "topRight") || (bodyA.label == "topRight" && bodyB.label == "player")) {
                 console.log("test");
             }
         });
@@ -43,7 +45,6 @@ export default class CollisionManager{
             if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
                 console.log("on button area");
                 bodyA.event = true;
-                console.log(bodyA);
             }
         })
         world.on("collisionend", (event, bodyA, bodyB) => {

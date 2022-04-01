@@ -10,12 +10,11 @@ export default class Player{
     */
     constructor(sceneManager, world, camera){
         this.walkSpeed = 2.5;
-        this.runSpeedMultiplier = 2.5;
+        this.runSpeedMultiplier = 10;
         this.playerSpeed = this.walkSpeed;
         this.offsetOrientation = 0.75;
         this.singleDirectionSpeedMultiplier = 2.25;
 
-        this.lives = 3;
         this.canOpen = false;
         this.canLoadNextScene = false;
 
@@ -98,7 +97,10 @@ export default class Player{
         }
     }
 
-    RemoveLife() {
-        this.lives--;
+    /**
+     * @param {Number} life
+    */
+    RemoveLife(life) {
+        return life--;
     }
 }
