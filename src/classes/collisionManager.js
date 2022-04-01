@@ -24,6 +24,10 @@ export default class CollisionManager{
                 console.log("safe");
                 this.safe = true
             }
+
+            if((bodyA.label == "player" && bodyB.label == "collision") || (bodyA.label == "collision" && bodyB.label == "player")) {
+                console.log("test");
+            }
         });
 
         world.on("collisionend", (event, bodyA, bodyB) => {
