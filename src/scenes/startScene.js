@@ -1,13 +1,23 @@
 //@ts-check
 import Phaser from "phaser";
+import { START_LEVEL } from "../helpers/constants";
 
-export default class StartScene extends Phaser.Scene {
+export default class StartLevel extends Phaser.Scene {
 
     constructor() {
-        super('StartScene')
+        super(START_LEVEL)
     }
 
-    init() {
+    /**
+     * @param {{ remainingLife: Number }} [data]
+     */
+    init(data) {
+        if (data == null) {
+            this.remainingLife = 3;
+        } else {
+            this.remainingLife = data.remainingLife
+        }
+        
         this.mapPath = "assets/tiledmap/testmap.json";
 
         console.log('loaded: ' + this.mapPath)
@@ -21,6 +31,6 @@ export default class StartScene extends Phaser.Scene {
     }
 
     create() {
-        this.scene.start('game', { key: this.scene.key })
+        this.scene.start('game', { key: this.scene.key, remainingLife: this.remainingLife })
     }
 }

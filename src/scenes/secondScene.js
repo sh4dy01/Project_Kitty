@@ -7,7 +7,12 @@ export default class SecondScene extends Phaser.Scene {
         super('SecondScene')
     }
 
-    init() {
+    /**
+     * @param {{ remainingLife: Number}} data
+    */
+    init(data) {
+        this.remainingLives = data.remainingLife;
+        
         this.mapPath = "assets/tiledmap/testmap2.json";
 
         console.log('loaded: ' + this.mapPath)
@@ -21,6 +26,6 @@ export default class SecondScene extends Phaser.Scene {
     }
 
     create() {
-        this.scene.start('game', { key: this.scene.key })
+        this.scene.start('game', { key: this.scene.key, remainingLife: this.remainingLives })
     }
 }

@@ -1,57 +1,69 @@
 //@ts-check
 import Phaser from "phaser";
-import SceneManager from "./sceneManager";
-
-
-export default class CollisionManager{
-
-    /**
-     * @param {Phaser.Physics.Matter.World} world
-    */
-     CheckHitBoxes(world, camera) {
-        world.on("collisionstart", (event, bodyA, bodyB) => {
-            if((bodyA.label == "player" && bodyB.label == "field") || (bodyA.label == "field" && bodyB.label == "player")) {
-                if(this.safe == true){
-                    console.log("hide");
-                }
-                else{
-                    console.log("vue");
-                }
-            }
-            if((bodyA.label == "player" && bodyB.label == "safezone") || (bodyA.label == "safezone" && bodyB.label == "player")) {
-                console.log("safe");
-                this.safe = true
-            }
-
-            if((bodyA.label == "player" && bodyB.label == "topLeft") || (bodyA.label == "topLeft" && bodyB.label == "player")) {
-                console.log("test");
-            }
-
-            if((bodyA.label == "player" && bodyB.label == "topRight") || (bodyA.label == "topRight" && bodyB.label == "player")) {
-                console.log("test");
-            }
-        });
-
-        world.on("collisionend", (event, bodyA, bodyB) => {
-            if((bodyA.label == "player" && bodyB.label == "safezone") || (bodyA.label == "safezone" && bodyB.label == "player")) {
-                console.log("not safe");
-                this.safe = false;
-            }
-        });
-    }
+import PlayerManager from "./player";
+import { SceneManager } from "./sceneManager";
     
-    CheckButton(world){
-        world.on("collisionstart", (event, bodyA, bodyB) => {
-            if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
-                console.log("on button area");
-                bodyA.event = true;
+    /**
+ * @param {Phaser.Physics.Matter.World} world
+ * @param {PlayerManager} playerManager
+ * @param {SceneManager} sceneManager
+ * @param {Phaser.Physics.Matter.Sprite} playerPhysics
+ */
+export function CheckHitBoxes(world, playerManager, sceneManager, playerPhysics) {
+    world.on("collisionstart", (event, bodyA, bodyB) => {
+        if((bodyA.label == "player" && bodyB.label == "field") || (bodyA.label == "field" && bodyB.label == "player")) {
+            if(playerManager.isSafe == true){
+                console.log("hide");
             }
-        })
-        world.on("collisionend", (event, bodyA, bodyB) => {
-            if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
-                console.log("exit button area");
-                bodyA.event = false;
+            else{
+                console.log("vue");
+                if (playerManager.canLoseLife) {
+                    playerManager.DetectedPlayer(playerPhysics)
+                    sceneManager.RestartScene(playerManager.currentLives);
+                }
             }
-        });
-    }
+        }
+        if((bodyA.label == "player" && bodyB.label == "safezone") || (bodyA.label == "safezone" && bodyB.label == "player")) {
+            console.log("safe");
+            playerManager.isSafe = true
+        }
+    });
+
+    world.on("collisionend", (event, bodyA, bodyB) => {
+        if((bodyA.label == "player" && bodyB.label == "safezone") || (bodyA.label == "safezone" && bodyB.label == "player")) {
+            console.log("not safe");
+            playerManager.isSafe = false;
+        }
+    });
+}
+
+export function CheckButton(world){
+    world.on("collisionstart", (event, bodyA, bodyB) => {
+        if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
+            console.log("on button area");
+            bodyA.event = true;
+        }
+    })
+    world.on("collisionend", (event, bodyA, bodyB) => {
+        if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
+            console.log("exit button area");
+            bodyA.event = false;
+        }
+    });
+}
+
+/**
+ * @param {Phaser.Physics.Matter.World} world
+ * @param {PlayerManager} playerManager
+ * @param {SceneManager} sceneManager
+ * @param {Phaser.Physics.Matter.Sprite} playerPhysics
+ * @param {Number} currentLives
+ */
+export function CheckNextLevel(world, playerManager, sceneManager, playerPhysics, currentLives) {
+    world.on("collisionstart", (event, bodyA, bodyB) => {
+        if((bodyA.label == "player" && bodyB.label == "NextLevel") || (bodyA.label == "NextLevel" && bodyB.label == "player")) {
+            sceneManager.LoadNextScene(currentLives);
+            playerManager.StopPlayerMovement(playerPhysics)
+        }
+    })
 }

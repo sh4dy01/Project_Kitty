@@ -1,26 +1,28 @@
 //@ts-check
 import Phaser from "phaser";
-import SceneManager from "../classes/sceneManager";
+import { CheckNextLevel } from "./collisionManager";
+import { SceneManager } from "./sceneManager";
 
-export default class Player{
+export default class PlayerManager {
     /**
+        * @param {Number} currentLife
         * @param {SceneManager} sceneManager
-        * @param {Phaser.Physics.Matter.World} world
-        * @param {Phaser.Cameras.Scene2D.Camera} camera
     */
-    constructor(sceneManager, world, camera){
+    constructor(currentLife, sceneManager) {
         this.walkSpeed = 2.5;
         this.runSpeedMultiplier = 10;
         this.playerSpeed = this.walkSpeed;
         this.offsetOrientation = 0.75;
         this.singleDirectionSpeedMultiplier = 2.25;
 
+        this.isSafe = true;
         this.canOpen = false;
+        this.canMove = false;
+        this.canLoseLife = true;
         this.canLoadNextScene = false;
 
-        this.sceneManager = sceneManager;
-        this.world = world;
-        this.camera = camera;
+        this.currentLives = currentLife
+        this.sceneManager = sceneManager
     }
     
     /**
@@ -72,35 +74,45 @@ export default class Player{
 
     /**
      * @param {Phaser.Types.Input.Keyboard.CursorKeys} cursors
-     */
-    UseButton(cursors, player){
+     * @param {Phaser.Physics.Matter.World} world
+     * @param {Phaser.Physics.Matter.Sprite} playerPhysics
+    */
+    UseButton(cursors, player, world, playerPhysics){
         if(player.event == true){
             if (cursors.space.isDown) {
                 this.canLoadNextScene = true;
-                this.CheckNextLevel(this.world, this.camera)
+                CheckNextLevel(world, this, this.sceneManager, playerPhysics, this.currentLives)
                 player.event = false;
             }
         }
     }
 
-    /**
-     * @param {Phaser.Physics.Matter.World} world
-     * @param {Phaser.Cameras.Scene2D.Camera} camera
-    */
-     CheckNextLevel(world, camera) {
-        if (this.canLoadNextScene) {
-            world.on("collisionstart", (event, bodyA, bodyB) => {
-                if((bodyA.label == "player" && bodyB.label == "NextLevel") || (bodyA.label == "NextLevel" && bodyB.label == "player")) {
-                    this.sceneManager.LoadNextScene(camera);
-                }
-            })
+
+    RemoveLife() {
+        this.currentLives--;
+        
+        if (this.currentLives === 0) {
+            this.sceneManager.RestartTheGame()
         }
     }
 
     /**
-     * @param {Number} life
+     * @param {Phaser.Physics.Matter.Sprite} player
     */
-    RemoveLife(life) {
-        return life--;
+    StopPlayerMovement(player) {
+        console.log(player);
+        player.setVelocity(0, 0);
+        this.canLoseLife = false;
+        this.canMove = false;
+    }
+
+    /**
+     * @param {Phaser.Physics.Matter.Sprite} player
+    */
+    DetectedPlayer(player) {
+        this.StopPlayerMovement(player);
+        this.canLoseLife = false;
+        this.canMove = false;
+        this.RemoveLife();
     }
 }

@@ -49,11 +49,11 @@
             "scaleInDock": 1
         },
         "testmap2.tmx": {
-            "scale": 2,
-            "selectedLayer": 0,
+            "scale": 0.75,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 2486,
-                "y": 4082
+                "x": 2590.6666666666665,
+                "y": 3769.333333333333
             }
         },
         "testmap2.tmx#corridor": {

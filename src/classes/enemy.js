@@ -3,59 +3,69 @@ import Phaser from "phaser";
 
 export default class EnemyAIManager {
 
-    /**
-     * @param {String} enemyDirection
-     */
-    constructor(enemyDirection) {
-        this.enemyDirection = enemyDirection
+    constructor() {
     }
     
     /**
      * @param {Phaser.Physics.Matter.Sprite} enemy
      * @param {Number} speed
+     * @param {String} dir
      */
     MoveTheEnemyLinear(enemy, speed, dir) {
-        console.log(dir)
-        switch (dir) {
-            case "top-left":
-                enemy.setVelocity(0, -speed)
-                dir = "bottom-right"
-            break;
+        this.movementFinished = false;
+        this.enemyDirection = dir;
 
-            case "top":
-                enemy.setVelocity(speed, -speed)
-                dir = "bottom"
-            break;
-
-            case "top-right":
-                enemy.setVelocity(speed, 0)
-                dir = "bottom-left"
-            break;
-
-            case "left":
-                enemy.setVelocity(-speed, -speed)
-                dir = "right"
-            break;
-
-            case "right":
-                enemy.setVelocity(speed, speed)
-                dir = "left"
-            break;
-
-            case "bottom-left":
-                enemy.setVelocity(-speed, 0)
-                dir = "top-right"
-            break;
-
-            case "bottom":
-                enemy.setVelocity(-speed, speed)
-                dir = "top"
-            break;
-
-            case "bottom-right":
-                enemy.setVelocity(0, speed)
-                dir = "top-left"
-            break;
+        if (!this.movementFinished) {
+            switch (this.enemyDirection) {
+                case "top-left":
+                    enemy.setVelocity(0, -speed)
+                    this.enemyDirection = "bottom-right"
+                    this.movementFinished = !this.movementFinished
+                break;
+    
+                case "top":
+                    enemy.setVelocity(speed, -speed)
+                    this.enemyDirection = "bottom"
+                    this.movementFinished = !this.movementFinished
+                break;
+    
+                case "top-right":
+                    enemy.setVelocity(speed, 0)
+                    this.enemyDirection = "bottom-left"
+                    this.movementFinished = !this.movementFinished
+                break;
+    
+                case "left":
+                    enemy.setVelocity(-speed, -speed)
+                    this.enemyDirection = "right"
+                    this.movementFinished = !this.movementFinished
+                break;
+    
+                case "right":
+                    enemy.setVelocity(speed, speed)
+                    this.enemyDirection = "left"
+                    this.movementFinished = !this.movementFinished
+                break;
+    
+                case "bottom-left":
+                    enemy.setVelocity(-speed, 0)
+                    this.enemyDirection = "top-right"
+                    this.movementFinished = !this.movementFinished
+                break;
+    
+                case "bottom":
+                    enemy.setVelocity(-speed, speed)
+                    this.enemyDirection = "top"
+                    this.movementFinished = !this.movementFinished
+                break;
+    
+                case "bottom-right":
+                    enemy.setVelocity(0, speed)
+                    this.enemyDirection = "top-left"
+                    this.movementFinished = !this.movementFinished
+                break;
+            }
         }
+        
     }
 }

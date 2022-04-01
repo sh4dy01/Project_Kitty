@@ -1,13 +1,13 @@
 //@ts-check
 import Phaser from "phaser";
-import CollisionManager from "./classes/collisionManager";
-import EnemyAIManager from "./classes/enemy";
-import Player from "./classes/player"
-import SceneManager from "./classes/sceneManager";
+import EnemyAILinear from "./classes/enemy";
+import PlayerManager from "./classes/player"
 import UIManager from "./classes/UIManager";
 import TilesLoader from "./helpers/tilesLoader";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "./helpers/cartesianToIsometric";
 import Enemy from "./classes/enemy";
+import { SceneManager } from "./classes/sceneManager";
+import { CheckButton, CheckHitBoxes, CheckNextLevel } from "./classes/collisionManager";
 
 export default class Game extends Phaser.Scene {
 
@@ -16,16 +16,15 @@ export default class Game extends Phaser.Scene {
     }
     
     /**
-     * @param {{ key: String; life: Number}} data
-     */
+     * @param {{ key: String; remainingLife: Number}} data
+    */
     init(data) {
-        this.sceneMapName = data.key;
-        this.lives = data.life;
+        this.currentLevel = data.key;
+        this.currentLives = data.remainingLife;
 
-        this.UIManager = new UIManager(this.sceneMapName);
-        this.sceneManager = new SceneManager(this.scene.manager, this.scene.getIndex(this.sceneMapName));
-        this.playerInteractions = new Player(this.sceneManager, this.matter.world, this.cameras.main);
-        this.collisionManager = new CollisionManager();
+        this.sceneManager = new SceneManager(this.scene, this.currentLevel, this.scene.getIndex(this.currentLevel), this.cameras.main);
+        this.UIManager = new UIManager(this.currentLevel);
+        this.playerManager = new PlayerManager(this.currentLives, this.sceneManager);
         this.tilesLoader = new TilesLoader();
 
         /**
@@ -34,7 +33,7 @@ export default class Game extends Phaser.Scene {
         this.enemies = [];
 
         /**
-         * @type {EnemyAIManager[]}
+         * @type {EnemyAILinear[]}
         */
         this.enemiesAI = [];
 
@@ -68,26 +67,20 @@ export default class Game extends Phaser.Scene {
 
     create() {
         this.cameras.main.fadeIn(1000, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, (cam, effect) => {
+            this.playerManager.canMove = true
+        })
 
         this.matter.world.disableGravity();
 
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
 
-        const map = this.add.tilemap(this.sceneMapName);  // Ajoute les emplacements de chaque tile
+        const map = this.add.tilemap(this.currentLevel);  // Ajoute les emplacements de chaque tile
         const floorTileset = map.addTilesetImage("floor", "floor");  // Ajoutes les tiles du sol
         const wallTileset = map.addTilesetImage("wall", "wall");  // Ajoutes les tiles des murs
 
         map.createLayer("floor", floorTileset); // Créé un layer pour le sol
-        const wallLayer = map.createLayer("wall", wallTileset); // Créé un layer pour les murs
-        wallLayer.setCollisionByProperty({ collides: true });
-        this.matter.world.convertTilemapLayer(wallLayer);
-
-        const debugGraphics = this.add.graphics().setAlpha(0.7);
-        wallLayer.renderDebug(debugGraphics, {
-            tileColor: null,
-            collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
-            faceColor: new Phaser.Display.Color(40, 39, 37, 255)
-        })
+        map.createLayer("wall", wallTileset); // Créé un layer pour les murs
 
         const start = map.filterObjects('PlayerPoints', obj => obj.name === 'SpawnPoint')[0];
         const end = map.filterObjects('PlayerPoints', obj => obj.name === 'NextLevel')[0];
@@ -115,9 +108,7 @@ export default class Game extends Phaser.Scene {
 
         this.playerInfoText = this.add.text(0, 0, 'Character position: ');
         this.playerInfoText.setScrollFactor(0);
-        
-        console.log('matter body physics: ', this.matter.world.getAllBodies());
-        
+                
         this.cameras.main.startFollow(this.player, false, 0.1, 0.1); // Permet que la caméra suit le joueur
 
         this.cone = this.matter.add.sprite(200, 250, "cone");
@@ -131,7 +122,6 @@ export default class Game extends Phaser.Scene {
         this.enemiesLayer = map.createFromObjects('EnemiesLinear', {
             name: 'EnemyLinear',
         })
-        
         this.enemiesLayer.forEach(
             (enemy)=>{
                 this.enemies.push(this.matter.add.gameObject(enemy, {isSensor:true}))
@@ -151,17 +141,17 @@ export default class Game extends Phaser.Scene {
                 enemy.x = ConvertXCartesianToIsometric(temp, enemy.y),
                 enemy.y = ConvertYCartesianToIsometric(temp, enemy.y),
                 this.matter.add.polygon(enemy.x - 50, enemy.y + 50, 3, 100, { isSensor:true, angle: 0.33, label: "field" }),
-                enemyAI = new EnemyAIManager(enemy.getData('direction')),
+                enemyAI = new EnemyAILinear(),
                 this.enemiesAI.push(enemyAI),
-                this.enemiesAIManager.push(this.time.addEvent({ 
+                this.time.addEvent({
                     delay: 2000,
                     callback: this.enemiesAI[index].MoveTheEnemyLinear,
                     args: [enemy, 1, enemy.getData('direction')],
                     loop: true
-                }))
+                })
             )
         )
-        console.log(this.enemiesAIManager)
+        console.log(this.enemiesAI)
 
         const boutonColor = new Phaser.Display.Color(155, 0, 0);
         const button = map.filterObjects('Interactions', obj => obj.name === 'Button')[0];
@@ -171,7 +161,6 @@ export default class Game extends Phaser.Scene {
                 ConvertXCartesianToIsometric(button.x, button.y), 
                 ConvertYCartesianToIsometric(button.x, button.y)
             ); 
-
             this.boutonHit = this.matter.add.sprite(0,0, "boutonHit", 0)
             this.boutonHit.setCircle(60, { label:"boutonHit" })
             this.boutonHit.isSensor();
@@ -180,15 +169,14 @@ export default class Game extends Phaser.Scene {
                 ConvertXCartesianToIsometric(button.x, button.y), 
                 ConvertYCartesianToIsometric(button.x, button.y)
             ); 
-
             this.button = this.matter.add.sprite(0, 0, "bouton", 0, { label:"bouton" });
             this.button.setPosition(
                 ConvertXCartesianToIsometric(button.x, button.y), 
                 ConvertYCartesianToIsometric(button.x, button.y)
             ); 
-
             this.button.setStatic(true);
-            this.collisionManager.CheckButton(this.matter.world)
+            
+            CheckButton(this.matter.world)
         }
 
         map.filterObjects('SafeZones', obj => obj.name === 'SafeZone').forEach((SafeZoneObject)=>(
@@ -203,31 +191,35 @@ export default class Game extends Phaser.Scene {
         
         map.filterObjects('WorldCollider', obj => obj.name === 'topLeft').forEach((topLeft)=>(
             this.worldCollider.push(this.matter.add.rectangle(
-                ConvertXCartesianToIsometric(topLeft.x, topLeft.y),
-                ConvertYCartesianToIsometric(topLeft.x, topLeft.y),
-                topLeft.width,
-                topLeft.height,
-                { angle:1, label: "collision", isStatic:true }
-            )
-        )))
+                ConvertXCartesianToIsometric(topLeft.x, topLeft.y)-ConvertXCartesianToIsometric(1065, 650),
+                ConvertYCartesianToIsometric(topLeft.x, topLeft.y)+ConvertXCartesianToIsometric(600, 200),
+                topLeft.width/2,
+                topLeft.height+50,
+                { angle:1.05, label: "collision", isStatic:true }
+            ))
+        ))
 
         map.filterObjects('WorldCollider', obj => obj.name === 'topRight').forEach((topRight)=>(
             this.worldCollider.push(this.matter.add.rectangle(
-                ConvertXCartesianToIsometric(topRight.x, topRight.y),
-                ConvertYCartesianToIsometric(topRight.x, topRight.y),
+                ConvertXCartesianToIsometric(topRight.x, topRight.y)-ConvertXCartesianToIsometric(38, 800),
+                ConvertYCartesianToIsometric(topRight.x, topRight.y)+ConvertYCartesianToIsometric(800, 38),
                 topRight.width,
-                topRight.height,
-                { angle:2, label: "collision", isStatic:true }
-            )
-        )))
-
-        this.playerInteractions.CheckNextLevel(this.matter.world, this.cameras.main);
-        this.collisionManager.CheckHitBoxes(this.matter.world, this.cameras.main);
+                topRight.height/2,
+                { angle:0.52, label: "collision", isStatic:true } 
+            ))
+        ))
+           
+        CheckHitBoxes(this.matter.world, this.playerManager, this.sceneManager, this.player);
     }
 
     update() {
-        this.playerInteractions.CheckPlayerInputs(this.player, this.cursors);
-        this.playerInteractions.UseButton(this.cursors, this.player.body);
-        this.UIManager.UpdatePlayerInfoText(this.playerInfoText, this.player, this.playerInteractions.canLoadNextScene);
+        // forEach de chaque enemiesAI
+            // -> si mouvement fini
+                // this.enemiesAI[index].MoveTheEnemyLinear(enemy)
+        if (this.playerManager.canMove) {
+            this.playerManager.CheckPlayerInputs(this.player, this.cursors);
+        }
+        this.playerManager.UseButton(this.cursors, this.player.body, this.matter.world, this.player);
+        this.UIManager.UpdatePlayerInfoText(this.playerInfoText, this.player, this.playerManager.canLoadNextScene, this.playerManager.currentLives, this.playerManager.isSafe);
     }
 }
