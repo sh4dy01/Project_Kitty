@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="32" height="64" tilewidth="182" tileheight="104" infinite="0" nextlayerid="10" nextobjectid="31">
+<map version="1.8" tiledversion="1.8.3" orientation="isometric" renderorder="right-down" width="32" height="64" tilewidth="182" tileheight="104" infinite="0" nextlayerid="10" nextobjectid="31">
  <editorsettings>
   <export target="../tiledmap/testmap.json" format="json"/>
  </editorsettings>
@@ -190,7 +190,7 @@
   <object id="30" name="SafeZone" x="1393.52" y="6080.76" width="57.5238" height="57.5238"/>
  </objectgroup>
  <objectgroup id="2" name="PlayerPoints">
-  <object id="2" name="SpawnPoint" x="1864.14" y="5869.19" width="32" height="32"/>
+  <object id="2" name="SpawnPoint" x="1900.07" y="6590.84" width="32" height="32"/>
   <object id="10" name="NextLevel" x="1724.14" y="5401.86" width="32" height="32"/>
  </objectgroup>
 </map>

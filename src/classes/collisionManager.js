@@ -15,6 +15,9 @@ export default class CollisionManager{
             if((bodyA.label == "player" && bodyB.label == "field") || (bodyA.label == "field" && bodyB.label == "player")) {
                 console.log("vue");
             }
+            if((bodyA.label == "player" && bodyB.label == "safezone") || (bodyA.label == "safezone" && bodyB.label == "player")) {
+                console.log("safe");
+            }
         });
     }
     

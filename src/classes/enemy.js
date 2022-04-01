@@ -15,7 +15,6 @@ export default class EnemyAIManager {
      * @param {Number} speed
     */
     MoveTheEnemyLinear(enemy, speed) {
-        console.log(this.enemyDirection);
         switch (this.enemyDirection) {
             case "top-left":
                 enemy.setVelocity(0, -speed)
@@ -55,10 +54,6 @@ export default class EnemyAIManager {
             case "bottom-right":
                 enemy.setVelocity(0, speed)
                 this.enemyDirection = "top-left"
-            break;
-
-            default:
-                console.log(this.enemyDirection, "wrong position")
             break;
         }
     }

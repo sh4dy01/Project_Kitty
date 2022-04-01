@@ -9,7 +9,7 @@ export default class Player{
         * @param {Phaser.Cameras.Scene2D.Camera} camera
     */
     constructor(sceneManager, world, camera){
-        this.walkSpeed = 1;
+        this.walkSpeed = 2.5;
         this.runSpeedMultiplier = 2.5;
         this.playerSpeed = this.walkSpeed;
         this.offsetOrientation = 0.75;
