@@ -253,9 +253,9 @@ export default class Game extends Phaser.Scene {
         
         map.filterObjects('WorldCollider', obj => obj.name === 'topLeft').forEach((topLeft)=>(
             this.worldCollider.push(this.matter.add.rectangle(
-                ConvertXCartesianToIsometric(topLeft.x, topLeft.y)-ConvertXCartesianToIsometric(1065, 650),
-                ConvertYCartesianToIsometric(topLeft.x, topLeft.y)+ConvertXCartesianToIsometric(600, 200),
-                topLeft.width/2,
+                ConvertXCartesianToIsometric(topLeft.x, topLeft.y)-ConvertXCartesianToIsometric(1150, 750),
+                ConvertYCartesianToIsometric(topLeft.x, topLeft.y)+ConvertXCartesianToIsometric(600, 250),
+                topLeft.width/1.5,
                 topLeft.height+50,
                 { angle:1.05, label: "collision", isStatic:true }
             ))
@@ -263,14 +263,33 @@ export default class Game extends Phaser.Scene {
 
         map.filterObjects('WorldCollider', obj => obj.name === 'topRight').forEach((topRight)=>(
             this.worldCollider.push(this.matter.add.rectangle(
-                ConvertXCartesianToIsometric(topRight.x, topRight.y)-ConvertXCartesianToIsometric(38, 800),
-                ConvertYCartesianToIsometric(topRight.x, topRight.y)+ConvertYCartesianToIsometric(800, 38),
-                topRight.width,
+                ConvertXCartesianToIsometric(topRight.x, topRight.y)-ConvertXCartesianToIsometric(20, 700),
+                ConvertYCartesianToIsometric(topRight.x, topRight.y)+ConvertYCartesianToIsometric(700, 20),
+                topRight.width+50,
                 topRight.height/2,
                 { angle:0.52, label: "collision", isStatic:true } 
             ))
         ))
-           
+
+        map.filterObjects('WorldCollider', obj => obj.name === 'bottomRight').forEach((bottomRight)=>(
+            this.worldCollider.push(this.matter.add.rectangle(
+                ConvertXCartesianToIsometric(bottomRight.x, bottomRight.y)-ConvertXCartesianToIsometric(1250, 650),
+                ConvertYCartesianToIsometric(bottomRight.x, bottomRight.y)+ConvertXCartesianToIsometric(630, 300),
+                bottomRight.width,
+                bottomRight.height,
+                { angle:1.05, label: "collision", isStatic:true } 
+            ))
+        ));
+
+        map.filterObjects('WorldCollider', obj => obj.name === 'bottomLeft').forEach((bottomLeft)=>(
+            this.worldCollider.push(this.matter.add.rectangle(
+                ConvertXCartesianToIsometric(bottomLeft.x, bottomLeft.y)-ConvertXCartesianToIsometric(-85, 700),
+                ConvertYCartesianToIsometric(bottomLeft.x, bottomLeft.y)+ConvertYCartesianToIsometric(700, -85),
+                bottomLeft.width+50,
+                bottomLeft.height/2,
+                { angle:0.52, label: "collision", isStatic:true } 
+            ))
+        ))
         CheckHitBoxes(this.matter.world, this.playerManager, this.sceneManager, this.player);
     }
 
