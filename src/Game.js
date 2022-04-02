@@ -9,6 +9,7 @@ import Enemy from "./classes/enemy";
 import { SceneManager } from "./classes/sceneManager";
 import { CheckButton, CheckHitBoxes, CheckNextLevel } from "./classes/collisionManager";
 import { GREEN } from "./helpers/constants";
+import { createPhantomAnims } from "./animations/PhantomsAnimations";
 
 export default class Game extends Phaser.Scene {
 
@@ -29,7 +30,7 @@ export default class Game extends Phaser.Scene {
         this.tilesLoader = new TilesLoader();
 
         /**
-         * @type {Phaser.GameObjects.Container[]}
+         * @type {Enemy[]}
         */
         this.enemies = [];
 
@@ -59,11 +60,20 @@ export default class Game extends Phaser.Scene {
         this.load.image('player-right', 'assets/sprites/cat/right.png');
         this.load.image('player-up', 'assets/sprites/cat/up.png');
 
+        this.load.image('purple-bottom-right', 'assets/sprites/phantoms/purple/bottom-right.png')
+        this.load.image('purple-top-right', 'assets/sprites/phantoms/purple/top-right.png')
         this.load.image('green-bottom-right', 'assets/sprites/phantoms/green/bottom-right.png')
         this.load.image('green-top-right', 'assets/sprites/phantoms/green/top-right.png')
 
         this.load.json('colliders', 'assets/colliders/colliders.json')
 
+        this.load.atlas('purple-front', 'assets/spritesheet/purple-front.png', 'assets/spritesheet/purple-front.json')
+        this.load.atlas('purple-back', 'assets/spritesheet/purple-back.png', 'assets/spritesheet/purple-back.json')
+
+        // this.load.atlas('pruple-front', 'assets/spritesheet/purple-front.png', 'assets/spritesheet/purple-front.json')
+        // this.load.atlas('pruple-front', 'assets/spritesheet/purple-front.png', 'assets/spritesheet/purple-front.json')
+
+        this.load.image('checkpoint', 'assets/sprites/CandyShop-resized.png');
         this.load.image('cone', 'assets/sprites/proto/Bouton.png');
         this.load.image('bouton', 'assets/sprites/proto/Bouton.png');
 
@@ -79,7 +89,10 @@ export default class Game extends Phaser.Scene {
 
         const colliders = this.cache.json.get('colliders');
 
-        // createPhantomAnims(this.anims);
+        createPhantomAnims(this.anims, 'purple');
+        console.log(this.anims);
+        // createPhantomAnims(this.anims, 'green');
+        // createPhantomAnims(this.anims, 'red');
 
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
 
@@ -100,19 +113,6 @@ export default class Game extends Phaser.Scene {
         );
         this.nextLevel.setBody(colliders.exit_door)
 
-        this.player = this.matter.add.sprite(0, 0, 'player-up-left').setFlipX(true);
-        this.player.setBody(colliders.player)
-        this.player.setPosition(
-            ConvertXCartesianToIsometric(start.x, start.y), 
-            ConvertYCartesianToIsometric(start.x, start.y)
-        ); 
-        this.player.setFixedRotation();
-        
-        this.playerInfoText = this.add.text(0, 0, 'Character position: ');
-        this.playerInfoText.setScrollFactor(0);
-                
-        this.cameras.main.startFollow(this.player, false, 0.1, 0.1); // Permet que la caméra suit le joueur
-
         this.cone = this.matter.add.sprite(200, 250, "cone");
         this.cone.setPolygon(130,3, { 
             label: "cone"
@@ -125,59 +125,20 @@ export default class Game extends Phaser.Scene {
             name: 'EnemyLinear'
         })
 
-        this.matter.add.sprite(-4048, 4245, 'green-bottom-right')
-
-        /**
-            * @type {Phaser.GameObjects.Container}
-        */
-         let tempContainer
-
-        /**
-            * @type {Enemy}
-        */
-        let tempSprite
-
-        /**
-            * @type {Phaser.GameObjects.GameObject}
-        */
-         let tempGameObject
-
-        /**
-            * @type {MatterJS.BodyType}
-        */
-        let tempCollider
-
         this.enemiesLayer.forEach(
             /**
                 * @param {Phaser.GameObjects.Sprite} enemy
             */
             (enemy)=>{
-                
-                tempSprite = new Enemy(
+                this.enemies.push(new Enemy(
                     {world: this.matter.world,
                     x: ConvertXCartesianToIsometric(enemy.x, enemy.y),
                     y: ConvertYCartesianToIsometric(enemy.x, enemy.y),
-                    texture: "green-bottom-right"},
-                    // enemy.getData('direction'),
-                    'right',
-                    colliders.green
-                ),
-                tempCollider = this.matter.add.polygon(
-                    ConvertXCartesianToIsometric(enemy.x, enemy.y)- 50, 
-                    ConvertYCartesianToIsometric(enemy.x, enemy.y) + 50, 
-                    3, 
-                    100, 
-                    { isSensor:true, angle: 0.33, label: "field" }
-                ),
-                console.log(tempGameObject);
-
-                console.log(tempCollider),
-                tempContainer = new Phaser.GameObjects.Container(
-                    this, 
-                    ConvertXCartesianToIsometric(enemy.x, enemy.y),
-                    ConvertYCartesianToIsometric(enemy.x, enemy.y),
-                    [tempSprite])
-                console.log(tempContainer);
+                    texture: "purple-bottom-right"},
+                    enemy.getData('direction'),
+                    colliders.purple_bottom_right,
+                    'purple'
+                ))
             }
         )
         
@@ -185,7 +146,7 @@ export default class Game extends Phaser.Scene {
         //     (enemy)=>{
         //         this.time.addEvent({
         //             delay: 2000,
-        //             callback: enemy.getAt(0).MoveTheEnemyLinear,
+        //             callback: enemy.MoveTheEnemyLinear,
         //             args: [enemy],
         //             loop: true
         //         })
@@ -249,7 +210,16 @@ export default class Game extends Phaser.Scene {
                 SafeZoneObject.height,
                 { isSensor:true, angle:0.52, label: "safezone", isStatic: true }
             ))
-        ))      
+        ))
+
+        const checkPoint = map.filterObjects('SafeZones', obj => obj.name === 'CheckPoint')[0]
+        let checkPointObject = this.matter.add.image(
+            ConvertXCartesianToIsometric(checkPoint.x, checkPoint.y),
+            ConvertYCartesianToIsometric(checkPoint.x, checkPoint.y),
+            'checkpoint'
+        )
+        checkPointObject.setBody(colliders.checkPoint);
+        checkPointObject.setFixedRotation();
         
         map.filterObjects('WorldCollider', obj => obj.name === 'topLeft').forEach((topLeft)=>(
             this.worldCollider.push(this.matter.add.rectangle(
@@ -290,6 +260,20 @@ export default class Game extends Phaser.Scene {
                 { angle:0.52, label: "collision", isStatic:true } 
             ))
         ))
+
+        this.player = this.matter.add.sprite(0, 0, 'player-up-left').setFlipX(true);
+        this.player.setBody(colliders.player)
+        this.player.setPosition(
+            ConvertXCartesianToIsometric(start.x, start.y),
+            ConvertYCartesianToIsometric(start.x, start.y)
+        ); 
+        this.player.setFixedRotation();
+        
+        this.playerInfoText = this.add.text(0, 0, 'Character position: ');
+        this.playerInfoText.setScrollFactor(0);
+                
+        this.cameras.main.startFollow(this.player, false, 0.1, 0.1); // Permet que la caméra suit le joueur
+
         CheckHitBoxes(this.matter.world, this.playerManager, this.sceneManager, this.player);
     }
 

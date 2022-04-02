@@ -1,0 +1,62 @@
+{
+	"textures": [
+		{
+			"image": "purple-back.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 216,
+				"h": 107
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "PURPLE-back.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 106,
+						"h": 105
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 106,
+						"h": 105
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 106,
+						"h": 105
+					}
+				},
+				{
+					"filename": "PURPLE-back1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 106,
+						"h": 105
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 106,
+						"h": 105
+					},
+					"frame": {
+						"x": 109,
+						"y": 1,
+						"w": 106,
+						"h": 105
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:5ebc1f73bf4c9b058d8afa7ffaf6e9d1:b282c8ec2530d9cf04744c6decc878c3:c6ed2c6be928188a1b1242f7e533eeb3$"
+	}
+}

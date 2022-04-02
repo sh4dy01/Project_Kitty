@@ -1,0 +1,62 @@
+{
+	"textures": [
+		{
+			"image": "green-front.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1220,
+				"h": 602
+			},
+			"scale": 0.5,
+			"frames": [
+				{
+					"filename": "GREEN-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 608,
+						"h": 600
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 608,
+						"h": 600
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 608,
+						"h": 600
+					}
+				},
+				{
+					"filename": "GREEN-face1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 608,
+						"h": 600
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 608,
+						"h": 600
+					},
+					"frame": {
+						"x": 611,
+						"y": 1,
+						"w": 608,
+						"h": 600
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:90408511ff66a3ef5e07636ec44f36a0:678f2a9cd5dbf76b34337402dc58d0f9:ce45c8714421969bb0ef966e59d7af23$"
+	}
+}

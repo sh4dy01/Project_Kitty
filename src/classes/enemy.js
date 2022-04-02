@@ -8,12 +8,17 @@ export default class Enemy extends Phaser.Physics.Matter.Sprite {
      * @param {{world: Phaser.Physics.Matter.World; x: Number; y: Number; texture?: String | Phaser.Textures.Texture ; options?: Phaser.Types.Physics.Matter.MatterBodyConfig;}} config
      * @param {String} startDirection
      * @param {Phaser.Types.Physics.Matter.MatterSetBodyConfig} collider
+     * @param {String} phantomType
      */
-    constructor(config, startDirection, collider) {
+    constructor(config, startDirection, collider, phantomType) {
         super(config.world, config.x, config.y, config.texture, null, config.options)
         this.setBody(collider);
 
-        this.speed = 2;
+        // @ts-ignore
+        this.setTexture(config.texture);
+
+        this.type = phantomType
+        this.speed = 2; 
         this.direction = startDirection;
         this.movementFinished = false;
 
@@ -34,41 +39,25 @@ export default class Enemy extends Phaser.Physics.Matter.Sprite {
             case TOP_LEFT:
                 enemy.setVelocity(-enemy.speed - OFFSET_ORIENTATION * enemy.speed, -enemy.speed)
                 enemy.direction = BOTTOM_RIGHT
-            break;
-
-            case TOP:
-                enemy.setVelocity(0, -enemy.speed)
-                enemy.direction = BOTTOM
+                enemy.play(enemy.type+TOP_LEFT)
             break;
 
             case TOP_RIGHT:
                 enemy.setVelocity(enemy.speed + OFFSET_ORIENTATION * enemy.speed, -enemy.speed)
                 enemy.direction = BOTTOM_LEFT
-            break;
-
-            case LEFT:
-                enemy.setVelocity(-enemy.speed, 0)
-                enemy.direction = RIGHT
-            break;
-
-            case RIGHT:
-                enemy.setVelocity(enemy.speed, 0)
-                enemy.direction = LEFT
+                enemy.play(enemy.type+TOP_RIGHT)
             break;
 
             case BOTTOM_LEFT:
                 enemy.setVelocity(-enemy.speed - OFFSET_ORIENTATION * enemy.speed, enemy.speed)
                 enemy.direction = TOP_RIGHT
-            break;
-
-            case BOTTOM:
-                enemy.setVelocity(0, enemy.speed)
-                enemy.direction = TOP            
+                enemy.play(enemy.type+BOTTOM_LEFT)
             break;
 
             case BOTTOM_RIGHT:
                 enemy.setVelocity(enemy.speed + OFFSET_ORIENTATION * enemy.speed, enemy.speed)
                 enemy.direction = TOP_LEFT
+                enemy.play(enemy.type+BOTTOM_RIGHT)
             break;
 
             default:
