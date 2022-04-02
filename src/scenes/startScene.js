@@ -10,7 +10,7 @@ export default class StartLevel extends Phaser.Scene {
 
     /**
      * @param {{ remainingLife: Number }} [data]
-     */
+    */
     init(data) {
         if (data == null) {
             this.remainingLife = 3;
