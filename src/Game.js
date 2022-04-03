@@ -148,10 +148,10 @@ export default class Game extends Phaser.Scene {
                 ))
 
                 this.time.addEvent({
-                    delay: 3000,
-                    callback: this.enemiesAIManager[index].MoveTheEnemyLinear,
-                    args: [this.enemies[index], this.enemiesAIManager[index], colliders],
-                    loop: true
+                    delay: 1000,
+                    callback: this.enemiesAIManager[index].MoveEnemiesZig,
+                    args: [this.enemies[index], this.enemiesAIManager[index], colliders, ],
+                    loop: true,
                 })
                 
             }
