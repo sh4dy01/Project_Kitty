@@ -205,8 +205,8 @@ export default class Game extends Phaser.Scene {
         
         map.filterObjects('WorldCollider', obj => obj.name === 'topLeft').forEach((topLeft)=>(
             this.worldCollider.push(this.matter.add.rectangle(
-                ConvertXCartesianToIsometric(topLeft.x, topLeft.y)-ConvertXCartesianToIsometric(1150, 750),
-                ConvertYCartesianToIsometric(topLeft.x, topLeft.y)+ConvertXCartesianToIsometric(600, 250),
+                ConvertXCartesianToIsometric(topLeft.x, topLeft.y)-ConvertXCartesianToIsometric(1100, 750),
+                ConvertYCartesianToIsometric(topLeft.x, topLeft.y)+ConvertXCartesianToIsometric(602, 250),
                 topLeft.width/1.5,
                 topLeft.height+50,
                 { angle:1.05, label: "collision", isStatic:true }
@@ -215,8 +215,8 @@ export default class Game extends Phaser.Scene {
 
         map.filterObjects('WorldCollider', obj => obj.name === 'topRight').forEach((topRight)=>(
             this.worldCollider.push(this.matter.add.rectangle(
-                ConvertXCartesianToIsometric(topRight.x, topRight.y)-ConvertXCartesianToIsometric(20, 700),
-                ConvertYCartesianToIsometric(topRight.x, topRight.y)+ConvertYCartesianToIsometric(700, 20),
+                ConvertXCartesianToIsometric(topRight.x, topRight.y)-ConvertXCartesianToIsometric(35, 700),
+                ConvertYCartesianToIsometric(topRight.x, topRight.y)+ConvertYCartesianToIsometric(700, 35),
                 topRight.width+50,
                 topRight.height/2,
                 { angle:0.52, label: "collision", isStatic:true } 
