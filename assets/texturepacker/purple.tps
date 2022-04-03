@@ -60,7 +60,7 @@
         <key>jxrCompressionLevel</key>
         <uint>0</uint>
         <key>ditherType</key>
-        <enum type="SettingsBase::DitherType">NearestNeighbour</enum>
+        <enum type="SettingsBase::DitherType">PngQuantLow</enum>
         <key>backgroundColor</key>
         <uint>0</uint>
         <key>libGdx</key>
@@ -86,7 +86,7 @@
         <key>atfFormats</key>
         <string></string>
         <key>textureFormat</key>
-        <enum type="SettingsBase::TextureFormat">png</enum>
+        <enum type="SettingsBase::TextureFormat">png8</enum>
         <key>borderPadding</key>
         <uint>0</uint>
         <key>maxTextureSize</key>
@@ -136,7 +136,7 @@
             <key>json</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename></filename>
+                <filename>../spritesheet/purple-back.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -185,8 +185,8 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../sprites/phantoms/blue/bottom-right.png</key>
-            <key type="filename">../sprites/phantoms/blue/top-right.png</key>
+            <key type="filename">../animations/purple/purple-back_0.png</key>
+            <key type="filename">../animations/purple/purple-back_1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -195,17 +195,17 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>115,125,231,249</rect>
+                <rect>38,38,76,75</rect>
                 <key>scale9Paddings</key>
-                <rect>115,125,231,249</rect>
+                <rect>38,38,76,75</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>../sprites/phantoms/blue/bottom-right.png</filename>
-            <filename>../sprites/phantoms/blue/top-right.png</filename>
+            <filename>../animations/purple/purple-back_0.png</filename>
+            <filename>../animations/purple/purple-back_1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

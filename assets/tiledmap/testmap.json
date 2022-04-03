@@ -131,9 +131,9 @@
                          "value":"bottom-left"
                         }, 
                         {
-                         "name":"speed",
-                         "type":"int",
-                         "value":1
+                         "name":"phantom",
+                         "type":"string",
+                         "value":"purple"
                         }],
                  "rotation":0,
                  "type":"",
@@ -150,12 +150,12 @@
                         {
                          "name":"direction",
                          "type":"string",
-                         "value":"bottom-left"
+                         "value":"top-left"
                         }, 
                         {
-                         "name":"speed",
-                         "type":"int",
-                         "value":1
+                         "name":"phantom",
+                         "type":"string",
+                         "value":"purple"
                         }],
                  "rotation":0,
                  "type":"",
@@ -172,12 +172,12 @@
                         {
                          "name":"direction",
                          "type":"string",
-                         "value":"bottom-left"
+                         "value":"bottom-right"
                         }, 
                         {
-                         "name":"speed",
-                         "type":"int",
-                         "value":1
+                         "name":"phantom",
+                         "type":"string",
+                         "value":"purple"
                         }],
                  "rotation":0,
                  "type":"",
@@ -194,12 +194,12 @@
                         {
                          "name":"direction",
                          "type":"string",
-                         "value":"bottom-left"
+                         "value":"top-right"
                         }, 
                         {
-                         "name":"speed",
-                         "type":"int",
-                         "value":1
+                         "name":"phantom",
+                         "type":"string",
+                         "value":"purple"
                         }],
                  "rotation":0,
                  "type":"",

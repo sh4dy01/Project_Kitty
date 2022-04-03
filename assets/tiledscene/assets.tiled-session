@@ -53,7 +53,7 @@
             "selectedLayer": 2,
             "viewCenter": {
                 "x": 2344,
-                "y": 3994
+                "y": 3955
             }
         },
         "testmap2.tmx#corridor": {
@@ -100,7 +100,7 @@
         "testmap2.tmx"
     ],
     "project": "assets.tiled-project",
-    "property.type": "int",
+    "property.type": "string",
     "recentFiles": [
         "testmap2.tmx",
         "sans titre.tmx",
