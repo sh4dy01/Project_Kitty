@@ -43,13 +43,13 @@ export function CheckHitBoxes(world, playerManager, sceneManager, playerPhysics)
  */
 export function CheckButton(world, player){
     world.on("collisionstart", (event, bodyA, bodyB) => {
-        if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
+        if((bodyA.label == "player" && bodyB.label == "bouton") || (bodyA.label == "bouton" && bodyB.label == "player")) {
             console.log("on button area");
             player.canPress = true;
         }
     })
     world.on("collisionend", (event, bodyA, bodyB) => {
-        if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
+        if((bodyA.label == "player" && bodyB.label == "bouton") || (bodyA.label == "bouton" && bodyB.label == "player")) {
             console.log("exit button area");
             player.canPress = false;
         }
