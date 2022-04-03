@@ -49,11 +49,11 @@
             "scaleInDock": 1
         },
         "testmap2.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 3,
+            "scale": 0.5,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 2071.333333333333,
-                "y": 3911.9999999999995
+                "x": 4074,
+                "y": 2196
             }
         },
         "testmap2.tmx#corridor": {
@@ -93,6 +93,7 @@
         }
     },
     "last.exportedFilePath": "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap",
+    "last.externalTilesetPath": "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiles",
     "last.imagePath": "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiles",
     "map.lastUsedExportFilter": "Tous les Fichiers (*)",
     "map.lastUsedFormat": "tmx",
@@ -100,15 +101,16 @@
         "testmap2.tmx"
     ],
     "project": "assets.tiled-project",
-    "property.type": "bool",
+    "property.type": "string",
     "recentFiles": [
         "testmap2.tmx",
         "sans titre.tmx",
         "D:/Desktop/sans titre.tmx"
     ],
     "tileset.embedInMap": true,
+    "tileset.lastUsedFilter": "Tous les Fichiers (*)",
     "tileset.tileSize": {
-        "height": 156,
-        "width": 91
+        "height": 104,
+        "width": 182
     }
 }

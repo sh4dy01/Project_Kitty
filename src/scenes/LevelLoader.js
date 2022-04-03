@@ -1,7 +1,6 @@
 //@ts-check
 import Phaser from "phaser";
-import { LEVEL_MAP, MAX_LIVES} from "../helpers/constants";
-import { LoadTileMap } from "../helpers/tilesLoader";
+import { MAX_LIVES} from "../helpers/constants";
 
 export default class LevelLoader extends Phaser.Scene {
 
@@ -25,9 +24,6 @@ export default class LevelLoader extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("floor", "assets/tiles/floor.png");
-        this.load.image("wall", "assets/tiles/wall.png");
-
         this.load.tilemapTiledJSON("map", "assets/tiledmap/Level"+this.level+".json")
     }
 

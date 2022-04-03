@@ -1,7 +1,9 @@
 import Phaser from "phaser";
 
-import Game from "./Game";
-import { LEVEL_MAP} from "./helpers/constants";
+import Game from "./scenes/Game";
+
+import { LEVEL_MAP, TEXTURES_LOADER} from "./helpers/constants";
+import TexturesLoader from "./loaders/TexturesLoader";
 import LevelLoader from "./scenes/LevelLoader";
 
 // Initialize Phaser
@@ -27,7 +29,8 @@ const config = {
 
 const game = new Phaser.Game(config);
 
-game.scene.add('Game', Game); // Add the Game scene
+game.scene.add(TEXTURES_LOADER, TexturesLoader); // Add the Game scene
 game.scene.add(LEVEL_MAP, LevelLoader); // Add the StartScene scene
+game.scene.add('Game', Game); // Add the Game scene
 
-game.scene.start(LEVEL_MAP, {remainingLife: 0, level: 0}); // Start the StartScene scene
+game.scene.start(TEXTURES_LOADER); // Start the StartScene scene

@@ -2,6 +2,7 @@
 /**
     * @type {String}
 */
+export const TEXTURES_LOADER = "TexturesLoader"
 export const LEVEL_MAP = "LevelMap"
 export const MAX_LIVES = 3
 

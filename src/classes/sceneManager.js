@@ -1,7 +1,7 @@
 import { LEVEL_MAP } from "../helpers/constants"
 
 //@ts-check
-export class SceneManager {
+export default class SceneManager {
     /**
      * @param {Phaser.Scenes.ScenePlugin} sceneLoader
      * @param {Number} currentLevel
@@ -21,7 +21,8 @@ export class SceneManager {
     LoadNextScene(currentLife) {
         this.camera.fadeOut(2000, 0, 0, 0)
         this.camera.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-            this.sceneLoader.start('Level'+this.currentLevel, {remainingLife: currentLife});
+            console.log(currentLife);
+            this.sceneLoader.start(LEVEL_MAP, {remainingLife: currentLife});
         })
     }
 

@@ -1,8 +1,8 @@
 //@ts-check
 import Phaser from "phaser";
 import { OFFSET_ORIENTATION } from "../helpers/constants";
-import { CheckNextLevel } from "./collisionManager";
-import { SceneManager } from "./sceneManager";
+import { CheckNextLevel } from "./CollisionManager";
+import SceneManager from "./SceneManager";
 
 export default class PlayerManager {
     /**
@@ -17,7 +17,8 @@ export default class PlayerManager {
         this.singleDirectionSpeedMultiplier = 2.25;
 
         this.isSafe = true;
-        this.canOpen = false;
+        this.canPress = false;
+        this.pressedButton = false;
         this.canMove = false;
         this.canLoseLife = true;
         this.canLoadNextScene = false;
@@ -76,15 +77,15 @@ export default class PlayerManager {
     /**
      * @param {Phaser.Types.Input.Keyboard.CursorKeys} cursors
      * @param {Phaser.Physics.Matter.World} world
-     * @param {Phaser.Physics.Matter.Sprite} playerPhysics
-    */
-    UseButton(cursors, player, world, playerPhysics){
-        if(player.event == true){
+     * @param {Phaser.Physics.Matter.Sprite} player
+     */
+    UseButton(cursors, world, player){
+        if(this.canPress && !this.pressedButton){
             if (cursors.space.isDown) {
                 console.log('pressed');
+                this.pressedButton = true
                 this.canLoadNextScene = true;
-                CheckNextLevel(world, this, this.sceneManager, playerPhysics, this.currentLives)
-                player.event = false;
+                CheckNextLevel(world, this, this.sceneManager, player, this.currentLives)
             }
         }
     }
