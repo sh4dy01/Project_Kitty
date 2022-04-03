@@ -164,11 +164,10 @@ export default class Game extends Phaser.Scene {
                 "bouton", 
                 null
             )
-            this.button.setCircle(60, {label: 'boutonHit'})
+            this.button.setCircle(60, {label: 'bouton'})
             this.button.setSensor(true);
             this.button.setData(button.properties)
-            
-            CheckButton(this.matter.world)
+            CheckButton(this.matter.world, this.button)
         }
 
         map.filterObjects('SafeZones', obj => obj.name === 'SafeZone').forEach((SafeZoneObject)=>(
@@ -251,7 +250,7 @@ export default class Game extends Phaser.Scene {
         }
 
         this.playerManager.CheckPlayerInputs(this.player, this.cursors);
-        this.playerManager.UseButton(this.cursors, this.player.body, this.matter.world, this.player);
+        this.playerManager.UseButton(this.cursors, this.button, this.matter.world, this.player);
         this.UIManager.UpdatePlayerInfoText(this.playerInfoText, this.player, this.playerManager.canLoadNextScene, this.playerManager.isSafe);
     }
 

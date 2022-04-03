@@ -78,13 +78,13 @@ export default class PlayerManager {
      * @param {Phaser.Physics.Matter.World} world
      * @param {Phaser.Physics.Matter.Sprite} playerPhysics
     */
-    UseButton(cursors, player, world, playerPhysics){
-        if(player.event == true){
+     UseButton(cursors, button, world, playerPhysics){
+        if(button.data.list[0].value == true){
             if (cursors.space.isDown) {
                 console.log('pressed');
                 this.canLoadNextScene = true;
                 CheckNextLevel(world, this, this.sceneManager, playerPhysics, this.currentLives)
-                player.event = false;
+                button.data.list[0].value = false
             }
         }
     }

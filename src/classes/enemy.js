@@ -234,7 +234,6 @@ export default class EnemyManager {
                 }
                 enemy.setFlipX(true)
                 enemy.setVelocity(-manager.speed - OFFSET_ORIENTATION * manager.speed, manager.speed)
-                console.log(manager.zig);
                 if(manager.zig<NumbZig){
                     manager.zig = manager.zig + 1
                     manager.direction = BOTTOM_RIGHT

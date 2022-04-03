@@ -37,17 +37,27 @@ export function CheckHitBoxes(world, playerManager, sceneManager, playerPhysics)
     });
 }
 
-export function CheckButton(world){
+export function CheckButton(world, button){
     world.on("collisionstart", (event, bodyA, bodyB) => {
-        if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
+        if((bodyA.label == "player" && bodyB.label == "bouton") || (bodyA.label == "bouton" && bodyB.label == "player")) {
             console.log("on button area");
-            bodyA.event = true;
+            if(bodyA.label == "bouton"){
+                button.data.list[0].value = true
+            }
+            if(bodyB.label == "bouton"){
+                button.data.list[0].value = true
+            }
         }
     })
     world.on("collisionend", (event, bodyA, bodyB) => {
-        if((bodyA.label == "player" && bodyB.label == "boutonHit") || (bodyA.label == "boutonHit" && bodyB.label == "player")) {
+        if((bodyA.label == "player" && bodyB.label == "bouton") || (bodyA.label == "bouton" && bodyB.label == "player")) {
             console.log("exit button area");
-            bodyA.event = false;
+            if(bodyA.label == "bouton"){
+                bodyA.gameObject.data.list[0].value = true
+            }
+            if(bodyB.label == "bouton"){
+                bodyB.gameObject.data.list[0].value = true
+            }
         }
     });
 }
