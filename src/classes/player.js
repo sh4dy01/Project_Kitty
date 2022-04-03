@@ -81,6 +81,7 @@ export default class PlayerManager {
     UseButton(cursors, player, world, playerPhysics){
         if(player.event == true){
             if (cursors.space.isDown) {
+                console.log('pressed');
                 this.canLoadNextScene = true;
                 CheckNextLevel(world, this, this.sceneManager, playerPhysics, this.currentLives)
                 player.event = false;

@@ -5,11 +5,10 @@ import PlayerManager from "./classes/player"
 import UIManager from "./classes/UIManager";
 import TilesLoader from "./helpers/tilesLoader";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "./helpers/cartesianToIsometric";
-import Enemy from "./classes/enemy";
 import { SceneManager } from "./classes/sceneManager";
 import { CheckButton, CheckHitBoxes, CheckNextLevel } from "./classes/collisionManager";
-import { GREEN } from "./helpers/constants";
 import { createPhantomAnims } from "./animations/PhantomsAnimations";
+import EnemyManager from "./classes/enemy";
 
 export default class Game extends Phaser.Scene {
 
@@ -30,17 +29,12 @@ export default class Game extends Phaser.Scene {
         this.tilesLoader = new TilesLoader();
 
         /**
-         * @type {Enemy[]}
+         * @type {Phaser.Physics.Matter.Sprite[]}
         */
         this.enemies = [];
 
         /**
-         * @type {EnemyAILinear[]}
-        */
-        this.enemiesAI = [];
-
-        /**
-         * @type {Phaser.Time.TimerEvent[]}
+         * @type {EnemyManager[]}
         */
         this.enemiesAIManager = [];
         /**
@@ -58,20 +52,31 @@ export default class Game extends Phaser.Scene {
         this.load.image('player-down-right', 'assets/sprites/cat/down-right.png');
         this.load.image('player-down', 'assets/sprites/cat/down.png');
         this.load.image('player-right', 'assets/sprites/cat/right.png');
-        this.load.image('player-up', 'assets/sprites/cat/up.png');
+        this.load.image('player-up', '/assets/sprites/cat/up.png');
 
         this.load.image('purple-bottom-right', 'assets/sprites/phantoms/purple/bottom-right.png')
         this.load.image('purple-top-right', 'assets/sprites/phantoms/purple/top-right.png')
+        this.load.image('purple-bottom-left', 'assets/sprites/phantoms/purple/bottom-left.png')
+        this.load.image('purple-top-left', 'assets/sprites/phantoms/purple/top-left.png')
+
         this.load.image('green-bottom-right', 'assets/sprites/phantoms/green/bottom-right.png')
         this.load.image('green-top-right', 'assets/sprites/phantoms/green/top-right.png')
+        this.load.image('green-bottom-left', 'assets/sprites/phantoms/green/bottom-left.png')
+        this.load.image('green-top-left', 'assets/sprites/phantoms/green/top-left.png')
 
-        this.load.json('colliders', 'assets/colliders/colliders.json')
+        this.load.image('red-bottom-right', 'assets/sprites/phantoms/red/bottom-right.png')
+        this.load.image('red-top-right', 'assets/sprites/phantoms/red/top-right.png')
+        this.load.image('red-bottom-left', 'assets/sprites/phantoms/red/bottom-left.png')
+        this.load.image('red-top-left', 'assets/sprites/phantoms/red/top-left.png')
 
         this.load.atlas('purple-front', 'assets/spritesheet/purple-front.png', 'assets/spritesheet/purple-front.json')
         this.load.atlas('purple-back', 'assets/spritesheet/purple-back.png', 'assets/spritesheet/purple-back.json')
+        this.load.atlas('green-front', 'assets/spritesheet/green-front.png', 'assets/spritesheet/green-front.json')
+        this.load.atlas('green-back', 'assets/spritesheet/green-back.png', 'assets/spritesheet/green-back.json')
+        this.load.atlas('red-front', 'assets/spritesheet/red-front.png', 'assets/spritesheet/red-front.json')
+        this.load.atlas('red-back', 'assets/spritesheet/red-back.png', 'assets/spritesheet/red-back.json')
 
-        // this.load.atlas('pruple-front', 'assets/spritesheet/purple-front.png', 'assets/spritesheet/purple-front.json')
-        // this.load.atlas('pruple-front', 'assets/spritesheet/purple-front.png', 'assets/spritesheet/purple-front.json')
+        this.load.json('colliders', 'assets/colliders/colliders.json')
 
         this.load.image('checkpoint', 'assets/sprites/CandyShop-resized.png');
         this.load.image('cone', 'assets/sprites/proto/Bouton.png');
@@ -90,9 +95,8 @@ export default class Game extends Phaser.Scene {
         const colliders = this.cache.json.get('colliders');
 
         createPhantomAnims(this.anims, 'purple');
-        console.log(this.anims);
-        // createPhantomAnims(this.anims, 'green');
-        // createPhantomAnims(this.anims, 'red');
+        createPhantomAnims(this.anims, 'green');
+        createPhantomAnims(this.anims, 'red');
 
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
 
@@ -120,7 +124,11 @@ export default class Game extends Phaser.Scene {
         this.cone.isSensor();
         this.cone.setSensor(true);
         this.cone.setFixedRotation();
-
+        let temp
+        temp = this.matter.add.sprite(-3786, 4035, 'red-bottom-right')
+        temp.setBody(colliders.red_bottom_right)
+        temp = this.matter.add.sprite(-3990, 3915, 'green-bottom-left')
+        temp.setBody(colliders.green_bottom_left)
         this.enemiesLayer = map.createFromObjects('EnemiesLinear', {
             name: 'EnemyLinear'
         })
@@ -129,56 +137,30 @@ export default class Game extends Phaser.Scene {
             /**
                 * @param {Phaser.GameObjects.Sprite} enemy
             */
-            (enemy)=>{
-                this.enemies.push(new Enemy(
-                    {world: this.matter.world,
-                    x: ConvertXCartesianToIsometric(enemy.x, enemy.y),
-                    y: ConvertYCartesianToIsometric(enemy.x, enemy.y),
-                    texture: "purple-bottom-right"},
-                    enemy.getData('direction'),
-                    colliders.purple_bottom_right,
-                    'purple'
+            (enemy, index)=>{
+
+                this.enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), 'purple'))
+
+                this.enemies.push(this.matter.add.sprite(
+                    ConvertXCartesianToIsometric(enemy.x, enemy.y),
+                    ConvertYCartesianToIsometric(enemy.x, enemy.y),
+                    enemy.getData('phantom')+'-'+enemy.getData('direction')
                 ))
+
+                this.time.addEvent({
+                    delay: 3000,
+                    callback: this.enemiesAIManager[index].MoveTheEnemyLinear,
+                    args: [this.enemies[index], this.enemiesAIManager[index], colliders],
+                    loop: true
+                })
+                
             }
         )
         
-        // this.enemies.forEach(
-        //     (enemy)=>{
-        //         this.time.addEvent({
-        //             delay: 2000,
-        //             callback: enemy.MoveTheEnemyLinear,
-        //             args: [enemy],
-        //             loop: true
-        //         })
-        //     }
-        // )
-        // this.matter.add.polygon()
-        let tempEnemyAI;
-        // this.enemies.forEach(
-        //     /**
-        //      * @param {Phaser.GameObjects.Sprite} enemy
-        //      * @param {Number} index
-        //     */
-        //     (enemy, index)=>(
-        //         // enemy.setTexture('EnemyLinear'),
-        //         // tempX = enemy.x,
-        //         // enemy.x = ConvertXCartesianToIsometric(tempX, enemy.y),
-        //         // enemy.y = ConvertYCartesianToIsometric(tempX, enemy.y),
-        //         // this.matter.add.polygon(enemy.x - 50, enemy.y + 50, 3, 100, { isSensor:true, angle: 0.33, label: "field" }),
-        //         // tempEnemyAI = new EnemyAILinear(),
-        //         // this.enemiesAI.push(tempEnemyAI),
-        //         // this.time.addEvent({
-        //         //     delay: 2000,
-        //         //     callback: this.enemiesAI[index].MoveTheEnemyLinear,
-        //         //     args: [enemy, 1, enemy.getData('direction')],
-        //         //     loop: true
-        //         // })
-        //     )
-        // )
-
-        const boutonColor = new Phaser.Display.Color(155, 0, 0);
         const button = map.filterObjects('Interactions', obj => obj.name === 'Button')[0];
         if (button) {
+            const boutonColor = new Phaser.Display.Color(155, 0, 0);
+
             this.boutonShow = this.add.circle(400, 300, 60, boutonColor.color);
             this.boutonShow.setPosition(
                 ConvertXCartesianToIsometric(button.x, button.y), 
@@ -286,4 +268,6 @@ export default class Game extends Phaser.Scene {
         this.playerManager.UseButton(this.cursors, this.player.body, this.matter.world, this.player);
         this.UIManager.UpdatePlayerInfoText(this.playerInfoText, this.player, this.playerManager.canLoadNextScene, this.playerManager.currentLives, this.playerManager.isSafe);
     }
+
+    
 }
