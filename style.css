@@ -1,4 +1,27 @@
-html, body {
+html, body, main, footer {
     margin: 0;
     padding: 0;
+}
+
+main, footer, h1 {
+    display: none;
+}
+
+#game_section {
+    width: 100vw;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+}
+
+#game {
+    width: 80%;
+    height: 90%;
+    background-color: black;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+ul {
+    list-style: none;
 }

@@ -10,13 +10,13 @@ const createPhantomAnims = (anims, phantom)=>{
         key: phantom+'Front',
         frames: anims.generateFrameNames(phantom+'-front'),
         repeat: -1,
-        frameRate: 2
+        frameRate: 3
     }),
     anims.create({
         key: phantom+'Back',
         frames: anims.generateFrameNames(phantom+'-back'),
         repeat: -1,
-        frameRate: 2
+        frameRate: 3
     })
 }
 

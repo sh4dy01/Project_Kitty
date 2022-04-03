@@ -1,23 +1,68 @@
- <!DOCTYPE html>
- <html lang="fr" dir="ltr">
-     <head>
-         <meta charset="utf-8">
-         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0">
-         <title>Game</title>
-         <link rel="stylesheet" href="style.css"/>
-     </head>
+<!DOCTYPE html>
 
-     <body>
-       <!---
-          -Titre + police centré
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  </head>
 
-          -JEU centré
+  <body>
+    <header>
+      <h1 class="text-center">Le nom du jeu</h1>
+      <script src="build/project.bundle.js" charset="utf-8"></script>
+    </header>
 
-          -Tuto :
-            -déplacement
-            -ne pas mourrir
-            -credits nom+poste !--->
-     </body>
+    <main>
+      <section id="game_section">
+      </section> 
+      <section class="container text-center"><div class="row">
+        <div class="col">
+          <h2>Tuto</h2><i id="lunette" class="fa-solid fa-glasses"></i>
+          <p>Dans ce jeu vous incarné Juke le chat(nom à définir) vous pouvez vous dirigez avec Z pour avancer, Q pour aller à gauche, S pour aller en bas et D pour aller à droite et shift pour courrir. Le but est de terminer les quatre niveaux sans mourir. Êtes vous prêt à relever le défi ? </p></div>
+        <div class="col">
+          <h2>Histoire</h2><i class="fa-solid fa-book-bookmark"></i>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur nisi deleniti fugiat, vitae obcaecati sequi? Quasi omnis rem itaque minima distinctio aperiam eaque? Ratione ullam consequatur blanditiis placeat ducimus molestiae.</p></div>
+      </section>
+    </main>
 
-     <script src="build/project.bundle.js" charset="utf-8"></script>
- </html>
+    <footer class="mt-5 mb-5 text-center"> 
+      <h2>Crédit <i class="fa-solid fa-table-list"></i></h2> 
+      <div class="text-center container">
+        <div class="row">
+          <div class="col">
+            <h3>G-Business <i class="fa-solid fa-dollar-sign"></i></h3>
+            <ul> <!-- Liste à puce-->
+              <li>Leverger    Emile </li>
+              <li>Limouza    Mathys</li>
+              <li>Lucas    Rémi</li>
+              <li>Mauranne Edgar</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>G-Tech <i class="fa-solid fa-desktop"></i></h3>
+            <ul> <!-- Liste à puce-->
+              <li>Maestracci Hugo</li>
+              <li>Ateni Manuiva</li>
+              <li>Ripot Quentin</li>
+              <li>Vogt Nathanaël</li>
+              <li>Durel Mérideg</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>G-Art <i class="fa-solid fa-palette"></i></h3>
+            <ul> <!-- Liste à puce-->
+              <li>Bringé     Nicolas</li>
+              <li>Watelot    Anais</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>

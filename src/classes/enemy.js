@@ -1,6 +1,6 @@
 //@ts-check
 import Phaser from "phaser";
-import { BOTTOM_LEFT, BOTTOM_RIGHT, OFFSET_ORIENTATION, TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
+import { BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, OFFSET_ORIENTATION, PURPLE, RED, TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
 
 export default class EnemyManager {     
     /**
@@ -11,15 +11,15 @@ export default class EnemyManager {
         this.type = phantomType
 
         switch (this.type) {
-            case 'purple':
+            case PURPLE:
                 this.speed = 1
             break;
 
-            case 'green':
+            case GREEN:
                 this.speed = 2
             break;
 
-            case 'red':
+            case RED:
                 this.speed = 0.5
             break;
         
@@ -43,15 +43,15 @@ export default class EnemyManager {
         switch (manager.direction) {
             case TOP_LEFT:
                 switch (manager.type) {
-                    case 'purple':
+                    case PURPLE:
                         enemy.setBody(colliders.purple_top_left)
                     break;
         
-                    case 'green':
+                    case GREEN:
                         enemy.setBody(colliders.green_top_left)
                     break;
         
-                    case 'red':
+                    case RED:
                         enemy.setBody(colliders.red_top_left)
                     break;
         

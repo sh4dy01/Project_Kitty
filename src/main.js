@@ -1,17 +1,14 @@
 import Phaser from "phaser";
 
-import StartLevel from "./scenes/startScene";
-import SecondScene from "./scenes/secondScene";
 import Game from "./Game";
-import { START_LEVEL } from "./helpers/constants";
-
+import { LEVEL_MAP} from "./helpers/constants";
+import LevelLoader from "./scenes/LevelLoader";
 
 // Initialize Phaser
 const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    backgroundColor: '#2d2d2d',
     dom: {
         createContainer: true
     },
@@ -31,7 +28,6 @@ const config = {
 const game = new Phaser.Game(config);
 
 game.scene.add('Game', Game); // Add the Game scene
-game.scene.add(START_LEVEL, StartLevel); // Add the StartScene scene
-game.scene.add('SecondScene', SecondScene); // Add the SecondScene scene
+game.scene.add(LEVEL_MAP, LevelLoader); // Add the StartScene scene
 
-game.scene.start(START_LEVEL); // Start the StartScene scene
+game.scene.start(LEVEL_MAP, {remainingLife: 0, level: 0}); // Start the StartScene scene

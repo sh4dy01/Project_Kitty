@@ -2,11 +2,14 @@
 /**
     * @type {String}
 */
-export const START_LEVEL = "StartLevel"
+export const LEVEL_MAP = "LevelMap"
+export const MAX_LIVES = 3
 
 export const OFFSET_ORIENTATION = 0.75;
 
 export const GREEN = 'green'
+export const PURPLE = 'purple'
+export const RED = 'red'
 
 // Pensez iso!
 export const TOP_LEFT = 'top-left'
