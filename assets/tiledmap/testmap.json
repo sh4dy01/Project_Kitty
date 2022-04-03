@@ -102,6 +102,12 @@
                  "height":41.3333,
                  "id":11,
                  "name":"Button",
+                 "properties":[
+                        {
+                         "name":"isButtonPressed",
+                         "type":"bool",
+                         "value":false
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
