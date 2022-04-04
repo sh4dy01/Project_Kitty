@@ -10,6 +10,7 @@ export const PLAYER_SIZE = 0.85
 export const GREEN_SIZE = 0.6
 
 export const OFFSET_ORIENTATION = 0.75;
+export const OFFSET_DEPTH = 10;
 export const SINGLE_DIRECTION_MULTIPLIER = 1.7;
 
 

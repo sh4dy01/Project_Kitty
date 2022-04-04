@@ -46,41 +46,49 @@ export default class PlayerManager {
             this.CheckIfChangeCollider('top_right', player)
             player.setVelocity(this.playerSpeed + OFFSET_ORIENTATION * this.playerSpeed, -this.playerSpeed);
             player.play('playerTopLeft', true).setFlipX(true)
+            this.ChangePlayerDepth(player)
         } 
         else if (cursors.right.isDown && !cursors.up.isDown && !cursors.down.isDown) {
             this.CheckIfChangeCollider('bottom_right', player)
             player.setVelocity(this.playerSpeed + OFFSET_ORIENTATION * this.playerSpeed, this.playerSpeed );
             player.play('playerBottomRight', true).setFlipX(false)
+            this.ChangePlayerDepth(player)
         }
         else if (cursors.down.isDown && !cursors.right.isDown && !cursors.left.isDown) {
             this.CheckIfChangeCollider('bottom_left', player)
             player.play('playerBottomRight', true).setFlipX(true)
             player.setVelocity(-this.playerSpeed - OFFSET_ORIENTATION * this.playerSpeed, this.playerSpeed);
+            this.ChangePlayerDepth(player)
         } 
         else if (cursors.left.isDown && !cursors.down.isDown && !cursors.up.isDown) {
             this.CheckIfChangeCollider('top_left', player)
             player.setVelocity(-this.playerSpeed - OFFSET_ORIENTATION * this.playerSpeed, -this.playerSpeed);
             player.play('playerTopLeft', true).setFlipX(false)
+            this.ChangePlayerDepth(player)
         }
         else if (cursors.up.isDown && cursors.right.isDown) {
             this.CheckIfChangeCollider('right', player)
             player.setVelocity(this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER, 0);
             player.play('playerRight', true).setFlipX(false)
+            this.ChangePlayerDepth(player)
         }
         else if (cursors.right.isDown && cursors.down.isDown) {
             this.CheckIfChangeCollider('down', player)
             player.setVelocity(0, this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER);
             player.play('playerDown', true).setFlipX(false)
+            this.ChangePlayerDepth(player)
         }
         else if (cursors.down.isDown && cursors.left.isDown) {
             this.CheckIfChangeCollider('left', player)
             player.setVelocity(-this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER, 0);
             player.play('playerRight', true).setFlipX(true)
+            this.ChangePlayerDepth(player)
         }
         else if (cursors.left.isDown && cursors.up.isDown) {
             this.CheckIfChangeCollider('up', player)
             player.setVelocity(0, -this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER);
             player.play('playerUp', true).setFlipX(false)
+            this.ChangePlayerDepth(player)
         } else {
             player.stop()
         }
@@ -142,5 +150,10 @@ export default class PlayerManager {
         //     this.direction = newDirection 
         //     console.log('changing body to'+this.colliders['player_'+this.direction]);
         // }
+    }
+
+    ChangePlayerDepth(player) {
+        player.depth = player.y;
+        console.log(player.depth);
     }
 }

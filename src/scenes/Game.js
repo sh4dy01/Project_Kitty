@@ -132,9 +132,6 @@ export default class Game extends Phaser.Scene {
             return
         }
 
-        this.player.depth = this.player.y;
-        console.log(this.player.depth);
-
         this.playerManager.CheckPlayerInputs(this.player, this.cursors);
         this.playerManager.UseButton(this.cursors, this.matter.world, this.player);
         this.UIManager.UpdatePlayerInfoText(this.playerInfoText, this.player, this.playerManager.canLoadNextScene, this.playerManager.isSafe);

@@ -3,7 +3,7 @@ import Phaser from "phaser";
 
 import EnemyManager from "../classes/EnemyManager";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
-import { TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
+import { OFFSET_DEPTH, TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
 
 /**
     * @param {Phaser.Loader.LoaderPlugin} loader
@@ -36,8 +36,9 @@ export function LoadAllObjects(add, enemiesAIManager, enemies, matter, time, col
         ConvertYCartesianToIsometric(spawnPoint.x, spawnPoint.y),
         'checkpoint'
     ).setBody(colliders.checkPoint)
+
     // @ts-ignore
-    tempObject.setDepth(tempObject.y - tempObject.height /2)  // Définit la profondeur du sprite
+    tempObject.setDepth(tempObject.y - OFFSET_DEPTH)  // Définit la profondeur du sprite
 
     const nextLevelPoint = map.filterObjects('PlayerPoints', obj => obj.name === 'NextLevel')[0]; // Récupère l'emplacement du prochain niveau depuis Tiled
     matter.add.image(
@@ -61,7 +62,6 @@ export function LoadAllObjects(add, enemiesAIManager, enemies, matter, time, col
                 enemy.getData('phantom')+'-'+enemy.getData('direction')
             )),
             // @ts-ignore
-            tempObject.setDepth(tempObject.y - tempObject.height /2)  // Définit la profondeur du sprite
             
             time.addEvent({ // Ajoute son IA
                 delay: 2000,
@@ -125,9 +125,7 @@ export function LoadAllObjects(add, enemiesAIManager, enemies, matter, time, col
                 object.name+tempString,
                 null
             ).setBody(colliders[object.name+tempString])
-            // @ts-ignore
-            tempObject.setDepth(tempObject.y - tempObject.height /2)  // Définit la profondeur du sprite
-            
+            // @ts-ignore            
         }
     );
 
