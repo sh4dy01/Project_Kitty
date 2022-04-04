@@ -9,11 +9,7 @@ export default class TexturesLoader extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('player-up-left', 'assets/sprites/cat/up-left.png');
-        this.load.image('player-down-right', 'assets/sprites/cat/down-right.png');
-        this.load.image('player-down', 'assets/sprites/cat/down.png');
-        this.load.image('player-right', 'assets/sprites/cat/right.png');
-        this.load.image('player-up', '/assets/sprites/cat/up.png');
+        this.load.atlas('player', 'assets/spritesheet/player.png', 'assets/spritesheet/player.json')
 
         this.load.image('purple-bottom-right', 'assets/sprites/phantoms/purple/bottom-right.png')
         this.load.image('purple-top-right', 'assets/sprites/phantoms/purple/top-right.png')

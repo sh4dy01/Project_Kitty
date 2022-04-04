@@ -1,6 +1,6 @@
 //@ts-check
 import Phaser from "phaser";
-import { OFFSET_ORIENTATION } from "../helpers/constants";
+import { OFFSET_ORIENTATION, SINGLE_DIRECTION_MULTIPLIER } from "../helpers/constants";
 import { CheckNextLevel } from "./CollisionManager";
 import SceneManager from "./SceneManager";
 
@@ -14,15 +14,15 @@ export default class PlayerManager {
         this.runSpeedMultiplier = 10;
         this.playerSpeed = this.walkSpeed;
 
-        this.singleDirectionSpeedMultiplier = 2.25;
-
         this.isSafe = true;
         this.canPress = false;
         this.pressedButton = false;
+        this.direction = 'top_right';
         this.canMove = false;
         this.canLoseLife = true;
         this.canLoadNextScene = false;
 
+        this.colliders = null
         this.currentLives = currentLife
         this.sceneManager = sceneManager
     }
@@ -36,41 +36,51 @@ export default class PlayerManager {
 
         if (cursors.shift.isDown) {
             this.playerSpeed = this.runSpeedMultiplier;
+            player.anims.timeScale = 2
         } else {
             this.playerSpeed = this.walkSpeed;
+            player.anims.timeScale = 1
         }
         
         if (cursors.up.isDown && !cursors.left.isDown && !cursors.right.isDown) {
+            this.CheckIfChangeCollider('top_right', player)
             player.setVelocity(this.playerSpeed + OFFSET_ORIENTATION * this.playerSpeed, -this.playerSpeed);
-            player.setTexture('player-up-left').setFlipX(true);
+            player.play('playerTopLeft', true).setFlipX(true)
         } 
         else if (cursors.right.isDown && !cursors.up.isDown && !cursors.down.isDown) {
+            this.CheckIfChangeCollider('bottom_right', player)
             player.setVelocity(this.playerSpeed + OFFSET_ORIENTATION * this.playerSpeed, this.playerSpeed );
-            player.setTexture('player-down-right').setFlipX(false);
+            player.play('playerBottomRight', true).setFlipX(false)
         }
         else if (cursors.down.isDown && !cursors.right.isDown && !cursors.left.isDown) {
+            this.CheckIfChangeCollider('bottom_left', player)
+            player.play('playerBottomRight', true).setFlipX(true)
             player.setVelocity(-this.playerSpeed - OFFSET_ORIENTATION * this.playerSpeed, this.playerSpeed);
-            player.setTexture('player-down-right').setFlipX(true);
         } 
         else if (cursors.left.isDown && !cursors.down.isDown && !cursors.up.isDown) {
+            this.CheckIfChangeCollider('top_left', player)
             player.setVelocity(-this.playerSpeed - OFFSET_ORIENTATION * this.playerSpeed, -this.playerSpeed);
-            player.setTexture('player-up-left').setFlipX(false);
+            player.play('playerTopLeft', true).setFlipX(false)
         }
         else if (cursors.up.isDown && cursors.right.isDown) {
-            player.setVelocity(this.playerSpeed * this.singleDirectionSpeedMultiplier, 0);
-            player.setTexture('player-right').setFlipX(false);
+            this.CheckIfChangeCollider('right', player)
+            player.setVelocity(this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER, 0);
+            player.play('playerRight', true).setFlipX(false)
         }
         else if (cursors.right.isDown && cursors.down.isDown) {
-            player.setVelocity(0, this.playerSpeed * this.singleDirectionSpeedMultiplier);
-            player.setTexture('player-down').setFlipX(false);
+            this.CheckIfChangeCollider('down', player)
+            player.setVelocity(0, this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER);
+            player.play('playerDown', true).setFlipX(false)
         }
         else if (cursors.down.isDown && cursors.left.isDown) {
-            player.setVelocity(-this.playerSpeed * this.singleDirectionSpeedMultiplier, 0);
-            player.setTexture('player-right').setFlipX(true);
+            this.CheckIfChangeCollider('left', player)
+            player.setVelocity(-this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER, 0);
+            player.play('playerRight', true).setFlipX(true)
         }
         else if (cursors.left.isDown && cursors.up.isDown) {
-            player.setVelocity(0, -this.playerSpeed * this.singleDirectionSpeedMultiplier);
-            player.setTexture('player-up').setFlipX(false);
+            this.CheckIfChangeCollider('up', player)
+            player.setVelocity(0, -this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER);
+            player.play('playerUp', true).setFlipX(false)
         }
     }
 
@@ -117,5 +127,18 @@ export default class PlayerManager {
         this.canLoseLife = false;
         this.canMove = false;
         this.RemoveLife();
+    }
+
+    /**
+     * @param {string} newDirection
+     * @param {Phaser.Physics.Matter.Sprite} player
+     */
+    CheckIfChangeCollider(newDirection, player) {
+        // console.log(newDirection, this.direction);
+        // if (this.direction === newDirection) { } else { 
+        //     player.setBody(this.colliders['player_'+this.direction]);
+        //     this.direction = newDirection 
+        //     console.log('changing body to'+this.colliders['player_'+this.direction]);
+        // }
     }
 }

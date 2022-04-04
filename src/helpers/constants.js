@@ -6,7 +6,12 @@ export const TEXTURES_LOADER = "TexturesLoader"
 export const LEVEL_MAP = "LevelMap"
 export const MAX_LIVES = 3
 
+export const PLAYER_SIZE = 0.85
+export const GREEN_SIZE = 0.6
+
 export const OFFSET_ORIENTATION = 0.75;
+export const SINGLE_DIRECTION_MULTIPLIER = 1.7;
+
 
 export const GREEN = 'green'
 export const PURPLE = 'purple'

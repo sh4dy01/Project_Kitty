@@ -4,7 +4,7 @@ import Game from "./scenes/Game";
 
 import { LEVEL_MAP, TEXTURES_LOADER} from "./helpers/constants";
 import TexturesLoader from "./loaders/TexturesLoader";
-import LevelLoader from "./scenes/LevelLoader";
+import LevelLoader from "./loaders/LevelLoader";
 
 // Initialize Phaser
 const config = {
