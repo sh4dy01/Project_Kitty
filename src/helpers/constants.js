@@ -28,3 +28,12 @@ export const BOTTOM_LEFT = 'bottom-left'
 export const BOTTOM = 'bottom'
 export const BOTTOM_RIGHT = 'bottom-right'
 
+export const TOP_LEFT_LEFT = 'top-left-left'
+export const TOP_RIGHT_LEFT = 'top-right-left'
+export const BOTTOM_LEFT_LEFT = 'top-left-left'
+export const BOTTOM_RIGHT_LEFT = 'top-right-left'
+export const TOP_LEFT_RIGHT = 'top-left-right'
+export const TOP_RIGHT_RIGHT = 'top-right-right'
+export const BOTTOM_LEFT_RIGHT = 'top-left-right'
+export const BOTTOM_RIGHT_RIGHT = 'top-right-right'
+

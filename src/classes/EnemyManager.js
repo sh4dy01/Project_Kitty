@@ -1,13 +1,13 @@
 //@ts-check
 import Phaser from "phaser";
-import { BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, OFFSET_ORIENTATION, PURPLE, RED, TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
+import { BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, OFFSET_ORIENTATION, PURPLE, RED, TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT_RIGHT, BOTTOM_RIGHT_LEFT, BOTTOM_LEFT_RIGHT, BOTTOM_LEFT_LEFT, TOP_RIGHT_RIGHT, TOP_RIGHT_LEFT, TOP_LEFT_RIGHT, TOP_LEFT_LEFT } from "../helpers/constants";
 
 export default class EnemyManager {     
     /**
      * @param {String} startDirection
      * @param {String} phantomType
      */
-    constructor(startDirection, phantomType) {
+    constructor(startDirection, phantomType, startOrientataion) {
         this.type = phantomType
 
         switch (this.type) {
@@ -28,6 +28,7 @@ export default class EnemyManager {
             break;
         }
         this.direction = startDirection;
+        this.orientation = startOrientataion;
         this.zig = 0;
     }
     
@@ -274,10 +275,6 @@ export default class EnemyManager {
                     manager.direction = TOP_LEFT
                 }
                 enemy.play(manager.type+'Front')
-            break;
-
-            default:
-                console.log('wrong position');
             break;
         }
         enemy.x = x

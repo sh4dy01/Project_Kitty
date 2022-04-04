@@ -81,6 +81,8 @@ export default class PlayerManager {
             this.CheckIfChangeCollider('up', player)
             player.setVelocity(0, -this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER);
             player.play('playerUp', true).setFlipX(false)
+        } else {
+            player.stop()
         }
     }
 

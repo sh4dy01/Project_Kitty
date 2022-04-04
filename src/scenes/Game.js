@@ -10,7 +10,7 @@ import UIManager from "../classes/UIManager";
 
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
 import { LoadAllObjects } from "../loaders/ObjectLoaders";
-import { GREEN, GREEN_SIZE, PLAYER_SIZE, PURPLE, RED } from "../helpers/constants";
+import { GREEN, GREEN_SIZE, MAX_LIVES, PLAYER_SIZE, PURPLE, RED } from "../helpers/constants";
 import { CreatePlayerAnims } from "../animations/PlayerAnimations";
 
 
@@ -37,6 +37,8 @@ export default class Game extends Phaser.Scene {
         */
         this.enemies = [];
 
+        this.lives = [];
+
         /**
          * @type {EnemyManager[]}
         */
@@ -61,6 +63,23 @@ export default class Game extends Phaser.Scene {
             this.playerManager.canMove = true
         })
 
+        if(this.playerManager.currentLives == MAX_LIVES){
+            for(var i=0; i<this.playerManager.currentLives; i++){
+                    this.lives.push(true);
+                }
+            }
+        else if(this.playerManager.currentLives < MAX_LIVES){
+            this.NotTrue = MAX_LIVES - this.playerManager.currentLives;
+            for(var i=0; i<this.playerManager.currentLives; i++){
+                this.lives.push(true);
+            }
+            for(var h = 0;this.NotTrue>h; h++){
+                this.lives.push(false)
+            }
+        }
+        console.log(this.lives);
+
+
         this.matter.world.disableGravity();
 
         const colliders = this.cache.json.get('colliders'); // Récupère toutes les collisions pour les sprites
@@ -83,7 +102,6 @@ export default class Game extends Phaser.Scene {
         testPhantom.setScale(GREEN_SIZE)
         testPhantom = this.matter.add.sprite(-4100, 4015, 'purple-bottom-right')
         testPhantom.setBody(colliders.purple_bottom_right)
-
         this.player = this.matter.add.sprite(
             ConvertXCartesianToIsometric(spawnPoint.x, spawnPoint.y)+50, 
             ConvertYCartesianToIsometric(spawnPoint.x, spawnPoint.y)-10, 
@@ -99,6 +117,10 @@ export default class Game extends Phaser.Scene {
 
         this.cameras.main.startFollow(this.player, false, 0.05, 0.05); // Permet que la caméra suit le joueur
 
+        // this.Vignette = this.game.renderer.addPipeline('Vignette', new Vignette(this.game));
+        // this.cameras.main.setPostPipeline(BlurPostFX)
+
+
         CheckHitBoxes(this.matter.world, this.playerManager, this.sceneManager, this.player);
         CheckButton(this.matter.world, this.playerManager)
     }
@@ -106,10 +128,12 @@ export default class Game extends Phaser.Scene {
     update(t, dt) {
         if (!this.cursors || !this.player || !this.playerManager.canMove) {
             this.player.setVelocity(0);
-            this.player.stop()
 
             return
         }
+
+        this.player.depth = this.player.y;
+        console.log(this.player.depth);
 
         this.playerManager.CheckPlayerInputs(this.player, this.cursors);
         this.playerManager.UseButton(this.cursors, this.matter.world, this.player);

@@ -31,11 +31,13 @@ export function LoadAllObjects(add, enemiesAIManager, enemies, matter, time, col
 
     // --- Créer le point de spawn du joueur --- ///
     const spawnPoint = map.filterObjects('PlayerPoints', obj => obj.name === 'SpawnPoint')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
-    matter.add.image(
+    let tempObject = matter.add.image(
         ConvertXCartesianToIsometric(spawnPoint.x, spawnPoint.y),
         ConvertYCartesianToIsometric(spawnPoint.x, spawnPoint.y),
         'checkpoint'
     ).setBody(colliders.checkPoint)
+    // @ts-ignore
+    tempObject.setDepth(tempObject.y - tempObject.height /2)  // Définit la profondeur du sprite
 
     const nextLevelPoint = map.filterObjects('PlayerPoints', obj => obj.name === 'NextLevel')[0]; // Récupère l'emplacement du prochain niveau depuis Tiled
     matter.add.image(
@@ -58,6 +60,8 @@ export function LoadAllObjects(add, enemiesAIManager, enemies, matter, time, col
                 ConvertYCartesianToIsometric(enemy.x, enemy.y),
                 enemy.getData('phantom')+'-'+enemy.getData('direction')
             )),
+            // @ts-ignore
+            tempObject.setDepth(tempObject.y - tempObject.height /2)  // Définit la profondeur du sprite
             
             time.addEvent({ // Ajoute son IA
                 delay: 2000,
@@ -78,7 +82,7 @@ export function LoadAllObjects(add, enemiesAIManager, enemies, matter, time, col
             "bouton", 
             null
         )
-        buttonSprite.setCircle(60, {label: 'boutonHit'})
+        buttonSprite.setCircle(60, {label: 'bouton'})
         buttonSprite.setSensor(true);
         buttonSprite.setData(button.properties)
     }
@@ -97,7 +101,9 @@ export function LoadAllObjects(add, enemiesAIManager, enemies, matter, time, col
             { isSensor:true, angle:0.52, label: "safezone", isStatic: true }
         ))
     )
-    
+    /**
+            * @type {Phaser.Physics.Matter.Image}
+        */
     // --- Créer les différents obstacles --- //
     map.createFromObjects('Obstacles', {}).forEach(
         /**
@@ -112,12 +118,16 @@ export function LoadAllObjects(add, enemiesAIManager, enemies, matter, time, col
                 tempString = "-"+"back"
             }
 
-            matter.add.image(
+            // @ts-ignore
+            tempObject = matter.add.image(
                 ConvertXCartesianToIsometric(object.x, object.y),
                 ConvertYCartesianToIsometric(object.x, object.y),
                 object.name+tempString,
                 null
             ).setBody(colliders[object.name+tempString])
+            // @ts-ignore
+            tempObject.setDepth(tempObject.y - tempObject.height /2)  // Définit la profondeur du sprite
+            
         }
     );
 
