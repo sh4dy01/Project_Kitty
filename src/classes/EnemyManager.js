@@ -1,5 +1,6 @@
 //@ts-check
 import Phaser from "phaser";
+import { ChangeDepth } from "../helpers/ChangeDepth";
 import { BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, OFFSET_ORIENTATION, PURPLE, RED, TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT_RIGHT, BOTTOM_RIGHT_LEFT, BOTTOM_LEFT_RIGHT, BOTTOM_LEFT_LEFT, TOP_RIGHT_RIGHT, TOP_RIGHT_LEFT, TOP_LEFT_RIGHT, TOP_LEFT_LEFT } from "../helpers/constants";
 
 export default class EnemyManager {     
@@ -280,5 +281,4 @@ export default class EnemyManager {
         enemy.x = x
         enemy.y = y
     }
-
 }
