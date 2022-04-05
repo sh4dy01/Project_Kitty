@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="32" height="64" tilewidth="182" tileheight="104" infinite="0" nextlayerid="10" nextobjectid="46">
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="32" height="64" tilewidth="182" tileheight="104" infinite="0" nextlayerid="10" nextobjectid="108">
  <editorsettings>
   <export target="../tiledmap/Level0.json" format="json"/>
  </editorsettings>
@@ -149,10 +149,10 @@
 </data>
  </layer>
  <objectgroup id="3" name="WorldCollider">
-  <object id="25" name="top-left" x="1086.56" y="5299.04" width="56.2857" height="1384.67"/>
-  <object id="32" name="top-right" x="1129.58" y="5264.36" width="1386.58" height="49.7835"/>
-  <object id="33" name="bottom-left" x="1142.08" y="6660.35" width="1315.15" height="54.5455"/>
-  <object id="34" name="bottom-right" x="2507.46" y="5255.44" width="56.71" height="1452.38"/>
+  <object id="25" name="top-left" x="1048.27" y="5127.04" width="39.3333" height="1785.43"/>
+  <object id="32" name="top-right" x="1043.68" y="5095.46" width="1774.96" height="49.7835"/>
+  <object id="33" name="bottom-left" x="921.89" y="6676.73" width="1989.63" height="54.5455"/>
+  <object id="34" name="bottom-right" x="2506.32" y="5180.39" width="56.71" height="1735.62"/>
  </objectgroup>
  <objectgroup id="8" name="Interactions">
   <object id="11" name="Button" x="1720.19" y="6111.81" width="41.3333" height="41.3333">

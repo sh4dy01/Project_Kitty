@@ -9,7 +9,7 @@ import LevelLoader from "./loaders/LevelLoader";
 // Initialize Phaser
 const config = {
     type: Phaser.AUTO,
-    width: 1280,
+    width: 1300,
     height: 720,
     dom: {
         createContainer: true
