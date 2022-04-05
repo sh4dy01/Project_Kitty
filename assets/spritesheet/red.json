@@ -1,0 +1,104 @@
+{
+	"textures": [
+		{
+			"image": "red.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 900,
+				"h": 222
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "red-back_0.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 223,
+						"h": 220
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 223,
+						"h": 220
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 223,
+						"h": 220
+					}
+				},
+				{
+					"filename": "red-back_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 223,
+						"h": 220
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 223,
+						"h": 220
+					},
+					"frame": {
+						"x": 226,
+						"y": 1,
+						"w": 223,
+						"h": 220
+					}
+				},
+				{
+					"filename": "red-face_0.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 223,
+						"h": 220
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 223,
+						"h": 220
+					},
+					"frame": {
+						"x": 451,
+						"y": 1,
+						"w": 223,
+						"h": 220
+					}
+				},
+				{
+					"filename": "red-face_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 223,
+						"h": 220
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 223,
+						"h": 220
+					},
+					"frame": {
+						"x": 676,
+						"y": 1,
+						"w": 223,
+						"h": 220
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:dd5952b192f4d1d0a2a4bad5a9d9eafd:64ce0c743e8b1e4c851412a4eb3c95c3:f41f2d32a29f225b3218c7668f956770$"
+	}
+}

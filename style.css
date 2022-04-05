@@ -1,9 +1,13 @@
-html, body, main, footer {
+* {
     margin: 0;
     padding: 0;
+    outline: none;
+    text-decoration: none;
+    border: 0;
+    background-color: black;
 }
 
-main, footer, h1 {
+head, main, footer {
     display: none;
 }
 

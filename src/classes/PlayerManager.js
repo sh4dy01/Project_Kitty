@@ -143,8 +143,9 @@ export default class PlayerManager {
      */
     CheckIfChangeCollider(newDirection, player) {
         // console.log(newDirection, this.direction);
+
         // if (this.direction === newDirection) { } else { 
-        //     player.setBody(this.colliders['player_'+this.direction]);
+        //     player.setBody(this.colliders['player_'+newDirection]);
         //     this.direction = newDirection 
         //     console.log('changing body to'+this.colliders['player_'+this.direction]);
         // }

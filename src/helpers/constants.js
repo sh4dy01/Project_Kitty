@@ -9,6 +9,9 @@ export const MAX_LIVES = 3
 export const PLAYER_SIZE = 0.85
 export const GREEN_SIZE = 0.6
 
+export const UI_LIFE_SIZE = 0.25
+export const UI_LIFE_OFFSET = 85
+
 export const OFFSET_ORIENTATION = 0.75;
 export const OFFSET_DEPTH = 10;
 export const SINGLE_DIRECTION_MULTIPLIER = 1.7;
@@ -28,13 +31,3 @@ export const RIGHT = 'right'
 export const BOTTOM_LEFT = 'bottom-left'
 export const BOTTOM = 'bottom'
 export const BOTTOM_RIGHT = 'bottom-right'
-
-export const TOP_LEFT_LEFT = 'top-left-left'
-export const TOP_RIGHT_LEFT = 'top-right-left'
-export const BOTTOM_LEFT_LEFT = 'top-left-left'
-export const BOTTOM_RIGHT_LEFT = 'top-right-left'
-export const TOP_LEFT_RIGHT = 'top-left-right'
-export const TOP_RIGHT_RIGHT = 'top-right-right'
-export const BOTTOM_LEFT_RIGHT = 'top-left-right'
-export const BOTTOM_RIGHT_RIGHT = 'top-right-right'
-

@@ -4,7 +4,7 @@ import Phaser from "phaser";
 import EnemyManager from "../classes/EnemyManager";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
 import { ChangeDepth } from "../helpers/ChangeDepth";
-import { TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
+import { GREEN, GREEN_SIZE, PURPLE, RED, TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
 
 /**
  * @param {EnemyManager[]} enemiesAIManager
@@ -31,27 +31,54 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
         "exit-door"
     )
     tempObject.setBody(colliders.exit_door) // Ajoute la collision
-    ChangeDepth(tempObject)
+    ChangeDepth(tempObject);
 
     /// --- Create all the enemies with their AI and animations --- //
     map.createFromObjects('Enemies', {}).forEach(
         /** @param {Phaser.GameObjects.Sprite} enemy */
         (enemy, index)=>{
 
-            enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.getData('phantom'))), // Ajoute son manager
+            enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name)) // Ajoute son manager
 
             enemies.push(matter.add.sprite( // Ajoute le sprite dans le jeu
                 ConvertXCartesianToIsometric(enemy.x, enemy.y),
                 ConvertYCartesianToIsometric(enemy.x, enemy.y),
-                enemy.getData('phantom')+'-'+enemy.getData('direction')
-            )),
+                enemy.name+'-anim',
+                enemy.getData('direction')
+            ))
+            
+            switch (enemy.name) {
+                case PURPLE:
+                    time.addEvent({ // Ajoute l'IA PURPLE
+                        delay: enemy.getData('speed'),
+                        callback: enemiesAIManager[index].MoveEnemyPurple,
+                        args: [enemies[index], enemiesAIManager[index], colliders],
+                        loop: true,
+                    })
+                break;
 
-            time.addEvent({ // Ajoute son IA
-                delay: 2000,
-                callback: enemiesAIManager[index].MoveEnemiesZig,
-                args: [enemies[index], enemiesAIManager[index], colliders],
-                loop: true,
-            })
+                case GREEN:
+                    time.addEvent({ // Ajoute l'IA GREEN
+                        delay: enemy.getData('speed'),
+                        callback: enemiesAIManager[index].MoveEnemyGreen,
+                        args: [enemies[index], enemiesAIManager[index], colliders],
+                        loop: true,
+                    })
+                break;
+
+                case RED:
+                    time.addEvent({ // Ajoute l'IA RED
+                        delay: enemy.getData('speed'),
+                        callback: enemiesAIManager[index].MoveEnemyRed,
+                        args: [enemies[index], enemiesAIManager[index], colliders],
+                        loop: true,
+                    })
+                break;
+            
+                default:
+                    console.log('wrong name');
+                break;
+            }
         }
     )
     

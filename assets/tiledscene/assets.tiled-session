@@ -3,12 +3,15 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "D:/Desktop/tiledmap/Levels/level6.json",
     "expandedProjectPaths": [
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Temp",
+        "D:/Desktop/tiledmap",
+        "D:/Desktop/tiledmap/Levels",
+        "D:/Desktop/tiledmap/Temp",
+        ".",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap",
-        "."
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Temp"
     ],
     "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
     "fileStates": {
@@ -37,12 +40,382 @@
         "D:/Desktop/sans titre.tmx#forest": {
             "scaleInDock": 1
         },
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Level0.json": {
-            "scale": 0.33,
-            "selectedLayer": 2,
+        "D:/Desktop/tiledmap/Levels/Couloir 2.tmx": {
+            "scale": 0.11070283882783882,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 2184.848484848485,
-                "y": 3996.969696969697
+                "x": 3965.5712956260986,
+                "y": 4498.52962465102
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/Couloir 2.tmx#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/Couloir 2.tmx#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/Couloir 3.tmx": {
+            "scale": 0.11067750057221332,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4373.065867025126,
+                "y": 2462.1083652155935
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/Couloir 3.tmx#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/Couloir 3.tmx#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/Level0.json": {
+            "scale": 0.11817908653846154,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4366.254767353165,
+                "y": 3672.3925756420035
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/Level0.json#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/Level0.json#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level0.json": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4714,
+                "y": 2852
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/level0.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level0.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level1.json": {
+            "scale": 0.11817908653846154,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 7399.786422578184,
+                "y": 3790.856852275617
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/level1.json#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level1.json#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level2.json": {
+            "scale": 0.125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 7236,
+                "y": 3680
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/level2.json#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level2.json#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level3.json": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 5802,
+                "y": 3108
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/level3.json#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level3.json#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level34.json": {
+            "scale": 0.11070283882783882,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4363.031744390446,
+                "y": 2466.061420742426
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/level34.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level34.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level4.json": {
+            "scale": 0.11631506309148265,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4367.4480888210865,
+                "y": 3645.2716331892534
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/level4.json#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level4.json#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level5.json": {
+            "scale": 0.125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 7236,
+                "y": 3680
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/level5.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level5.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level6.json": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 3350,
+                "y": 3396
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/level6.json#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level6.json#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level7.json": {
+            "scale": 0.125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4364,
+                "y": 2452
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/level7.json#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level7.json#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level8.json": {
+            "scale": 0.125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4364,
+                "y": 2452
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/level8.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level8.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level8.tmj": {
+            "scale": 0.11070283882783882,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4372.064936407817,
+                "y": 2502.194188811912
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/level8.tmj#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/level8.tmj#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Levels/long couloir.json": {
+            "scale": 0.11070283882783882,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4363.031744390446,
+                "y": 3694.5755351049534
+            }
+        },
+        "D:/Desktop/tiledmap/Levels/long couloir.json#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Levels/long couloir.json#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/Temp/Couloir 2.tmx": {
+            "scale": 0.11070283882783882,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4363.031744390446,
+                "y": 2506.710784820598
+            }
+        },
+        "D:/Desktop/tiledmap/Temp/Couloir 2.tmx#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Temp/Couloir 2.tmx#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Temp/Couloir 3.tmx": {
+            "scale": 0.11067750057221332,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4373.065867025126,
+                "y": 2462.1083652155935
+            }
+        },
+        "D:/Desktop/tiledmap/Temp/Couloir 3.tmx#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Temp/Couloir 3.tmx#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Temp/long couloir.json": {
+            "scale": 0.11070283882783882,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4372.064936407817,
+                "y": 2461.5448247337404
+            }
+        },
+        "D:/Desktop/tiledmap/Temp/long couloir.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/Temp/long couloir.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/corridor1.json": {
+            "scale": 0.11817908653846154,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4370.485634375795,
+                "y": 2500.4424103737606
+            }
+        },
+        "D:/Desktop/tiledmap/corridor1.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/corridor1.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/couloir2.json": {
+            "scale": 0.11817908653846154,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4370.485634375795,
+                "y": 2500.4424103737606
+            }
+        },
+        "D:/Desktop/tiledmap/couloir2.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/couloir2.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/couloir3.json": {
+            "scale": 0.11631506309148265,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4371.746758199848,
+                "y": 2454.540215272481
+            }
+        },
+        "D:/Desktop/tiledmap/couloir3.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/couloir3.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/level2.json": {
+            "scale": 0.11067750057221332,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4373.065867025126,
+                "y": 2462.1083652155935
+            }
+        },
+        "D:/Desktop/tiledmap/level2.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/level2.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/level3.json": {
+            "scale": 0.11070283882783882,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4363.031744390446,
+                "y": 2452.5116327163687
+            }
+        },
+        "D:/Desktop/tiledmap/level3.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/level3.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/level4.json": {
+            "scale": 0.11067750057221332,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4373.065867025126,
+                "y": 2462.1083652155935
+            }
+        },
+        "D:/Desktop/tiledmap/level4.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/level4.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Desktop/tiledmap/long couloir.json": {
+            "scale": 0.11070283882783882,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4363.031744390446,
+                "y": 3703.608727122325
+            }
+        },
+        "D:/Desktop/tiledmap/long couloir.json#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Desktop/tiledmap/long couloir.json#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Level0.json": {
+            "scale": 0.5,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 2114,
+                "y": 3710
             }
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Level0.json#floor": {
@@ -66,11 +439,11 @@
             "scaleInDock": 1
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/Level0.json": {
-            "scale": 0.125,
-            "selectedLayer": 1,
+            "scale": 0.25,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 4544,
-                "y": 3136
+                "x": 3262,
+                "y": 1632
             }
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/Level0.json#floor": {
@@ -80,11 +453,11 @@
             "scaleInDock": 1
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level2.json": {
-            "scale": 0.5,
+            "scale": 0.125,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 5364,
-                "y": 1830
+                "x": 5704,
+                "y": 1912
             }
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level2.json#floor": {
@@ -97,8 +470,8 @@
             "scale": 0.125,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 4552,
-                "y": 3200
+                "x": 4424,
+                "y": 2904
             }
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Temp/autre couloir.json#floor": {
@@ -111,8 +484,8 @@
             "scale": 0.14699015793087664,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 4183.953597010277,
-                "y": 2598.8134537527253
+                "x": 4136.331360946745,
+                "y": 2544.3880411086884
             }
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Temp/long couloir.json#floor": {
@@ -125,8 +498,8 @@
             "scale": 0.08634386446886447,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 7597.528834681162,
-                "y": 961.2727031685008
+                "x": 5929.77860267798,
+                "y": 1482.4446506694949
             }
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/corridor1.json#floor": {
@@ -136,11 +509,11 @@
             "scaleInDock": 1
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/proto.json": {
-            "scale": 0.33,
-            "selectedLayer": 2,
+            "scale": 0.25,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 2236.363636363636,
-                "y": 3818.181818181818
+                "x": 2172,
+                "y": 3928
             }
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/proto.json#floor": {
@@ -154,7 +527,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 766.1573004028264,
-                "y": 389.5872680446412
+                "y": 390.51707059367357
             }
         },
         "sans titre.tmx#corridor": {
@@ -164,11 +537,11 @@
             "scaleInDock": 1
         },
         "testmap2.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 0,
+            "scale": 0.33,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 4630,
-                "y": 2194
+                "x": 2566.6666666666665,
+                "y": 3921.212121212121
             }
         },
         "testmap2.tmx#corridor": {
@@ -213,21 +586,30 @@
     "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
+        "D:/Desktop/tiledmap/Levels/level0.json",
+        "D:/Desktop/tiledmap/Levels/level3.json",
+        "D:/Desktop/tiledmap/Levels/level2.json",
+        "D:/Desktop/tiledmap/Levels/level1.json",
+        "D:/Desktop/tiledmap/Levels/level5.json",
+        "D:/Desktop/tiledmap/Levels/level6.json",
+        "D:/Desktop/tiledmap/Levels/level7.json",
+        "D:/Desktop/tiledmap/Levels/level8.json"
     ],
     "project": "assets.tiled-project",
-    "property.type": "string",
+    "property.type": "int",
     "recentFiles": [
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Level0.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/proto.json",
-        "testmap2.tmx",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/corridor1.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Temp/autre couloir.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Level1.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Temp/long couloir.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level2.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/Level0.json",
-        "sans titre.tmx",
-        "D:/Desktop/sans titre.tmx"
+        "D:/Desktop/tiledmap/Levels/level1.json",
+        "D:/Desktop/tiledmap/Levels/level0.json",
+        "D:/Desktop/tiledmap/Levels/level3.json",
+        "D:/Desktop/tiledmap/Levels/level2.json",
+        "D:/Desktop/tiledmap/Levels/level5.json",
+        "D:/Desktop/tiledmap/Levels/level6.json",
+        "D:/Desktop/tiledmap/Levels/level7.json",
+        "D:/Desktop/tiledmap/Levels/level8.json",
+        "D:/Desktop/tiledmap/Levels/Level0.json",
+        "D:/Desktop/tiledmap/Levels/long couloir.json",
+        "D:/Desktop/tiledmap/Levels/Couloir 2.tmx",
+        "D:/Desktop/tiledmap/Levels/level8.tmj"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "Tous les Fichiers (*)",

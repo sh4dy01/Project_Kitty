@@ -1,0 +1,104 @@
+{
+	"textures": [
+		{
+			"image": "green.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 820,
+				"h": 202
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "green-back_0.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 203,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 203,
+						"h": 200
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 203,
+						"h": 200
+					}
+				},
+				{
+					"filename": "green-back_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 203,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 203,
+						"h": 200
+					},
+					"frame": {
+						"x": 206,
+						"y": 1,
+						"w": 203,
+						"h": 200
+					}
+				},
+				{
+					"filename": "green-face_0.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 203,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 203,
+						"h": 200
+					},
+					"frame": {
+						"x": 411,
+						"y": 1,
+						"w": 203,
+						"h": 200
+					}
+				},
+				{
+					"filename": "green-face_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 203,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 203,
+						"h": 200
+					},
+					"frame": {
+						"x": 616,
+						"y": 1,
+						"w": 203,
+						"h": 200
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:8f2def2409cd6df7fb7d9fb1954033b9:607299179dcd1842f05f2f881fe0bc4f:88a31b4ea5b0b12da1c8dc038572b369$"
+	}
+}

@@ -11,9 +11,6 @@ const config = {
     type: Phaser.AUTO,
     width: 1300,
     height: 720,
-    dom: {
-        createContainer: true
-    },
     physics: {
         default: "matter",
         matter: {
@@ -25,6 +22,8 @@ const config = {
         target: 60,
         forceSetTimeOut: true
     },
+    autoCenter: true,
+    canvas: document.querySelector('canvas')
 };
 
 const game = new Phaser.Game(config);

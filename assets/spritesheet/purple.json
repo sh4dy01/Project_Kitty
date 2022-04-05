@@ -1,0 +1,104 @@
+{
+	"textures": [
+		{
+			"image": "purple.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 616,
+				"h": 152
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "purple-back_0.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 152,
+						"h": 150
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 152,
+						"h": 150
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 152,
+						"h": 150
+					}
+				},
+				{
+					"filename": "purple-back_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 152,
+						"h": 150
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 152,
+						"h": 150
+					},
+					"frame": {
+						"x": 155,
+						"y": 1,
+						"w": 152,
+						"h": 150
+					}
+				},
+				{
+					"filename": "purple-face_0.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 152,
+						"h": 150
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 152,
+						"h": 150
+					},
+					"frame": {
+						"x": 309,
+						"y": 1,
+						"w": 152,
+						"h": 150
+					}
+				},
+				{
+					"filename": "purple-face_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 152,
+						"h": 150
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 152,
+						"h": 150
+					},
+					"frame": {
+						"x": 463,
+						"y": 1,
+						"w": 152,
+						"h": 150
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:afdd1fbfaf7095b7e7e45cbc77dfd800:781b1ace4b0adbbf49ed6175d6e19ca5:b604dcaca957eafc361443833a344971$"
+	}
+}
