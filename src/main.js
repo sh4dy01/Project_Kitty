@@ -1,7 +1,6 @@
 import Phaser from "phaser";
 
 import Game from "./scenes/Game";
-
 import PauseScreen from "./scenes/Pause";
 import { LEVEL_MAP, PAUSE_SCREEN, TEXTURES_LOADER} from "./helpers/constants";
 import TexturesLoader from "./loaders/TexturesLoader";

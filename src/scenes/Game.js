@@ -4,16 +4,16 @@ import Phaser from "phaser";
 import PlayerManager from "../classes/PlayerManager"
 import SceneManager from "../classes/SceneManager";
 import CollisionManager from "../classes/CollisionManager";
-import { CreatePurplePhantomAnims, CreateGreenPhantomAnims, CreateRedPhantomAnims } from "../animations/PhantomsAnimations";
 import EnemyManager from "../classes/EnemyManager";
 import UIManager from "../classes/UIManager";
+import BossManager from "../classes/BossManager";
 
+import { CreatePurplePhantomAnims, CreateGreenPhantomAnims, CreateRedPhantomAnims } from "../animations/PhantomsAnimations";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
 import { AddBoss, LoadAllObjects as AddAllObjectsFromTiled } from "../loaders/ObjectLoaders";
-import { GREEN, GREEN_SIZE, MAX_LIVES, PLAYER_SIZE, PURPLE, RED, UI_LEVER_OFFSET, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_LEVER_SIZE, PAUSE_SCREEN } from "../helpers/constants";
+import { GREEN, PLAYER_SIZE, PURPLE, RED, PAUSE_SCREEN } from "../helpers/constants";
 import { CreatePlayerAnims } from "../animations/PlayerAnimations";
 import { ChangeDepth } from "../helpers/ChangeDepth";
-import BossManager from "../classes/BossManager";
 
 
 export default class Game extends Phaser.Scene {
@@ -56,10 +56,10 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-        const map = this.add.tilemap("map");  // Ajoute les emplacements des tiles dans le jeu
+        const map = this.add.tilemap("map"/**+this.level */);  // Ajoute les emplacements des tiles dans le jeu
         const colliders = this.cache.json.get('colliders'); // Récupère toutes les collisions pour les sprites
 
-        if (this.currentLevel === 8) {
+        if (this.currentLevel === 8 || true) {
             this.boss = AddBoss(map, colliders, this.matter, this.time, this.bossManager)
         }
 
@@ -120,7 +120,7 @@ export default class Game extends Phaser.Scene {
 
         this.collisionManager.CheckHitBoxes(this.playerManager, this.player);
         this.collisionManager.CheckButton(this.UIManager.leversStatus.length);
-        this.collisionManager.CheckCollideWorld(map, colliders, this.matter, this.time, this.bossManager);
+        this.collisionManager.CheckCollideWorld(this.bossManager);
         
         this.UIManager.AddFilters()
         this.UIManager.UpdateLife()
@@ -140,10 +140,12 @@ export default class Game extends Phaser.Scene {
         this.enemies.forEach(enemy => {
             ChangeDepth(enemy)
         });
+
         if (this.pauseKey.isDown) {
             this.scene.pause();
-            this.scene.launch(PAUSE_SCREEN)
+            this.scene.launch(PAUSE_SCREEN, {sceneToResume: this})
         }
+
         this.playerManager.CheckPlayerInputs(this.player, this.cursors);
         if (this.playerManager.canPress) {
             this.playerManager.UseButton(this.cursors, this.matter.world, this.player);

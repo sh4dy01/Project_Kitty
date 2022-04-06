@@ -72,7 +72,10 @@ export default class CollisionManager {
         }
     }
     
-    CheckCollideWorld(map, colliders, matter, time, bossManager) {
+    /**
+     * @param {BossManager} bossManager
+     */
+    CheckCollideWorld(bossManager) {
         const tabBR = ["left", "left-bottom", "left-top"];
         const tabTL = ["right", "right-bottom", "right-top"];
         const tabTR = ["bottom", "bottom-left", "bottom-right"];

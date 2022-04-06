@@ -27,6 +27,7 @@ export default class TexturesLoader extends Phaser.Scene {
 
         this.load.image('night-filter', "assets/filters/filtre-resized.png")
         this.load.image('vignette', "assets/filters/vignette-resized.png")
+        this.load.image('pause-screen', 'assets/sprites/ui/pause-screen.png')
 
         this.load.image("floor", "assets/tiles/floor.png");
         this.load.image("wall", "assets/tiles/wall.png");
