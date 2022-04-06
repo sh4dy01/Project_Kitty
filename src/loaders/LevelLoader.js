@@ -24,7 +24,7 @@ export default class LevelLoader extends Phaser.Scene {
     }
 
     preload() {
-        this.load.tilemapTiledJSON("map", "assets/tiledmap/Levels/level4.json")
+        this.load.tilemapTiledJSON("map", "assets/tiledmap/Levels/level1.json")
     }
 
     create() {

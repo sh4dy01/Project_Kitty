@@ -1,12 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "format":"json",
-         "target":"level1.tmj"
-        }
-    },
  "height":64,
  "infinite":false,
  "layers":[
@@ -555,12 +547,6 @@
                  "id":53,
                  "name":"wardrobe",
                  "point":true,
-                 "properties":[
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"bottom-left"
-                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,

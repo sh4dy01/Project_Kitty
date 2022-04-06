@@ -180,7 +180,7 @@ export function AddTheSpawnPoint(map, colliders, matter) {
  * @param {BossManager} bossManager
  */
 export function AddBoss(map, colliders, matter, time, bossManager) {
-    // --- Créer le point de spawn du joueur --- ///
+    // --- Créer le point de spawn du boss --- ///
     /** @param {Phaser.GameObjects.Sprite} boss */
     const Boss = map.filterObjects('Enemies', (/** @type {{ name: string; }} */ obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
 
