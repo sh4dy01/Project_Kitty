@@ -56,7 +56,7 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-        const map = this.add.tilemap("map"+this.currentLevel);  // Ajoute les emplacements des tiles dans le jeu
+        const map = this.add.tilemap("map");  // Ajoute les emplacements des tiles dans le jeu
         const colliders = this.cache.json.get('colliders'); // Récupère toutes les collisions pour les sprites
 
         if (this.currentLevel === 8) {
