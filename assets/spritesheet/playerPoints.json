@@ -1,16 +1,37 @@
 {
 	"textures": [
 		{
-			"image": "doors.png",
+			"image": "playerPoints.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 113,
-				"h": 404
+				"w": 329,
+				"h": 210
 			},
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "door-close.png",
+					"filename": "SpawnPoint.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 101,
+						"h": 208
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 101,
+						"h": 208
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 101,
+						"h": 208
+					}
+				},
+				{
+					"filename": "NextLevel.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -24,7 +45,7 @@
 						"h": 200
 					},
 					"frame": {
-						"x": 1,
+						"x": 104,
 						"y": 1,
 						"w": 111,
 						"h": 200
@@ -45,8 +66,8 @@
 						"h": 200
 					},
 					"frame": {
-						"x": 1,
-						"y": 203,
+						"x": 217,
+						"y": 1,
 						"w": 111,
 						"h": 200
 					}
@@ -57,6 +78,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:98b95f9201b6c7f0027c10ea835de1e9:7a7f1a207f759f6ec29c79c10a410286:cc5c92f828d81c3078c7b0d2ee7791c4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:b93507b418ee6516b84dee15210bf28d:8cb9968eefe4b901910b716e257d5159:10aa6fe1f67a49fe9e367e6c6937c561$"
 	}
 }

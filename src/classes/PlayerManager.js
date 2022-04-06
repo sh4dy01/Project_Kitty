@@ -28,6 +28,9 @@ export default class PlayerManager {
         this.canLoadNextScene = true;
 
         this.colliders = null
+        /**@type {Phaser.Physics.Matter.Image} */
+        this.exitDoor = null
+
         this.currentLives = currentLife
         this.sceneManager = sceneManager
         this.UIManager = UIManager
@@ -120,6 +123,7 @@ export default class PlayerManager {
         }
         this.allButtonPressed = true;
         this.canLoadNextScene = true;
+        this.exitDoor.setTexture('playerPoints', "door-open.png");
         if (this.canLoadNextScene) {
             CheckNextLevel(world, player, this, this.sceneManager)
         }

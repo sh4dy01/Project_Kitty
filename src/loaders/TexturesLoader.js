@@ -13,7 +13,7 @@ export default class TexturesLoader extends Phaser.Scene {
         this.load.atlas('objects', 'assets/spritesheet/objects.png', 'assets/spritesheet/objects.json')
         this.load.atlas('boss', 'assets/spritesheet/boss.png', 'assets/spritesheet/boss.json')
         this.load.atlas('indicators', 'assets/spritesheet/indicators.png', 'assets/spritesheet/indicators.json')
-        this.load.atlas('doors', 'assets/spritesheet/doors.png', 'assets/spritesheet/doors.json')
+        this.load.atlas('playerPoints', 'assets/spritesheet/playerPoints.png', 'assets/spritesheet/playerPoints.json')
         this.load.atlas('levers', 'assets/spritesheet/levers.png', 'assets/spritesheet/levers.json')
 
         this.load.image('life-full', 'assets/sprites/ui/LifeFull.png')
@@ -24,14 +24,6 @@ export default class TexturesLoader extends Phaser.Scene {
         this.load.atlas('red-anim', 'assets/spritesheet/red.png', 'assets/spritesheet/red.json')
 
         this.load.json('colliders', 'assets/colliders/colliders.json') // Ficher JSON contenant toutes les collisions créés par PhysicsEditor
-
-        this.load.image('checkpoint', 'assets/sprites/props/candyshop.png');
-        this.load.image('wardrobe-front', 'assets/sprites/props/wardrobe-front.png');
-        this.load.image('wardrobe-back', 'assets/sprites/props/wardrobe-back.png');
-        this.load.image("lever-on", 'assets/sprites/ui/green-lever.png');
-        this.load.image("lever-off", 'assets/sprites/ui/red-lever.png');
-
-        this.load.image("exit-door", "assets/sprites/proto/exit-door.png");
 
         this.load.image('night-filter', "assets/filters/filtre-resized.png")
         this.load.image('vignette', "assets/filters/vignette-resized.png")
