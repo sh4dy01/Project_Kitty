@@ -9,8 +9,8 @@ import LevelLoader from "./loaders/LevelLoader";
 // Initialize Phaser
 const config = {
     type: Phaser.AUTO,
-    width: 1300,
-    height: 720,
+    width: 800,
+    height: 600,
     physics: {
         default: "matter",
         matter: {

@@ -40,20 +40,26 @@ export function CheckHitBoxes(world, playerManager, sceneManager, playerPhysics)
 /**
  * @param {Phaser.Physics.Matter.World} world
  * @param {PlayerManager} player
+ * @param {number} numberOfButtons
  */
-export function CheckButton(world, player){
-    world.on("collisionstart", (event, bodyA, bodyB) => {
-        if((bodyA.label == "player" && bodyB.label == "lever") || (bodyA.label == "lever" && bodyB.label == "player")) {
-            console.log("on button area");
-            player.canPress = true;
-        }
-    })
-    world.on("collisionend", (event, bodyA, bodyB) => {
-        if((bodyA.label == "player" && bodyB.label == "lever") || (bodyA.label == "lever" && bodyB.label == "player")) {
-            console.log("exit button area");
-            player.canPress = false;
-        }
-    });
+export function CheckButton(world, player, numberOfButtons){
+    for (let index = 0; index < numberOfButtons; index++) {
+        world.on("collisionstart", (event, bodyA, bodyB) => {
+            if((bodyA.label == "player" && bodyB.label == "lever"+index) || (bodyA.label == "lever"+index && bodyB.label == "player")) {
+                console.log("on button area");
+                player.canPress = true;
+                player.canPressButton = index
+            }
+        })
+        world.on("collisionend", (event, bodyA, bodyB) => {
+            if((bodyA.label == "player" && bodyB.label == "lever"+index) || (bodyA.label == "lever"+index && bodyB.label == "player")) {
+                console.log("exit button area");
+                player.canPress = false;
+                player.canPressButton = null
+            }
+        });
+    }
+    
 }
 
 /**
@@ -65,7 +71,6 @@ export function CheckButton(world, player){
  */
 export function CheckNextLevel(world, playerManager, sceneManager, playerPhysics, currentLives) {
     world.on("collisionstart", (event, bodyA, bodyB) => {
-        console.log(bodyA, bodyB);
         if((bodyA.label == "player" && bodyB.label == "NextLevel") || (bodyA.label == "NextLevel" && bodyB.label == "player")) {
             playerManager.StopPlayerMovement(playerPhysics)
             sceneManager.LoadNextScene(currentLives);

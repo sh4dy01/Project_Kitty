@@ -83,7 +83,7 @@ export default class Game extends Phaser.Scene {
         this.cameras.main.startFollow(this.player, false, 0.05, 0.05); // Permet que la caméra suit le joueur
 
         CheckHitBoxes(this.matter.world, this.playerManager, this.sceneManager, this.player);
-        CheckButton(this.matter.world, this.playerManager)
+        CheckButton(this.matter.world, this.playerManager, this.UIManager.leversStatus.length)
         
         // this.add.image(0, 0, )
         this.UIManager.AddFilters()

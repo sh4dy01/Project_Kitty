@@ -8,9 +8,8 @@ import { BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM, RIGHT, OFFSET_ORIENTATION, TOP, LEFT
  * @param {String} startDirection
  */
 
-export default class BossManager extends Phaser.Physics.Matter.Sprite{
-    constructor(matter, x, y, textures){
-        super(matter, x, y, textures)
+export default class BossManager{
+    constructor(){
         this.direction = "bottom";
         this.speed = 1
     }

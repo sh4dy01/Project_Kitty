@@ -160,13 +160,13 @@ export function AddTheSpawnPoint(map, colliders, matter) {
     // --- Créer les leviers des maps --- ///
     map.createFromObjects('Interactions', {}).forEach(
         /** @param {Phaser.GameObjects.Image} lever*/
-        (lever) => {
+        (lever, index) => {
         // @ts-ignore
         tempObject = matter.add.image(
             ConvertXCartesianToIsometric(lever.x, lever.y), 
             ConvertYCartesianToIsometric(lever.x, lever.y), 
             'lever-off'
-        ).setCircle(60, {label: 'lever', isSensor: true}),
+        ).setCircle(60, {label: 'lever'+index, isSensor: true}),
         ChangeDepth(tempObject)
 
         levers.push(false)
@@ -182,7 +182,7 @@ export function AddBoss(map, colliders, matter, time, bossManager) {
     
     this.xBoss = ConvertXCartesianToIsometric(Boss.x, Boss.y),
     this.yBoss = ConvertYCartesianToIsometric(Boss.x, Boss.y),
-    this.Boss = new BossManager(matter, this.xBoss, this.yBoss, "boss")
+    this.Boss = new BossManager()
 }
 
 

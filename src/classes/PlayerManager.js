@@ -18,9 +18,11 @@ export default class PlayerManager {
         this.playerSpeed = this.walkSpeed;
 
         this.isSafe = true;
-        this.canPress = false;
         this.direction = 'top_right';
-        this.canPress = true;
+        this.canPress = false;
+        this.canPressButton = null
+        this.allButtonPressed = false;
+
         this.canMove = false;
         this.canLoseLife = true;
         this.canLoadNextScene = false;
@@ -106,9 +108,9 @@ export default class PlayerManager {
     UseButton(cursors, world, player){
         if(this.canPress){
             if (cursors.space.isDown) {
-                this.UIManager.UpdateLevers();
+                this.UIManager.UpdateLeversUI(this.canPressButton);
                 this.CheckIfCanPress();
-                if (!this.canPress) {
+                if (this.allButtonPressed) {
                     this.canLoadNextScene = true;
                     CheckNextLevel(world, this, this.sceneManager, player, this.currentLives)
                 }
@@ -119,9 +121,12 @@ export default class PlayerManager {
     CheckIfCanPress() {
         for (let index = 0; index < this.UIManager.leversStatus.length; index++) {
             if (this.UIManager.leversStatus[index] === false) {
-                this.canPress = true;
+                this.allButtonPressed = false;
+
+                return
             }
         }
+        this.allButtonPressed = true;
     }
 
     RemoveLife() {

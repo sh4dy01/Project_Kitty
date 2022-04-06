@@ -51,26 +51,19 @@ export default class UIManager{
         }
     }
 
-    UpdateLevers() {
-        let i = 0;
-        this.leversStatus.forEach(lever => {
-            console.log();
-            if (lever === false) {
-                this.leversStatus[i] = true
-                this.leversImage[i].setTexture('lever-on')
-
-                return 
-            }
-        });
+    /**
+     * @param {string | number} index
+     */
+    UpdateLeversUI(index) {
+        this.leversStatus[index] = true
+        this.leversImage[index].setTexture('lever-on')
     }
 
     AddLeversUI() {
         for (let i = 1; i-1 < this.leversStatus.length; i++) {
             if (this.leversStatus[i-1] === false) {
-                console.log(false);
                 this.leversImage.push(this.add.image(this.gameWidth * (3/4) + UI_LEVER_OFFSET * i, this.gameHeight - UI_Y_OFFSET, 'lever-off').setScrollFactor(0).setDepth(9999))
             } else {
-                console.log('true');
                 this.leversImage.push(this.add.image(this.gameWidth + UI_LEVER_OFFSET * i, this.gameHeight - UI_Y_OFFSET, 'lever-on').setScrollFactor(0).setDepth(9999))
             }
         }

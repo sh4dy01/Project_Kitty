@@ -179,6 +179,12 @@
                  "id":56,
                  "name":"lever",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"count",
+                         "type":"int",
+                         "value":1
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -191,6 +197,12 @@
                  "id":57,
                  "name":"lever",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"count",
+                         "type":"int",
+                         "value":0
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
