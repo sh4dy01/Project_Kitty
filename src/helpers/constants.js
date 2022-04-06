@@ -4,15 +4,17 @@
 */
 export const TEXTURES_LOADER = "TexturesLoader"
 export const LEVEL_MAP = "LevelMap"
+export const PAUSE_SCREEN = "PauseScreen"
+
 export const MAX_LIVES = 3
 
 export const PLAYER_SIZE = 0.85
 export const GREEN_SIZE = 0.6
 
 export const UI_Y_OFFSET = 40
-export const UI_LIFE_SIZE = 0.25
-export const UI_LIFE_OFFSET = 85
-export const UI_LEVER_SIZE = 1
+export const UI_LIFE_SIZE = 0.20
+export const UI_LIFE_OFFSET = 70
+export const UI_LEVER_SIZE = 1.8
 export const UI_LEVER_OFFSET = 85
 
 export const OFFSET_ORIENTATION = 0.75;

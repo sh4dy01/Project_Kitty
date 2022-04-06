@@ -1,6 +1,7 @@
 //@ts-check
 import Phaser from "phaser";
-import { MAX_LIVES, UI_LEVER_OFFSET, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_Y_OFFSET } from "../helpers/constants";
+import { UpdateLeverTexture } from "../helpers/ChangeDepth";
+import { MAX_LIVES, UI_LEVER_OFFSET, UI_LEVER_SIZE, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_Y_OFFSET } from "../helpers/constants";
 
 export default class UIManager{
     /**
@@ -9,18 +10,21 @@ export default class UIManager{
      * @param {Phaser.GameObjects.GameObjectFactory} add
      * @param {number} gameWidth
      * @param {number} gameHeight
-     * @param {Boolean[]} levers
+     * @param {Boolean[]} leversUI
+     * @param {Phaser.GameObjects.Image[]} leversSprite
+
      */
-    constructor(level, currentLife, add, gameWidth, gameHeight, levers){
+    constructor(level, currentLife, add, gameWidth, gameHeight, leversUI, leversSprite){
         this.level = level;
         this.currentLife = currentLife
         this.add = add
         this.gameWidth = gameWidth
         this.gameHeight = gameHeight
-        this.leversStatus = levers
 
+        this.leversStatus = leversUI
         /**@type {Phaser.GameObjects.Image[]} */
-        this.leversImage = []
+        this.leversUIImage = []
+        this.leversSprite = leversSprite
     }
 
     /**
@@ -56,15 +60,16 @@ export default class UIManager{
      */
     UpdateLeversUI(index) {
         this.leversStatus[index] = true
-        this.leversImage[index].setTexture('lever-on')
+        this.leversUIImage[index].setTexture('levers', 'lever_ui_on.png')
+        UpdateLeverTexture(this.leversSprite[index]);
     }
 
     AddLeversUI() {
-        for (let i = 1; i-1 < this.leversStatus.length; i++) {
-            if (this.leversStatus[i-1] === false) {
-                this.leversImage.push(this.add.image(this.gameWidth * (3/4) + UI_LEVER_OFFSET * i, this.gameHeight - UI_Y_OFFSET, 'lever-off').setScrollFactor(0).setDepth(9999))
+        for (let i = 0; i < this.leversStatus.length; i++) {
+            if (this.leversStatus[i] === false) {
+                this.leversUIImage.push(this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-100, 'levers', 'lever_ui_off.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
             } else {
-                this.leversImage.push(this.add.image(this.gameWidth + UI_LEVER_OFFSET * i, this.gameHeight - UI_Y_OFFSET, 'lever-on').setScrollFactor(0).setDepth(9999))
+                this.leversUIImage.push(this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-100, 'levers', 'lever_ui_on.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
             }
         }
     }

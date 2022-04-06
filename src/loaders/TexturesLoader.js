@@ -11,7 +11,11 @@ export default class TexturesLoader extends Phaser.Scene {
     preload() {
         this.load.atlas('player', 'assets/spritesheet/player.png', 'assets/spritesheet/player.json')
         this.load.atlas('objects', 'assets/spritesheet/objects.png', 'assets/spritesheet/objects.json')
-        
+        this.load.atlas('boss', 'assets/spritesheet/boss.png', 'assets/spritesheet/boss.json')
+        this.load.atlas('indicators', 'assets/spritesheet/indicators.png', 'assets/spritesheet/indicators.json')
+        this.load.atlas('doors', 'assets/spritesheet/doors.png', 'assets/spritesheet/doors.json')
+        this.load.atlas('levers', 'assets/spritesheet/levers.png', 'assets/spritesheet/levers.json')
+
         this.load.image('life-full', 'assets/sprites/ui/LifeFull.png')
         this.load.image('life-empty', 'assets/sprites/ui/LifeEmpty.png')
 
@@ -27,7 +31,6 @@ export default class TexturesLoader extends Phaser.Scene {
         this.load.image("lever-on", 'assets/sprites/ui/green-lever.png');
         this.load.image("lever-off", 'assets/sprites/ui/red-lever.png');
 
-        this.load.image('bouton', 'assets/sprites/proto/Bouton.png');
         this.load.image("exit-door", "assets/sprites/proto/exit-door.png");
 
         this.load.image('night-filter', "assets/filters/filtre-resized.png")
@@ -35,8 +38,6 @@ export default class TexturesLoader extends Phaser.Scene {
 
         this.load.image("floor", "assets/tiles/floor.png");
         this.load.image("wall", "assets/tiles/wall.png");
-
-        this.load.image("boss", "assets/sprites/boss/boss Sketch1.png")
     }
 
     create() {

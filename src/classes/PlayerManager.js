@@ -1,6 +1,6 @@
 //@ts-check
 import Phaser from "phaser";
-import { ChangeDepth } from "../helpers/ChangeDepth";
+import { ChangeDepth, UpdateLeverTexture } from "../helpers/ChangeDepth";
 import { OFFSET_ORIENTATION, SINGLE_DIRECTION_MULTIPLIER } from "../helpers/constants";
 import CollisionManager, { CheckNextLevel } from "./CollisionManager";
 import SceneManager from "./SceneManager";
@@ -20,7 +20,7 @@ export default class PlayerManager {
         this.isSafe = true;
         this.direction = 'top_right';
         this.canPress = false;
-        this.canPressButton = null
+        this.canPressButtonNumber = null
         this.allButtonPressed = false;
 
         this.canMove = false;
@@ -47,51 +47,44 @@ export default class PlayerManager {
             this.playerSpeed = this.walkSpeed;
             player.anims.timeScale = 1
         }
+
         
         if (cursors.up.isDown && !cursors.left.isDown && !cursors.right.isDown) {
-            this.CheckIfChangeCollider('top_right', player)
             player.setVelocity(this.playerSpeed + OFFSET_ORIENTATION * this.playerSpeed, -this.playerSpeed);
             player.play('playerTopLeft', true).setFlipX(true)
             ChangeDepth(player)
         } 
         else if (cursors.right.isDown && !cursors.up.isDown && !cursors.down.isDown) {
-            this.CheckIfChangeCollider('bottom_right', player)
             player.setVelocity(this.playerSpeed + OFFSET_ORIENTATION * this.playerSpeed, this.playerSpeed );
             player.play('playerBottomRight', true).setFlipX(false)
             ChangeDepth(player)
         }
         else if (cursors.down.isDown && !cursors.right.isDown && !cursors.left.isDown) {
-            this.CheckIfChangeCollider('bottom_left', player)
             player.play('playerBottomRight', true).setFlipX(true)
             player.setVelocity(-this.playerSpeed - OFFSET_ORIENTATION * this.playerSpeed, this.playerSpeed);
             ChangeDepth(player)
         } 
         else if (cursors.left.isDown && !cursors.down.isDown && !cursors.up.isDown) {
-            this.CheckIfChangeCollider('top_left', player)
             player.setVelocity(-this.playerSpeed - OFFSET_ORIENTATION * this.playerSpeed, -this.playerSpeed);
             player.play('playerTopLeft', true).setFlipX(false)
             ChangeDepth(player)
         }
         else if (cursors.up.isDown && cursors.right.isDown) {
-            this.CheckIfChangeCollider('right', player)
             player.setVelocity(this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER, 0);
             player.play('playerRight', true).setFlipX(false)
            ChangeDepth(player)
         }
         else if (cursors.right.isDown && cursors.down.isDown) {
-            this.CheckIfChangeCollider('down', player)
             player.setVelocity(0, this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER);
             player.play('playerDown', true).setFlipX(false)
             ChangeDepth(player)
         }
         else if (cursors.down.isDown && cursors.left.isDown) {
-            this.CheckIfChangeCollider('left', player)
             player.setVelocity(-this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER, 0);
             player.play('playerRight', true).setFlipX(true)
             ChangeDepth(player)
         }
         else if (cursors.left.isDown && cursors.up.isDown) {
-            this.CheckIfChangeCollider('up', player)
             player.setVelocity(0, -this.playerSpeed * SINGLE_DIRECTION_MULTIPLIER);
             player.play('playerUp', true).setFlipX(false)
             ChangeDepth(player)
@@ -107,7 +100,7 @@ export default class PlayerManager {
     */
     UseButton(cursors, world, player){
         if(cursors.space.isDown){
-            this.UIManager.UpdateLeversUI(this.canPressButton);
+            this.UIManager.UpdateLeversUI(this.canPressButtonNumber);
             this.CheckIfAllPressed(world, player);
         }
     }
@@ -157,19 +150,5 @@ export default class PlayerManager {
         this.canLoseLife = false;
         this.canMove = false;
         this.RemoveLife();
-    }
-
-    /**
-     * @param {string} newDirection
-     * @param {Phaser.Physics.Matter.Sprite} player
-     */
-    CheckIfChangeCollider(newDirection, player) {
-        // console.log(newDirection, this.direction);
-
-        // if (this.direction === newDirection) { } else { 
-        //     player.setBody(this.colliders['player_'+newDirection]);
-        //     this.direction = newDirection 
-        //     console.log('changing body to'+this.colliders['player_'+this.direction]);
-        // }
     }
 }
