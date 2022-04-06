@@ -162,7 +162,62 @@
          "draworder":"topdown",
          "id":3,
          "name":"WorldCollider",
-         "objects":[],
+         "objects":[
+                {
+                 "height":81.3852813852814,
+                 "id":60,
+                 "name":"topRight",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3275.32467532467,
+                 "x":1677.62770562771,
+                 "y":655.705627705627
+                }, 
+                {
+                 "height":0,
+                 "id":61,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":-83.844155844156,
+                 "y":-194.943722943723
+                }, 
+                {
+                 "height":3560.60606060606,
+                 "id":62,
+                 "name":"topLeft",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":94.8051948051951,
+                 "x":444.727272727272,
+                 "y":2139.25541125541
+                }, 
+                {
+                 "height":90.0432900432902,
+                 "id":63,
+                 "name":"bottomLeft",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2902.1645021645,
+                 "x":1782.38961038961,
+                 "y":3915.44588744589
+                }, 
+                {
+                 "height":3496.5367965368,
+                 "id":64,
+                 "name":"bottomRight",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":85.2813852813852,
+                 "x":3040.62337662338,
+                 "y":2396.46753246754
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -304,8 +359,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":2546.85714285714,
-                 "y":794.476190476191
+                 "x":2833.43722943723,
+                 "y":1950.32034632035
                 }, 
                 {
                  "height":0,
@@ -326,7 +381,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":59,
+ "nextobjectid":65,
  "orientation":"isometric",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",
