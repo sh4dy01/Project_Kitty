@@ -175,14 +175,24 @@ export function AddTheSpawnPoint(map, colliders, matter) {
 }
 
 const bossAImanager = []
-export function AddBoss(map, colliders, matter, time, bossManager) {
+export function AddBoss(map, colliders, matter, time) {
     // --- Créer le point de spawn du joueur --- ///
     /** @param {Phaser.GameObjects.Sprite} boss */
     const Boss = map.filterObjects('Enemies', (obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
-    
-    this.xBoss = ConvertXCartesianToIsometric(Boss.x, Boss.y),
-    this.yBoss = ConvertYCartesianToIsometric(Boss.x, Boss.y),
-    this.Boss = new BossManager()
+
+    let tempObject = null
+    tempObject = matter.add.sprite( // Ajoute le sprite dans le jeu
+        ConvertXCartesianToIsometric(Boss.x, Boss.y),
+        ConvertYCartesianToIsometric(Boss.x, Boss.y),
+        "boss"
+    )
+    ChangeDepth(tempObject);
+
+    time.addEvent({
+        //callback: BossManager.MoveBoss,
+        args: [Boss[1], bossAImanager, colliders],
+        loop: true,
+    })
 }
 
 

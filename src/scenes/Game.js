@@ -52,6 +52,7 @@ export default class Game extends Phaser.Scene {
         const map = this.add.tilemap("map");  // Ajoute les emplacements des tiles dans le jeu
         const colliders = this.cache.json.get('colliders'); // Récupère toutes les collisions pour les sprites
         const spawnPoint = AddTheSpawnPoint(map, colliders, this.matter)
+        const Boss = AddBoss(map, colliders, this.matter, this.time)
         
         this.cameras.main.fadeIn(2000, 0, 0, 0);
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
