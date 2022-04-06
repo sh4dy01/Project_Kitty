@@ -36,57 +36,55 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
     ChangeDepth(tempObject);
 
     /// --- Create all the enemies with their AI and animations --- //
-if(map.createFromObjects('Enemies', {}) != null){
-    map.createFromObjects('Enemies', {}).forEach(
-        /** @param {Phaser.GameObjects.Sprite} enemy */
-        (enemy, index)=>{
+    if(map.createFromObjects('Enemies', {}) != null){
+        map.createFromObjects('Enemies', {}).forEach(
+            /** @param {Phaser.GameObjects.Sprite} enemy */
+            (enemy, index)=>{
 
-            enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name, enemy.getData('orientation'))) // Ajoute son manager
+                enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name, enemy.getData('orientation'))) // Ajoute son manager
 
-            enemies.push(matter.add.sprite( // Ajoute le sprite dans le jeu
-                ConvertXCartesianToIsometric(enemy.x, enemy.y),
-                ConvertYCartesianToIsometric(enemy.x, enemy.y),
-                enemy.name+'-anim',
-                enemy.getData('direction')
-            ))
-            
-            switch (enemy.name) {
-                case PURPLE:
-                    time.addEvent({ // Ajoute l'IA PURPLE
-                        delay: enemy.getData('speed'),
-                        callback: enemiesAIManager[index].MoveEnemyPurple,
-                        args: [enemies[index], enemiesAIManager[index], colliders],
-                        loop: true,
-                    })
-                break;
+                enemies.push(matter.add.sprite( // Ajoute le sprite dans le jeu
+                    ConvertXCartesianToIsometric(enemy.x, enemy.y),
+                    ConvertYCartesianToIsometric(enemy.x, enemy.y),
+                    enemy.name+'-anim',
+                    enemy.getData('direction')
+                ))
+                
+                switch (enemy.name) {
+                    case PURPLE:
+                        time.addEvent({ // Ajoute l'IA PURPLE
+                            delay: enemy.getData('speed'),
+                            callback: enemiesAIManager[index].MoveEnemyPurple,
+                            args: [enemies[index], enemiesAIManager[index], colliders],
+                            loop: true,
+                        })
+                    break;
 
-                case GREEN:
-                    time.addEvent({ // Ajoute l'IA GREEN
-                        delay: enemy.getData('speed'),
-                        callback: enemiesAIManager[index].MoveEnemyGreen,
-                        args: [enemies[index], enemiesAIManager[index], colliders],
-                        loop: true,
-                    })
-                break;
+                    case GREEN:
+                        time.addEvent({ // Ajoute l'IA GREEN
+                            delay: enemy.getData('speed'),
+                            callback: enemiesAIManager[index].MoveEnemyGreen,
+                            args: [enemies[index], enemiesAIManager[index], colliders],
+                            loop: true,
+                        })
+                    break;
 
-                case RED:
-                    time.addEvent({ // Ajoute l'IA RED
-                        delay: enemy.getData('speed'),
-                        callback: enemiesAIManager[index].MoveEnemyRed,
-                        args: [enemies[index], enemiesAIManager[index], colliders],
-                        loop: true,
-                    })
-                break;
-            
-                default:
-                    console.log('wrong name');
-                break;
+                    case RED:
+                        time.addEvent({ // Ajoute l'IA RED
+                            delay: enemy.getData('speed'),
+                            callback: enemiesAIManager[index].MoveEnemyRed,
+                            args: [enemies[index], enemiesAIManager[index], colliders],
+                            loop: true,
+                        })
+                    break;
+                
+                    default:
+                        console.log('wrong name');
+                    break;
+                }
             }
-        }
-    )
-}
-
-
+        )
+    }
 
     // --- Créer les différentes safezones du niveau --- //
     map.createFromObjects('SafeZones', {}).forEach(
@@ -105,21 +103,21 @@ if(map.createFromObjects('Enemies', {}) != null){
     map.createFromObjects('Obstacles', {}).forEach(
         /** @param {Phaser.Physics.Matter.Sprite} object */
         (object) => {
-            let tempString
+            let orientation
             if (object.getData('orientation') === (TOP_RIGHT || TOP_LEFT)) {
-                tempString = "-"+"front"
+                orientation = "-face"
             } else {
-                tempString = "-"+"back"
+                orientation = "-back"
             }
 
             tempObject = matter.add.image(
                 ConvertXCartesianToIsometric(object.x, object.y),
                 ConvertYCartesianToIsometric(object.x, object.y),
-                object.name+tempString,
-                null
+                'objects',
+                object.name+orientation+".png"
             )
-            tempObject.setBody(colliders[object.name+tempString])
-            ChangeDepth(tempObject)     
+            tempObject.setBody(colliders[object.name])
+            ChangeDepth(tempObject)
         }
     );
 
@@ -174,24 +172,31 @@ export function AddTheSpawnPoint(map, colliders, matter) {
 
 }
 
-const bossAImanager = []
-export function AddBoss(map, colliders, matter, time) {
+/**
+ * @param {Phaser.Tilemaps.Tilemap} map
+ * @param {any} colliders
+ * @param {Phaser.Physics.Matter.MatterPhysics} matter
+ * @param {Phaser.Time.Clock} time
+ * @param {BossManager} bossManager
+ */
+export function AddBoss(map, colliders, matter, time, bossManager) {
     // --- Créer le point de spawn du joueur --- ///
     /** @param {Phaser.GameObjects.Sprite} boss */
-    const Boss = map.filterObjects('Enemies', (obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
+    const Boss = map.filterObjects('Enemies', (/** @type {{ name: string; }} */ obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
 
-    let tempObject = null
-    tempObject = matter.add.sprite( // Ajoute le sprite dans le jeu
+    let tempObject = matter.add.sprite( // Ajoute le sprite dans le jeu
         ConvertXCartesianToIsometric(Boss.x, Boss.y),
         ConvertYCartesianToIsometric(Boss.x, Boss.y),
-        "boss"
+        "boss",
+        0,
+        { label: "boss" }
     )
     ChangeDepth(tempObject);
 
     time.addEvent({
-        //callback: BossManager.MoveBoss,
-        args: [Boss[1], bossAImanager, colliders],
-        loop: true,
+        callback: bossManager.MoveBoss,
+        args: [tempObject, bossManager , colliders],
+        loop: true
     })
 }
 
@@ -230,7 +235,7 @@ function AddMapColliders(map, matter) {
             ConvertYCartesianToIsometric(collider.x, collider.y),
             collider.width,
             collider.height,
-            { angle:1.05, label: "collision", isStatic:true } 
+            { angle:1.05, label: "bottomRight", isStatic:true } 
         )
     ));
 
