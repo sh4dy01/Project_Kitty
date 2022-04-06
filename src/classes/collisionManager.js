@@ -71,15 +71,34 @@ export default class CollisionManager {
             })
         }
     }
-
-
+    
     CheckCollideWorld(map, colliders, matter, time, bossManager) {
+        const tabBR = ["left", "left-bottom", "left-top"];
+        const tabTL = ["right", "right-bottom", "right-top"];
+        const tabTR = ["bottom", "bottom-left", "bottom-right"];
+        const tabBL = ["top", "top-left", "top-right"];
         this.world.on("collisionstart", (event, bodyA, bodyB) => {
             if((bodyA.label == "boss" && bodyB.label == "bottomRight") || (bodyA.label == "bottomRight" && bodyB.label == "boss")) {
-                console.log("en bas à droite");
-                bossManager.speed = 0
-                bossManager.direction = "top"
-                bossManager.speed = 1
+                let rand = Math.floor(Math.random()*3)
+                bossManager.direction = tabBR[rand]
+            }
+        })
+        this.world.on("collisionstart", (event, bodyA, bodyB) => {
+            if((bodyA.label == "boss" && bodyB.label == "topLeft") || (bodyA.label == "topLeft" && bodyB.label == "boss")) {
+                let rand = Math.floor(Math.random()*3)
+                bossManager.direction = tabTL[rand]
+            }
+        })
+        this.world.on("collisionstart", (event, bodyA, bodyB) => {
+            if((bodyA.label == "boss" && bodyB.label == "topRight") || (bodyA.label == "topRight" && bodyB.label == "boss")) {
+                let rand = Math.floor(Math.random()*3)
+                bossManager.direction = tabTR[rand]
+            }
+        })
+        this.world.on("collisionstart", (event, bodyA, bodyB) => {
+            if((bodyA.label == "boss" && bodyB.label == "bottomLeft") || (bodyA.label == "bottomLeft" && bodyB.label == "boss")) {
+                let rand = Math.floor(Math.random()*3)
+                bossManager.direction = tabBL[rand]
             }
         })
     }

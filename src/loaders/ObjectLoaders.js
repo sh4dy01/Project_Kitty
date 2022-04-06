@@ -5,7 +5,7 @@ import BossManager from "../classes/BossManager";
 import EnemyManager from "../classes/EnemyManager";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
 import { ChangeDepth } from "../helpers/ChangeDepth";
-import { BOTTOM, GREEN, GREEN_SIZE, PURPLE, RED, TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
+import { BOTTOM, BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, GREEN_SIZE, PURPLE, RED, TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
 
 /**
  * @param {EnemyManager[]} enemiesAIManager
@@ -14,9 +14,10 @@ import { BOTTOM, GREEN, GREEN_SIZE, PURPLE, RED, TOP_LEFT, TOP_RIGHT } from "../
  * @param {Phaser.Time.Clock} time
  * @param {any} colliders
  * @param {Phaser.Tilemaps.Tilemap} map
- * @param {Boolean[]} levers
+ * @param {Boolean[]} leversUI
+ * @param {Phaser.GameObjects.Image[]} levers
  */
-export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, colliders, levers) {
+export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, colliders, leversUI, levers) {
     /** @type {Phaser.Physics.Matter.Sprite | Phaser.Physics.Matter.Image} */
     let tempObject = null;
 
@@ -104,9 +105,9 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
         /** @param {Phaser.Physics.Matter.Sprite} object */
         (object) => {
             let orientation
-            if (object.getData('orientation') === (TOP_RIGHT || TOP_LEFT)) {
+            if (object.getData('orientation') === TOP_RIGHT || object.getData('orientation') === TOP_LEFT) {
                 orientation = "-face"
-            } else {
+            } else if (object.getData('orientation') === BOTTOM_RIGHT || object.getData('orientation') === BOTTOM_LEFT) {
                 orientation = "-back"
             }
 
@@ -118,11 +119,14 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
             )
             tempObject.setBody(colliders[object.name])
             ChangeDepth(tempObject)
+            if (object.getData('orientation') === (TOP_LEFT || BOTTOM_RIGHT)) {
+                tempObject.setFlipX(true);
+            }
         }
     );
 
     AddMapColliders(map, matter)
-    AddTheLevers(map, matter, levers)
+    AddTheLevers(map, matter, leversUI, levers)
 }
 
 /**
@@ -146,12 +150,13 @@ export function AddTheSpawnPoint(map, colliders, matter) {
     return tempObject
 }
 
-/**
+ /**
  * @param {Phaser.Tilemaps.Tilemap} map
  * @param {Phaser.Physics.Matter.MatterPhysics} matter
- * @param {Boolean[]} levers
+ * @param {Boolean[]} leversUI
+ * @param {Phaser.GameObjects.Image[]} levers
  */
- export function AddTheLevers(map, matter, levers) {
+ export function AddTheLevers(map, matter, leversUI, levers) {
      /** @type {Phaser.GameObjects.Image} */
     let tempObject
 
@@ -163,13 +168,14 @@ export function AddTheSpawnPoint(map, colliders, matter) {
         tempObject = matter.add.image(
             ConvertXCartesianToIsometric(lever.x, lever.y), 
             ConvertYCartesianToIsometric(lever.x, lever.y), 
-            'lever-off'
+            'levers',
+            "red-lever.png"
         ).setCircle(60, {label: 'lever'+index, isSensor: true}),
         ChangeDepth(tempObject)
 
-        levers.push(false)
+        leversUI.push(false)
+        levers.push(tempObject)
     });
-
 }
 
 /**
@@ -178,9 +184,9 @@ export function AddTheSpawnPoint(map, colliders, matter) {
  * @param {Phaser.Physics.Matter.MatterPhysics} matter
  * @param {Phaser.Time.Clock} time
  * @param {BossManager} bossManager
- */
+*/
 export function AddBoss(map, colliders, matter, time, bossManager) {
-    // --- Créer le point de spawn du joueur --- ///
+    // --- Créer le point de spawn du  BOSS --- ///
     /** @param {Phaser.GameObjects.Sprite} boss */
     const Boss = map.filterObjects('Enemies', (/** @type {{ name: string; }} */ obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
 
@@ -188,11 +194,10 @@ export function AddBoss(map, colliders, matter, time, bossManager) {
         ConvertXCartesianToIsometric(Boss.x, Boss.y),
         ConvertYCartesianToIsometric(Boss.x, Boss.y),
         "boss",
-        0,
-        { label: "boss" }
-    )
-    ChangeDepth(tempObject);
-
+        "bottom-left.png",
+        { label: "boss", isSensor: true }
+    ).setScale(2).setFixedRotation()
+    
     time.addEvent({
         callback: bossManager.MoveBoss,
         args: [tempObject, bossManager , colliders],
@@ -213,7 +218,7 @@ function AddMapColliders(map, matter) {
             ConvertYCartesianToIsometric(collider.x, collider.y),
             collider.width,
             collider.height,
-            { angle:1.05, label: "collision", isStatic:true }
+            { angle:1.05, label: "topLeft", isStatic:true }
         )
     ));
 
@@ -224,7 +229,7 @@ function AddMapColliders(map, matter) {
             ConvertYCartesianToIsometric(collider.x, collider.y),
             collider.width,
             collider.height,
-            { angle:0.52, label: "collision", isStatic:true } 
+            { angle:0.52, label: "topRight", isStatic:true } 
         )
     ));
 
@@ -246,7 +251,7 @@ function AddMapColliders(map, matter) {
             ConvertYCartesianToIsometric(collider.x, collider.y),
             collider.width,
             collider.height,
-            { angle:0.52, label: "collision", isStatic:true } 
+            { angle:0.52, label: "bottomLeft", isStatic:true } 
         )
     ));
 }

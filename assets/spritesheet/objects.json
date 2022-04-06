@@ -4,72 +4,72 @@
 			"image": "objects.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 452,
-				"h": 202
+				"w": 367,
+				"h": 806
 			},
 			"scale": 1,
 			"frames": [
+				{
+					"filename": "chimney-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 210,
+						"h": 250
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 210,
+						"h": 250
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 210,
+						"h": 250
+					}
+				},
 				{
 					"filename": "wardrobe-back.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 129,
-						"h": 200
+						"w": 177,
+						"h": 275
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 129,
-						"h": 200
+						"w": 177,
+						"h": 275
 					},
 					"frame": {
 						"x": 1,
-						"y": 1,
-						"w": 129,
-						"h": 200
+						"y": 253,
+						"w": 177,
+						"h": 275
 					}
 				},
 				{
-					"filename": "wardrobe-front.png",
+					"filename": "wardrobe-face.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 124,
-						"h": 200
+						"w": 170,
+						"h": 275
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 124,
-						"h": 200
+						"w": 170,
+						"h": 275
 					},
 					"frame": {
-						"x": 132,
-						"y": 1,
-						"w": 124,
-						"h": 200
-					}
-				},
-				{
-					"filename": "armchair-face.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 83,
-						"h": 125
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 83,
-						"h": 125
-					},
-					"frame": {
-						"x": 258,
-						"y": 1,
-						"w": 83,
-						"h": 125
+						"x": 1,
+						"y": 530,
+						"w": 170,
+						"h": 275
 					}
 				},
 				{
@@ -77,19 +77,103 @@
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 53,
+						"w": 76,
+						"h": 250
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 76,
+						"h": 250
+					},
+					"frame": {
+						"x": 213,
+						"y": 1,
+						"w": 76,
+						"h": 250
+					}
+				},
+				{
+					"filename": "clock-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 75,
+						"h": 250
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 75,
+						"h": 250
+					},
+					"frame": {
+						"x": 291,
+						"y": 1,
+						"w": 75,
+						"h": 250
+					}
+				},
+				{
+					"filename": "meuble-back.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 176,
+						"h": 150
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 176,
+						"h": 150
+					},
+					"frame": {
+						"x": 180,
+						"y": 253,
+						"w": 176,
+						"h": 150
+					}
+				},
+				{
+					"filename": "meuble-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 176,
+						"h": 150
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 176,
+						"h": 150
+					},
+					"frame": {
+						"x": 180,
+						"y": 405,
+						"w": 176,
+						"h": 150
+					}
+				},
+				{
+					"filename": "armchair-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 116,
 						"h": 175
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 53,
+						"w": 116,
 						"h": 175
 					},
 					"frame": {
-						"x": 343,
-						"y": 1,
-						"w": 53,
+						"x": 173,
+						"y": 557,
+						"w": 116,
 						"h": 175
 					}
 				},
@@ -108,31 +192,10 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 258,
-						"y": 128,
+						"x": 173,
+						"y": 734,
 						"w": 68,
 						"h": 70
-					}
-				},
-				{
-					"filename": "clock-face.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 53,
-						"h": 175
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 53,
-						"h": 175
-					},
-					"frame": {
-						"x": 398,
-						"y": 1,
-						"w": 53,
-						"h": 175
 					}
 				}
 			]
@@ -141,6 +204,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:6e4b7c80b75be9b0a19705aeee8e3bdc:921ce0a23b69d2854d203e729e652b30:8d6d12ff4d5234f2a4b19e0a906dbf52$"
+		"smartupdate": "$TexturePacker:SmartUpdate:88b16381e49612dc3f6b97de9df63fb9:602291955f3944dc4c3a31342e6faad6:8d6d12ff4d5234f2a4b19e0a906dbf52$"
 	}
 }

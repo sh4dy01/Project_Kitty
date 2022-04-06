@@ -1,0 +1,62 @@
+{
+	"textures": [
+		{
+			"image": "doors.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 113,
+				"h": 404
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "door-close.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 111,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 111,
+						"h": 200
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 111,
+						"h": 200
+					}
+				},
+				{
+					"filename": "door-open.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 111,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 111,
+						"h": 200
+					},
+					"frame": {
+						"x": 1,
+						"y": 203,
+						"w": 111,
+						"h": 200
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:98b95f9201b6c7f0027c10ea835de1e9:7a7f1a207f759f6ec29c79c10a410286:cc5c92f828d81c3078c7b0d2ee7791c4$"
+	}
+}

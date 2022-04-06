@@ -10,7 +10,7 @@ import UIManager from "../classes/UIManager";
 
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
 import { AddBoss, AddTheSpawnPoint, LoadAllObjects as AddAllObjectsFromTiled } from "../loaders/ObjectLoaders";
-import { GREEN, GREEN_SIZE, MAX_LIVES, PLAYER_SIZE, PURPLE, RED, UI_LEVER_OFFSET, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_LEVER_SIZE } from "../helpers/constants";
+import { GREEN, GREEN_SIZE, MAX_LIVES, PLAYER_SIZE, PURPLE, RED, UI_LEVER_OFFSET, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_LEVER_SIZE, PAUSE_SCREEN } from "../helpers/constants";
 import { CreatePlayerAnims } from "../animations/PlayerAnimations";
 import { ChangeDepth } from "../helpers/ChangeDepth";
 import BossManager from "../classes/BossManager";
@@ -36,6 +36,10 @@ export default class Game extends Phaser.Scene {
         /**
          * @type {Boolean[]}
         */
+        this.leversUI = [];
+        /**
+         * @type {Phaser.GameObjects.Image[]}
+        */
         this.levers = [];
 
         this.boss = null
@@ -45,7 +49,7 @@ export default class Game extends Phaser.Scene {
         */
         this.enemiesAIManager = [];
         this.sceneManager = new SceneManager(this.scene, this.currentLevel, this.cameras.main);
-        this.UIManager = new UIManager(this.currentLevel, data.remainingLife, this.add, this.scale.width, this.scale.height, this.levers);
+        this.UIManager = new UIManager(this.currentLevel, data.remainingLife, this.add, this.scale.width, this.scale.height, this.leversUI, this.levers);
         this.playerManager = new PlayerManager(this.currentLives, this.sceneManager, this.UIManager);
         this.collisionManager = new CollisionManager(this.matter.world, this.playerManager, this.sceneManager, )
     }
@@ -62,10 +66,12 @@ export default class Game extends Phaser.Scene {
         })
 
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
+        this.pauseKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); // Touche pour mettre le jeu en PAUSE
+
         this.matter.world.disableGravity();
         this.playerManager.colliders = colliders
 
-        AddAllObjectsFromTiled(map, this.enemiesAIManager, this.enemies, this.matter, this.time, colliders, this.levers)
+        AddAllObjectsFromTiled(map, this.enemiesAIManager, this.enemies, this.matter, this.time, colliders, this.leversUI, this.levers)
 
         // --- AJOUTE LES ANIMATIONS  --- //
         CreatePurplePhantomAnims(this.anims, PURPLE);
@@ -90,7 +96,6 @@ export default class Game extends Phaser.Scene {
         this.collisionManager.CheckButton(this.UIManager.leversStatus.length);
         this.collisionManager.CheckCollideWorld(map, colliders, this.matter, this.time, this.bossManager);
         
-        // this.add.image(0, 0, )
         this.UIManager.AddFilters()
         this.UIManager.UpdateLife()
         this.UIManager.AddLeversUI()
@@ -109,6 +114,10 @@ export default class Game extends Phaser.Scene {
         this.enemies.forEach(enemy => {
             ChangeDepth(enemy)
         });
+        if (this.pauseKey.isDown) {
+            this.scene.pause();
+            this.scene.launch(PAUSE_SCREEN)
+        }
         this.playerManager.CheckPlayerInputs(this.player, this.cursors);
         if (this.playerManager.canPress) {
             this.playerManager.UseButton(this.cursors, this.matter.world, this.player);

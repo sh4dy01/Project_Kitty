@@ -1,6 +1,5 @@
 import Phaser from "phaser"
 import { OFFSET_DEPTH } from "./constants"
-import { GREEN_SIZE } from "./constants"
 
 /** 
  * @param {Phaser.Physics.Matter.Sprite | Phaser.Physics.Matter.Image | Phaser.GameObjects.Image} object
@@ -17,4 +16,8 @@ export function ChangeDepth(object) {
  */
 export function ChangeEnemyHitBox(enemy, colliders, direction, type) {
     enemy.setBody(colliders[type+'_'+direction])
+}
+
+export function UpdateLeverTexture(lever) {
+    lever.setTexture('levers', 'green-lever.png')
 }
