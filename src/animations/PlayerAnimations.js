@@ -7,7 +7,7 @@ import Phaser from 'phaser'
 */
 export function CreatePlayerAnims(anims) {
     const framerate = 3
-    
+    // Animation de déplacement du joueur vers le haut + la sprite du joueur qui correspond à la direction du joueur
     anims.create({
         key: 'playerUp',
         frames: anims.generateFrameNames('player',{
@@ -19,6 +19,7 @@ export function CreatePlayerAnims(anims) {
         repeat: -1,
         frameRate: framerate
     }),
+    // Animation de déplacement du joueur en haut à gauche + la sprite du joueur qui correspond à la direction du joueur
     anims.create({
         key: 'playerTopLeft',
         frames: anims.generateFrameNames('player',{
@@ -30,6 +31,7 @@ export function CreatePlayerAnims(anims) {
         repeat: -1,
         frameRate: framerate
     }),
+    // Animation de déplacement du joueur vers le bas + la sprite du joueur qui correspond à la direction du joueur
     anims.create({
         key: 'playerDown',
         frames: anims.generateFrameNames('player',{
@@ -41,6 +43,7 @@ export function CreatePlayerAnims(anims) {
         repeat: -1,
         frameRate: framerate
     }),
+    // Animation de déplacement du joueur en bas à droite + la sprite du joueur qui correspond à la direction du joueur
     anims.create({
         key: 'playerBottomRight',
         frames: anims.generateFrameNames('player',{
@@ -52,6 +55,7 @@ export function CreatePlayerAnims(anims) {
         repeat: -1,
         frameRate: framerate
     }),
+    // Animation de déplacement du joueur vers la droite + la sprite du joueur qui correspond à la direction du joueur
     anims.create({
         key: 'playerRight',
         frames: anims.generateFrameNames('player',{
@@ -64,3 +68,5 @@ export function CreatePlayerAnims(anims) {
         frameRate: framerate
     })
 }
+
+// Les animations pour le bottom-left et top-right sont flipées dans le fichier PlayerManagement.js

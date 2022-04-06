@@ -13,14 +13,18 @@ export default class EnemyManager {
         this.type = phantomType
 
         switch (this.type) {
+
+            // Vitesse de déplacement du fantôme violet
             case PURPLE:
                 this.speed = 1
             break;
 
+            // Vitesse de déplacement du fantôme vert
             case GREEN:
                 this.speed = 2
             break;
 
+            // Vitesse de déplacement du fantôme rouge
             case RED:
                 this.speed = 0.5
             break;
@@ -39,6 +43,8 @@ export default class EnemyManager {
      * @param {EnemyManager} manager
      * @param {any} colliders
     */
+
+    // Déplacement du fantôme vert plutôt classique, allez-retour mais une vitesse de déplacement augmentée
     MoveEnemyGreen(enemy, manager, colliders) {  
         const x = enemy.x
         const y = enemy.y
@@ -93,6 +99,8 @@ export default class EnemyManager {
      * @param {EnemyManager} manager
      * @param {any} colliders
     */
+
+    // Déplacement du fantôme violet, il faut qu'il se déplace en diagonale
     MoveEnemyPurple(enemy, manager, colliders) {  
         const x = enemy.x
         const y = enemy.y
@@ -173,6 +181,8 @@ export default class EnemyManager {
      * @param {EnemyManager} manager
      * @param {any} colliders
     */
+
+    // Déplacement du fantôme rouge, il se déplace plus lentement mais à un champ de vision plus important
     MoveEnemyRed(enemy, manager, colliders) {
         
     }

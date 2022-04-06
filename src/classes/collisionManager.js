@@ -22,6 +22,8 @@ export default class CollisionManager {
  * @param {PlayerManager} playerManager
  * @param {Phaser.Physics.Matter.Sprite} player
 */
+
+    // Détection de collision entre le joueur et les ennemis
     CheckHitBoxes(playerManager, player) {
         this.world.on("collisionstart", (event, bodyA, bodyB) => {
             if((bodyA.label == "player" && bodyB.label == "field") || (bodyA.label == "field" && bodyB.label == "player")) {
@@ -36,6 +38,8 @@ export default class CollisionManager {
                     }
                 }
             }
+
+            // Détecion pour savoir si le joueur est en zone safe ou pas 
             if((bodyA.label == "player" && bodyB.label == "safezone") || (bodyA.label == "safezone" && bodyB.label == "player")) {
                 console.log("safe");
                 playerManager.isSafe = true
@@ -53,6 +57,8 @@ export default class CollisionManager {
     /**
      * @param {number} numberOfButtons
      */
+
+    // Détection pour savoir si le joueur est dans la zone d'activation du levier
     CheckButton(numberOfButtons){
         for (let index = 0; index < numberOfButtons; index++) {
             this.world.on("collisionstart", (event, bodyA, bodyB) => {
@@ -110,6 +116,8 @@ export default class CollisionManager {
  * @param {PlayerManager} playerManager
  * @param {SceneManager} sceneManager
  */
+
+    // Détection de collision entre le joueur et la porte qui permet de changer de niveau
 export function CheckNextLevel(world, player, playerManager, sceneManager) {
     world.on("collisionstart", (event, bodyA, bodyB) => {
         if((bodyA.label == "player" && bodyB.label == "NextLevel") || (bodyA.label == "NextLevel" && bodyB.label == "player")) {

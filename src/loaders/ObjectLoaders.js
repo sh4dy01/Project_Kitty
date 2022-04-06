@@ -34,7 +34,7 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
 
                 enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name, enemy.getData('orientation'))) // Ajoute son manager
 
-                enemies.push(matter.add.sprite( // Ajoute le sprite dans le jeu
+                enemies.push(matter.add.sprite( // Ajoute le sprite de chaque ennemi dans le jeu
                     ConvertXCartesianToIsometric(enemy.x, enemy.y),
                     ConvertYCartesianToIsometric(enemy.x, enemy.y),
                     enemy.name+'-anim',
@@ -155,7 +155,7 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
  * @param {BossManager} bossManager
 */
 export function AddBoss(map, colliders, matter, time, bossManager) {
-    // --- Créer le point de spawn du  BOSS --- ///
+    // --- Créer le point de spawn du  BOSS --- //
     /** @param {Phaser.GameObjects.Sprite} boss */
     const Boss = map.filterObjects('Enemies', (/** @type {{ name: string; }} */ obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
 

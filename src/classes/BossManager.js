@@ -14,7 +14,7 @@ export default class BossManager{
         this.speed = 2
     }
 
-    
+    // Déplacement du boss avec un switch pour pouvoir manipuler plus facilement les directions pour l'automatisation
     MoveBoss(boss, manager, colliders){
         console.log(manager.direction);
         const x = boss.x
