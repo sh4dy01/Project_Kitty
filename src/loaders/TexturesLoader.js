@@ -36,7 +36,9 @@ export default class TexturesLoader extends Phaser.Scene {
         this.load.image('checkpoint', 'assets/sprites/props/candyshop.png');
         this.load.image('wardrobe-front', 'assets/sprites/props/wardrobe-front.png');
         this.load.image('wardrobe-back', 'assets/sprites/props/wardrobe-back.png');
-        this.load.image('cone', 'assets/sprites/proto/Bouton.png');
+        this.load.image("lever-on", 'assets/sprites/ui/green-lever.png');
+        this.load.image("lever-off", 'assets/sprites/ui/red-lever.png');
+
         this.load.image('bouton', 'assets/sprites/proto/Bouton.png');
         this.load.image("exit-door", "assets/sprites/proto/exit-door.png");
 
@@ -45,6 +47,8 @@ export default class TexturesLoader extends Phaser.Scene {
 
         this.load.image("floor", "assets/tiles/floor.png");
         this.load.image("wall", "assets/tiles/wall.png");
+
+        this.load.image("boss", "assets/sprites/boss/boss Sketch1.png")
     }
 
     create() {

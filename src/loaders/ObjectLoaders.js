@@ -1,10 +1,11 @@
 //@ts-check
 import Phaser from "phaser";
+import BossManager from "../classes/BossManager";
 
 import EnemyManager from "../classes/EnemyManager";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
 import { ChangeDepth } from "../helpers/ChangeDepth";
-import { GREEN, GREEN_SIZE, PURPLE, RED, TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
+import { BOTTOM, GREEN, GREEN_SIZE, PURPLE, RED, TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
 
 /**
  * @param {EnemyManager[]} enemiesAIManager
@@ -13,8 +14,9 @@ import { GREEN, GREEN_SIZE, PURPLE, RED, TOP_LEFT, TOP_RIGHT } from "../helpers/
  * @param {Phaser.Time.Clock} time
  * @param {any} colliders
  * @param {Phaser.Tilemaps.Tilemap} map
+ * @param {Boolean[]} levers
  */
-export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, colliders) {
+export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, colliders, levers) {
     /** @type {Phaser.Physics.Matter.Sprite | Phaser.Physics.Matter.Image} */
     let tempObject = null;
 
@@ -34,6 +36,7 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
     ChangeDepth(tempObject);
 
     /// --- Create all the enemies with their AI and animations --- //
+if(map.createFromObjects('Enemies', {}) != null){
     map.createFromObjects('Enemies', {}).forEach(
         /** @param {Phaser.GameObjects.Sprite} enemy */
         (enemy, index)=>{
@@ -81,21 +84,9 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
             }
         }
     )
-    
-    const button = map.filterObjects('Interactions', (obj) => obj.name === 'Button')[0];
+}
 
-    // --- Ajoute le bouton pour sortir du niveau si il y en a un --- //
-    if (button) {
-        tempObject = matter.add.image(
-            ConvertXCartesianToIsometric(button.x, button.y), 
-            ConvertYCartesianToIsometric(button.x, button.y), 
-            "bouton", 
-            null
-        )
-        tempObject.setCircle(60, {label: 'bouton'})
-        tempObject.setSensor(true);
-        ChangeDepth(tempObject)
-    }
+
 
     // --- Créer les différentes safezones du niveau --- //
     map.createFromObjects('SafeZones', {}).forEach(
@@ -133,10 +124,11 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
     );
 
     AddMapColliders(map, matter)
+    AddTheLevers(map, matter, levers)
 }
 
 /**
- * @param {{filterObjects: (arg0: string, arg1: (obj: any) => boolean) => any[];}} map
+ * @param {Phaser.Tilemaps.Tilemap} map
  * @param {any} colliders
  * @param {Phaser.Physics.Matter.MatterPhysics} matter
  */
@@ -155,6 +147,44 @@ export function AddTheSpawnPoint(map, colliders, matter) {
 
     return tempObject
 }
+
+/**
+ * @param {Phaser.Tilemaps.Tilemap} map
+ * @param {Phaser.Physics.Matter.MatterPhysics} matter
+ * @param {Boolean[]} levers
+ */
+ export function AddTheLevers(map, matter, levers) {
+     /** @type {Phaser.GameObjects.Image} */
+    let tempObject
+
+    // --- Créer les leviers des maps --- ///
+    map.createFromObjects('Interactions', {}).forEach(
+        /** @param {Phaser.GameObjects.Image} lever*/
+        (lever) => {
+        // @ts-ignore
+        tempObject = matter.add.image(
+            ConvertXCartesianToIsometric(lever.x, lever.y), 
+            ConvertYCartesianToIsometric(lever.x, lever.y), 
+            'lever-off'
+        ).setCircle(60, {label: 'lever', isSensor: true}),
+        ChangeDepth(tempObject)
+
+        levers.push(false)
+    });
+
+}
+
+const bossAImanager = []
+export function AddBoss(map, colliders, matter, time, bossManager) {
+    // --- Créer le point de spawn du joueur --- ///
+    /** @param {Phaser.GameObjects.Sprite} boss */
+    const Boss = map.filterObjects('Enemies', (obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
+    
+    this.xBoss = ConvertXCartesianToIsometric(Boss.x, Boss.y),
+    this.yBoss = ConvertYCartesianToIsometric(Boss.x, Boss.y),
+    this.Boss = new BossManager(matter, this.xBoss, this.yBoss, "boss")
+}
+
 
 /**
  * @param {Phaser.Tilemaps.Tilemap} map

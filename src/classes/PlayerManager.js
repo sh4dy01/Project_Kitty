@@ -4,21 +4,23 @@ import { ChangeDepth } from "../helpers/ChangeDepth";
 import { OFFSET_ORIENTATION, SINGLE_DIRECTION_MULTIPLIER } from "../helpers/constants";
 import { CheckNextLevel } from "./CollisionManager";
 import SceneManager from "./SceneManager";
+import UIManager from "./UIManager";
 
 export default class PlayerManager {
     /**
         * @param {Number} currentLife
         * @param {SceneManager} sceneManager
+        * @param {UIManager} UIManager
     */
-    constructor(currentLife, sceneManager) {
+    constructor(currentLife, sceneManager, UIManager) {
         this.walkSpeed = 2.5;
         this.runSpeedMultiplier = 10;
         this.playerSpeed = this.walkSpeed;
 
         this.isSafe = true;
         this.canPress = false;
-        this.pressedButton = false;
         this.direction = 'top_right';
+        this.canPress = true;
         this.canMove = false;
         this.canLoseLife = true;
         this.canLoadNextScene = false;
@@ -26,6 +28,7 @@ export default class PlayerManager {
         this.colliders = null
         this.currentLives = currentLife
         this.sceneManager = sceneManager
+        this.UIManager = UIManager
     }
     
     /**
@@ -101,11 +104,22 @@ export default class PlayerManager {
      * @param {Phaser.Physics.Matter.Sprite} player
      */
     UseButton(cursors, world, player){
-        if(this.canPress && !this.pressedButton){
+        if(this.canPress){
             if (cursors.space.isDown) {
-                this.pressedButton = true
-                this.canLoadNextScene = true;
-                CheckNextLevel(world, this, this.sceneManager, player, this.currentLives)
+                this.UIManager.UpdateLevers();
+                this.CheckIfCanPress();
+                if (!this.canPress) {
+                    this.canLoadNextScene = true;
+                    CheckNextLevel(world, this, this.sceneManager, player, this.currentLives)
+                }
+            }
+        }
+    }
+
+    CheckIfCanPress() {
+        for (let index = 0; index < this.UIManager.leversStatus.length; index++) {
+            if (this.UIManager.leversStatus[index] === false) {
+                this.canPress = true;
             }
         }
     }

@@ -3,7 +3,7 @@ import { OFFSET_DEPTH } from "./constants"
 import { GREEN_SIZE } from "./constants"
 
 /** 
- * @param {Phaser.Physics.Matter.Sprite | Phaser.Physics.Matter.Image} object
+ * @param {Phaser.Physics.Matter.Sprite | Phaser.Physics.Matter.Image | Phaser.GameObjects.Image} object
  * */
 export function ChangeDepth(object) {
     object.setDepth(object.y - OFFSET_DEPTH)

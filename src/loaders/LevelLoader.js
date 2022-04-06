@@ -19,7 +19,8 @@ export default class LevelLoader extends Phaser.Scene {
             this.remainingLife = data.remainingLife
             this.level = data.level++
         }
-        
+        this.remainingLife = MAX_LIVES;
+        this.level = 8
         console.log('loaded: ' + this.level)
     }
 
