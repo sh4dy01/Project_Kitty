@@ -4,8 +4,8 @@
 			"image": "objects.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 367,
-				"h": 806
+				"w": 255,
+				"h": 1287
 			},
 			"scale": 1,
 			"frames": [
@@ -52,66 +52,24 @@
 					}
 				},
 				{
-					"filename": "wardrobe-face.png",
+					"filename": "lamp-face.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 170,
-						"h": 275
+						"w": 68,
+						"h": 70
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 170,
-						"h": 275
+						"w": 68,
+						"h": 70
 					},
 					"frame": {
-						"x": 1,
-						"y": 530,
-						"w": 170,
-						"h": 275
-					}
-				},
-				{
-					"filename": "clock-back.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 76,
-						"h": 250
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 76,
-						"h": 250
-					},
-					"frame": {
-						"x": 213,
-						"y": 1,
-						"w": 76,
-						"h": 250
-					}
-				},
-				{
-					"filename": "clock-face.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 75,
-						"h": 250
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 75,
-						"h": 250
-					},
-					"frame": {
-						"x": 291,
-						"y": 1,
-						"w": 75,
-						"h": 250
+						"x": 180,
+						"y": 253,
+						"w": 68,
+						"h": 70
 					}
 				},
 				{
@@ -129,10 +87,31 @@
 						"h": 150
 					},
 					"frame": {
-						"x": 180,
-						"y": 253,
+						"x": 1,
+						"y": 530,
 						"w": 176,
 						"h": 150
+					}
+				},
+				{
+					"filename": "clock-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 75,
+						"h": 250
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 75,
+						"h": 250
+					},
+					"frame": {
+						"x": 179,
+						"y": 530,
+						"w": 75,
+						"h": 250
 					}
 				},
 				{
@@ -150,10 +129,31 @@
 						"h": 150
 					},
 					"frame": {
-						"x": 180,
-						"y": 405,
+						"x": 1,
+						"y": 682,
 						"w": 176,
 						"h": 150
+					}
+				},
+				{
+					"filename": "wardrobe-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 170,
+						"h": 275
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 170,
+						"h": 275
+					},
+					"frame": {
+						"x": 1,
+						"y": 834,
+						"w": 170,
+						"h": 275
 					}
 				},
 				{
@@ -171,31 +171,52 @@
 						"h": 175
 					},
 					"frame": {
-						"x": 173,
-						"y": 557,
+						"x": 1,
+						"y": 1111,
 						"w": 116,
 						"h": 175
 					}
 				},
 				{
-					"filename": "lamp-face.png",
+					"filename": "box-face.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 68,
-						"h": 70
+						"w": 130,
+						"h": 150
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 68,
-						"h": 70
+						"w": 130,
+						"h": 150
+					},
+					"frame": {
+						"x": 119,
+						"y": 1111,
+						"w": 130,
+						"h": 150
+					}
+				},
+				{
+					"filename": "clock-back.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 76,
+						"h": 250
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 76,
+						"h": 250
 					},
 					"frame": {
 						"x": 173,
-						"y": 734,
-						"w": 68,
-						"h": 70
+						"y": 834,
+						"w": 76,
+						"h": 250
 					}
 				}
 			]
@@ -204,6 +225,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:88b16381e49612dc3f6b97de9df63fb9:602291955f3944dc4c3a31342e6faad6:8d6d12ff4d5234f2a4b19e0a906dbf52$"
+		"smartupdate": "$TexturePacker:SmartUpdate:e306deb3f50533ab163d1e9c751c7e66:37c7eaf4a01911c8cecc9fbfcb273528:8d6d12ff4d5234f2a4b19e0a906dbf52$"
 	}
 }

@@ -161,7 +161,7 @@
                          "type":"string",
                          "value":"bottom"
                         }],
-                 "rotation":0,
+                 "rotation":180,
                  "type":"",
                  "visible":true,
                  "width":0,
@@ -298,6 +298,24 @@
                  "width":0,
                  "x":2637.42857142857,
                  "y":2070.57142857143
+                }, 
+                {
+                 "height":0,
+                 "id":71,
+                 "name":"box",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"top-right"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2614.28571428571,
+                 "y":1297.71428571429
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -375,7 +393,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":71,
+ "nextobjectid":72,
  "orientation":"isometric",
  "renderorder":"right-down",
  "tiledversion":"1.8.2",
