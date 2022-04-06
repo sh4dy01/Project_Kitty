@@ -13,8 +13,8 @@ export default class PlayerManager {
      * @param {UIManager} UIManager
      */
     constructor(currentLife, sceneManager, UIManager) {
-        this.walkSpeed = 2.5;
-        this.runSpeedMultiplier = 10;
+        this.walkSpeed = 2.5; // Vitesse de déplacement
+        this.runSpeedMultiplier = 10; // Multiplicateur de vitesse de déplacement
         this.playerSpeed = this.walkSpeed;
 
         this.isSafe = true;
@@ -41,20 +41,20 @@ export default class PlayerManager {
      * @param {Phaser.Types.Input.Keyboard.CursorKeys} cursors
      */
     CheckPlayerInputs(player, cursors) {
-        player.setVelocity(0);
+        player.setVelocity(0); // Arreter le déplacement du joueur
 
         if (cursors.shift.isDown) {
             this.playerSpeed = this.runSpeedMultiplier;
-            player.anims.timeScale = 2
+            player.anims.timeScale = 2 // Animation x2 quand le joueur cours
         } else {
             this.playerSpeed = this.walkSpeed;
-            player.anims.timeScale = 1
+            player.anims.timeScale = 1 // Animation x1 quand le joueur marche
         }
 
         
         if (cursors.up.isDown && !cursors.left.isDown && !cursors.right.isDown) {
             player.setVelocity(this.playerSpeed + OFFSET_ORIENTATION * this.playerSpeed, -this.playerSpeed);
-            player.play('playerTopLeft', true).setFlipX(true)
+            player.play('playerTopLeft', true).setFlipX(true) // Flip le sprite quand le joueur va en haut à gauche
             ChangeDepth(player)
         } 
         else if (cursors.right.isDown && !cursors.up.isDown && !cursors.down.isDown) {
@@ -63,7 +63,7 @@ export default class PlayerManager {
             ChangeDepth(player)
         }
         else if (cursors.down.isDown && !cursors.right.isDown && !cursors.left.isDown) {
-            player.play('playerBottomRight', true).setFlipX(true)
+            player.play('playerBottomRight', true).setFlipX(true) // Flip le sprite quand le joueur va en bas à gauche
             player.setVelocity(-this.playerSpeed - OFFSET_ORIENTATION * this.playerSpeed, this.playerSpeed);
             ChangeDepth(player)
         } 
@@ -101,6 +101,8 @@ export default class PlayerManager {
      * @param {Phaser.Physics.Matter.World} world
      * @param {Phaser.Physics.Matter.Sprite} player
     */
+
+    // Utilisation des boutons
     UseButton(cursors, world, player){
         if(cursors.space.isDown){
             this.UIManager.UpdateLeversUI(this.canPressButtonNumber);
@@ -112,6 +114,8 @@ export default class PlayerManager {
      * @param {Phaser.Physics.Matter.World} world
      * @param {Phaser.Physics.Matter.Sprite} player
     */
+
+    // Détection de l'activation de tous les boutons
     CheckIfAllPressed(world, player) {
         for (let index = 0; index < this.UIManager.leversStatus.length; index++) {
             if (this.UIManager.leversStatus[index] === false) {
@@ -129,6 +133,7 @@ export default class PlayerManager {
         }
     }
 
+    // Enleve un vie au joueur et reset la partie lorsque le joueur a 0 vie
     RemoveLife() {
         this.currentLives--;
         

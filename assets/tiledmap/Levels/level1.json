@@ -313,8 +313,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1325.61904761905,
-                 "y":4489.04761904762
+                 "x":1337.33333333334,
+                 "y":4601.33333333333
                 }, 
                 {
                  "height":0,
@@ -673,8 +673,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":2903.04761904762,
-                 "y":2576.95238095238
+                 "x":2902.19047619048,
+                 "y":2685.80952380952
                 }, 
                 {
                  "height":0,
@@ -693,6 +693,60 @@
                  "width":0,
                  "x":3093.90476190476,
                  "y":2583.42857142857
+                }, 
+                {
+                 "height":0,
+                 "id":62,
+                 "name":"clock",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"bottom-right"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":3171.71428571429,
+                 "y":5112.28571428571
+                }, 
+                {
+                 "height":0,
+                 "id":63,
+                 "name":"chimney",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"top-right"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1969.71428571429,
+                 "y":4534.28571428571
+                }, 
+                {
+                 "height":0,
+                 "id":64,
+                 "name":"exit",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"top-right"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":935.142857142857,
+                 "y":4644.85714285714
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -721,6 +775,12 @@
                  "id":27,
                  "name":"SpawnPoint",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"right"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -733,6 +793,12 @@
                  "id":31,
                  "name":"NextLevel",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"right"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -747,7 +813,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":62,
+ "nextobjectid":66,
  "orientation":"isometric",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

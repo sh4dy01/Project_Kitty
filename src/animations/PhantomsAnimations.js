@@ -5,6 +5,8 @@ import Phaser from 'phaser'
  * @param {Phaser.Animations.AnimationManager} anims 
  * @param {String} phantom 
 */
+
+    // Création de du paterne de déplacemenent du fantôme violet
 export function  CreatePurplePhantomAnims(anims, phantom) {
     anims.create({
         key: phantom+'Back',
@@ -34,6 +36,8 @@ export function  CreatePurplePhantomAnims(anims, phantom) {
  * @param {Phaser.Animations.AnimationManager} anims 
  * @param {String} phantom 
 */
+
+    // Création de du paterne de déplacemenent du fantôme vert
 export function  CreateGreenPhantomAnims(anims, phantom) {
     anims.create({
         key: phantom+'Back',
@@ -63,6 +67,8 @@ export function  CreateGreenPhantomAnims(anims, phantom) {
  * @param {Phaser.Animations.AnimationManager} anims 
  * @param {String} phantom 
 */
+
+    // Création de du paterne de déplacemenent du fantôme rouge
 export function  CreateRedPhantomAnims(anims, phantom) {
     anims.create({
         key: phantom+'Back',
