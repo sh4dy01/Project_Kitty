@@ -8,6 +8,7 @@ import { GREEN_SIZE } from "./constants"
 export function ChangeDepth(object) {
     object.setDepth(object.y - OFFSET_DEPTH)
 }
+
 /** 
  * @param {Phaser.Physics.Matter.Sprite} enemy
  * @param {any} colliders

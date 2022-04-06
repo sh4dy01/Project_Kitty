@@ -12,20 +12,19 @@ export default class LevelLoader extends Phaser.Scene {
      * @param {{ remainingLife: Number; level: Number;}} data
     */
     init(data) {
-        if (data.remainingLife === 0) {
+        if (data.remainingLife === 0 || data.level === 0) {
             this.remainingLife = MAX_LIVES;
             this.level = 0
         } else {
             this.remainingLife = data.remainingLife
-            this.level = data.level++
+            this.level = data.level
         }
-        this.remainingLife = MAX_LIVES;
-        this.level = 8
-        console.log('loaded: ' + this.level)
+
+        console.log('loaded level: ' + this.level)
     }
 
     preload() {
-        this.load.tilemapTiledJSON("map", "assets/tiledmap/Levels/level6.json")
+        this.load.tilemapTiledJSON("map"+this.level, "assets/tiledmap/Levels/level"+this.level+".json")
     }
 
     create() {

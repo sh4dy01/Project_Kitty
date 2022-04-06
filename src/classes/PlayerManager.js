@@ -2,16 +2,16 @@
 import Phaser from "phaser";
 import { ChangeDepth } from "../helpers/ChangeDepth";
 import { OFFSET_ORIENTATION, SINGLE_DIRECTION_MULTIPLIER } from "../helpers/constants";
-import { CheckNextLevel } from "./CollisionManager";
+import CollisionManager, { CheckNextLevel } from "./CollisionManager";
 import SceneManager from "./SceneManager";
 import UIManager from "./UIManager";
 
 export default class PlayerManager {
     /**
-        * @param {Number} currentLife
-        * @param {SceneManager} sceneManager
-        * @param {UIManager} UIManager
-    */
+     * @param {Number} currentLife
+     * @param {SceneManager} sceneManager
+     * @param {UIManager} UIManager
+     */
     constructor(currentLife, sceneManager, UIManager) {
         this.walkSpeed = 2.5;
         this.runSpeedMultiplier = 10;
@@ -25,7 +25,7 @@ export default class PlayerManager {
 
         this.canMove = false;
         this.canLoseLife = true;
-        this.canLoadNextScene = false;
+        this.canLoadNextScene = true;
 
         this.colliders = null
         this.currentLives = currentLife
@@ -104,29 +104,32 @@ export default class PlayerManager {
      * @param {Phaser.Types.Input.Keyboard.CursorKeys} cursors
      * @param {Phaser.Physics.Matter.World} world
      * @param {Phaser.Physics.Matter.Sprite} player
-     */
+    */
     UseButton(cursors, world, player){
-        if(this.canPress){
-            if (cursors.space.isDown) {
-                this.UIManager.UpdateLeversUI(this.canPressButton);
-                this.CheckIfCanPress();
-                if (this.allButtonPressed) {
-                    this.canLoadNextScene = true;
-                    CheckNextLevel(world, this, this.sceneManager, player, this.currentLives)
-                }
-            }
+        if(cursors.space.isDown){
+            this.UIManager.UpdateLeversUI(this.canPressButton);
+            this.CheckIfAllPressed(world, player);
         }
     }
 
-    CheckIfCanPress() {
+    /**
+     * @param {Phaser.Physics.Matter.World} world
+     * @param {Phaser.Physics.Matter.Sprite} player
+    */
+    CheckIfAllPressed(world, player) {
         for (let index = 0; index < this.UIManager.leversStatus.length; index++) {
             if (this.UIManager.leversStatus[index] === false) {
                 this.allButtonPressed = false;
+                this.canLoadNextScene = false;
 
                 return
             }
         }
         this.allButtonPressed = true;
+        this.canLoadNextScene = true;
+        if (this.canLoadNextScene) {
+            CheckNextLevel(world, player, this, this.sceneManager)
+        }
     }
 
     RemoveLife() {

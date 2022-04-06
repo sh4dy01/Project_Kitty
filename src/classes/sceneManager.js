@@ -21,8 +21,8 @@ export default class SceneManager {
     LoadNextScene(currentLife) {
         this.camera.fadeOut(2000, 0, 0, 0)
         this.camera.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-            console.log(currentLife);
-            this.sceneLoader.start(LEVEL_MAP, {remainingLife: currentLife});
+            console.log(currentLife, this.currentLevel+1);
+            this.sceneLoader.start(LEVEL_MAP, {remainingLife: currentLife, level: this.currentLevel+1});
         })
     }
 
@@ -33,6 +33,7 @@ export default class SceneManager {
     RestartScene(currentLife) {
         this.camera.fadeOut(1000, 150, 0, 0)
         this.camera.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            console.log(currentLife);
             this.sceneLoader.start(LEVEL_MAP, {level: this.currentLevel, remainingLife: currentLife});
         })
     }
@@ -40,7 +41,7 @@ export default class SceneManager {
     RestartTheGame() {
         this.camera.fadeOut(3000, 255, 0, 0)
         this.camera.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-            this.sceneLoader.start(LEVEL_MAP, {remainingLife: this.maxLives})}
+            this.sceneLoader.start(LEVEL_MAP, {remainingLife: this.maxLives, level: 0})}
         )
     }
 }

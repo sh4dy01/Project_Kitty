@@ -3,15 +3,15 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/proto.json",
+    "activeFile": "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level0.json",
     "expandedProjectPaths": [
-        "D:/Desktop/tiledmap/Temp",
-        "D:/Desktop/tiledmap",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Temp",
         "D:/Desktop/tiledmap/Levels",
+        "D:/Desktop/tiledmap",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels",
+        ".",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap",
-        "."
+        "D:/Desktop/tiledmap/Temp"
     ],
     "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
     "fileStates": {
@@ -440,24 +440,53 @@
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/Level0.json": {
             "scale": 0.25,
-            "selectedLayer": 4,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 3262,
-                "y": 1632
+                "x": 5220,
+                "y": 3656
             }
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/Level0.json#floor": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/Level0.json#wall": {
             "scaleInDock": 1
         },
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level2.json": {
-            "scale": 0.125,
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level0.json": {
+            "scale": 0.1309294871794872,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 5704,
-                "y": 1912
+                "x": 3918.139534883721,
+                "y": 2489.8898408812734
+            }
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level0.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level0.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json": {
+            "scale": 0.33,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 3703.030303030303,
+                "y": 3015.151515151515
+            }
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level2.json": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4924,
+                "y": 1556
             }
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level2.json#floor": {
@@ -465,6 +494,64 @@
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level2.json#wall": {
             "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level3.json": {
+            "scale": 0.1309294871794872,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4368.763769889841,
+                "y": 2497.5275397796813
+            }
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level3.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level3.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level5.json": {
+            "scale": 0.13089951934081026,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4362.124497289737,
+                "y": 2448.44290959958
+            }
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level5.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level5.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level6.json": {
+            "scale": 0.1309294871794872,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4368.763769889841,
+                "y": 2459.3390452876374
+            }
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level6.json#floor": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level6.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level7.json": {
+            "scale": 0.125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4616,
+                "y": 3216
+            }
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level7.json#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level7.json#wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Temp/autre couloir.json": {
             "scale": 0.125,
@@ -512,14 +599,21 @@
             "scale": 0.5,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 1974,
-                "y": 3934
+                "x": 4368,
+                "y": 2455
             }
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/proto.json#floor": {
             "scaleInDock": 1
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/proto.json#wall": {
+            "scaleInDock": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiles/floor.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiles/wall.tsx": {
             "scaleInDock": 1
         },
         "sans titre.tmx": {
@@ -586,23 +680,29 @@
     "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/proto.json"
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/proto.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/Level0.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level5.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level3.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level0.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level2.json"
     ],
     "project": "assets.tiled-project",
     "property.type": "int",
     "recentFiles": [
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/proto.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/Level0.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level5.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level3.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level2.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level0.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiles/floor.tsx",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level7.json",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level6.json",
         "D:/Desktop/tiledmap/Levels/level1.json",
-        "D:/Desktop/tiledmap/Levels/level0.json",
-        "D:/Desktop/tiledmap/Levels/level3.json",
-        "D:/Desktop/tiledmap/Levels/level2.json",
-        "D:/Desktop/tiledmap/Levels/level5.json",
-        "D:/Desktop/tiledmap/Levels/level6.json",
-        "D:/Desktop/tiledmap/Levels/level7.json",
-        "D:/Desktop/tiledmap/Levels/level8.json",
-        "D:/Desktop/tiledmap/Levels/Level0.json",
-        "D:/Desktop/tiledmap/Levels/long couloir.json",
-        "D:/Desktop/tiledmap/Levels/Couloir 2.tmx"
+        "D:/Desktop/tiledmap/Levels/level0.json"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "Tous les Fichiers (*)",

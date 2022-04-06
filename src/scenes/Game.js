@@ -3,7 +3,7 @@ import Phaser from "phaser";
 
 import PlayerManager from "../classes/PlayerManager"
 import SceneManager from "../classes/SceneManager";
-import { CheckButton, CheckHitBoxes } from "../classes/CollisionManager";
+import CollisionManager from "../classes/CollisionManager";
 import { CreatePurplePhantomAnims, CreateGreenPhantomAnims, CreateRedPhantomAnims } from "../animations/PhantomsAnimations";
 import EnemyManager from "../classes/EnemyManager";
 import UIManager from "../classes/UIManager";
@@ -42,14 +42,14 @@ export default class Game extends Phaser.Scene {
          * @type {EnemyManager[]}
         */
         this.enemiesAIManager = [];
-
         this.sceneManager = new SceneManager(this.scene, this.currentLevel, this.cameras.main);
         this.UIManager = new UIManager(this.currentLevel, data.remainingLife, this.add, this.scale.width, this.scale.height, this.levers);
         this.playerManager = new PlayerManager(this.currentLives, this.sceneManager, this.UIManager);
+        this.collisionManager = new CollisionManager(this.matter.world, this.playerManager, this.sceneManager)
     }
 
     create() {
-        const map = this.add.tilemap("map");  // Ajoute les emplacements des tiles dans le jeu
+        const map = this.add.tilemap("map"+this.currentLevel);  // Ajoute les emplacements des tiles dans le jeu
         const colliders = this.cache.json.get('colliders'); // Récupère toutes les collisions pour les sprites
         const spawnPoint = AddTheSpawnPoint(map, colliders, this.matter)
         
@@ -83,13 +83,14 @@ export default class Game extends Phaser.Scene {
 
         this.cameras.main.startFollow(this.player, false, 0.05, 0.05); // Permet que la caméra suit le joueur
 
-        CheckHitBoxes(this.matter.world, this.playerManager, this.sceneManager, this.player);
-        CheckButton(this.matter.world, this.playerManager, this.UIManager.leversStatus.length)
+        this.collisionManager.CheckHitBoxes(this.playerManager, this.player);
+        this.collisionManager.CheckButton(this.UIManager.leversStatus.length)
         
         // this.add.image(0, 0, )
         this.UIManager.AddFilters()
         this.UIManager.UpdateLife()
         this.UIManager.AddLeversUI()
+        this.playerManager.CheckIfAllPressed(this.matter.world, this.player)
 
         this.debugPlayerInfoText = this.add.text(0, 0, 'Character position: ').setScrollFactor(0); // to remove
     }
@@ -105,7 +106,9 @@ export default class Game extends Phaser.Scene {
             ChangeDepth(enemy)
         });
         this.playerManager.CheckPlayerInputs(this.player, this.cursors);
-        this.playerManager.UseButton(this.cursors, this.matter.world, this.player);
+        if (this.playerManager.canPress) {
+            this.playerManager.UseButton(this.cursors, this.matter.world, this.player);
+        }
         this.UIManager.UpdatePlayerInfoText(this.debugPlayerInfoText, this.player, this.playerManager.canLoadNextScene, this.playerManager.isSafe);
     }
 }
