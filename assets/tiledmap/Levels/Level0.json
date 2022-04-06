@@ -162,7 +162,51 @@
          "draworder":"topdown",
          "id":3,
          "name":"WorldCollider",
-         "objects":[],
+         "objects":[
+                {
+                 "height":2893.07359307359,
+                 "id":39,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":51.515151515151,
+                 "x":-7.65367965367966,
+                 "y":2414.58008658009
+                }, 
+                {
+                 "height":100.432900432901,
+                 "id":41,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3451.08225108225,
+                 "x":54.6839826839831,
+                 "y":2428.8658008658
+                }, 
+                {
+                 "height":2836.36363636364,
+                 "id":42,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":60.1731601731599,
+                 "x":3405.33333333333,
+                 "y":2471.72294372294
+                }, 
+                {
+                 "height":51.0822510822518,
+                 "id":43,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3507.79220779221,
+                 "x":-2.45887445887462,
+                 "y":5248.34632034632
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -217,7 +261,19 @@
          "draworder":"topdown",
          "id":2,
          "name":"PlayerPoints",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":45,
+                 "name":"SpawnPoint",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1604.85714285714,
+                 "y":5143.14285714286
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -225,7 +281,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":39,
+ "nextobjectid":46,
  "orientation":"isometric",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",
@@ -247,7 +303,7 @@
         {
          "columns":3,
          "firstgid":17,
-         "image":"..\/..\/..\/Documents\/Hugo\/Gaming Campus\/Projets\/Mini studio project\/assets\/tiles\/wall.png",
+         "image":"..\/..\/tiles\/wall.png",
          "imageheight":106,
          "imagewidth":552,
          "margin":0,

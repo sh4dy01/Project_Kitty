@@ -79,7 +79,8 @@ export default class Game extends Phaser.Scene {
         this.player.setBody(colliders.player_top_right)
         this.player.setFixedRotation()
         ChangeDepth(this.player)
-        
+        this.player.setFixedRotation()
+
         this.cameras.main.startFollow(this.player, false, 0.05, 0.05); // Permet que la caméra suit le joueur
 
         CheckHitBoxes(this.matter.world, this.playerManager, this.sceneManager, this.player);
