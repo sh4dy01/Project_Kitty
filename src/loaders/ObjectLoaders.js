@@ -38,7 +38,7 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
         /** @param {Phaser.GameObjects.Sprite} enemy */
         (enemy, index)=>{
 
-            enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name)) // Ajoute son manager
+            enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name, enemy.getData('orientation'))) // Ajoute son manager
 
             enemies.push(matter.add.sprite( // Ajoute le sprite dans le jeu
                 ConvertXCartesianToIsometric(enemy.x, enemy.y),
@@ -164,10 +164,10 @@ function AddMapColliders(map, matter) {
     map.filterObjects('WorldCollider', (obj) => obj.name === 'topLeft').forEach(
         (collider)=>(
         matter.add.rectangle(
-            ConvertXCartesianToIsometric(collider.x, collider.y)-ConvertXCartesianToIsometric(1100, 750),
-            ConvertYCartesianToIsometric(collider.x, collider.y)+ConvertXCartesianToIsometric(602, 250),
-            collider.width/2,
-            collider.height+50,
+            ConvertXCartesianToIsometric(collider.x, collider.y),
+            ConvertYCartesianToIsometric(collider.x, collider.y),
+            collider.width,
+            collider.height,
             { angle:1.05, label: "collision", isStatic:true }
         )
     ));
@@ -175,10 +175,10 @@ function AddMapColliders(map, matter) {
     map.filterObjects('WorldCollider', (obj) => obj.name === 'topRight').forEach(
         (collider)=>(
         matter.add.rectangle(
-            ConvertXCartesianToIsometric(collider.x, collider.y)-ConvertXCartesianToIsometric(35, 700),
-            ConvertYCartesianToIsometric(collider.x, collider.y)+ConvertYCartesianToIsometric(700, 35),
-            collider.width+50,
-            collider.height/2,
+            ConvertXCartesianToIsometric(collider.x, collider.y),
+            ConvertYCartesianToIsometric(collider.x, collider.y),
+            collider.width,
+            collider.height,
             { angle:0.52, label: "collision", isStatic:true } 
         )
     ));
@@ -186,10 +186,10 @@ function AddMapColliders(map, matter) {
     map.filterObjects('WorldCollider', (obj) => obj.name === 'bottomRight').forEach(
         (collider)=>(
         matter.add.rectangle(
-            ConvertXCartesianToIsometric(collider.x, collider.y)-ConvertXCartesianToIsometric(1250, 650),
-            ConvertYCartesianToIsometric(collider.x, collider.y)+ConvertXCartesianToIsometric(630, 300),
-            collider.width/2,
-            collider.height+50,
+            ConvertXCartesianToIsometric(collider.x, collider.y),
+            ConvertYCartesianToIsometric(collider.x, collider.y),
+            collider.width,
+            collider.height,
             { angle:1.05, label: "collision", isStatic:true } 
         )
     ));
@@ -197,10 +197,10 @@ function AddMapColliders(map, matter) {
     map.filterObjects('WorldCollider', (obj) => obj.name === 'bottomLeft').forEach(
         (collider)=>(
         matter.add.rectangle(
-            ConvertXCartesianToIsometric(collider.x, collider.y)-ConvertXCartesianToIsometric(-85, 700),
-            ConvertYCartesianToIsometric(collider.x, collider.y)+ConvertYCartesianToIsometric(700, -85),
-            collider.width+50,
-            collider.height/2,
+            ConvertXCartesianToIsometric(collider.x, collider.y),
+            ConvertYCartesianToIsometric(collider.x, collider.y),
+            collider.width,
+            collider.height,
             { angle:0.52, label: "collision", isStatic:true } 
         )
     ));

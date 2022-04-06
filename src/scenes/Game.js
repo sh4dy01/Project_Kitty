@@ -70,10 +70,10 @@ export default class Game extends Phaser.Scene {
             spawnPoint.y, 
             'player', 
             'back-left-up 1.png'
-        ).setFlipX(true).setScale(PLAYER_SIZE).setFixedRotation();
+        ).setFlipX(true).setScale(PLAYER_SIZE);
         this.player.setBody(colliders.player_top_right)
         ChangeDepth(this.player)
-        
+        this.player.setFixedRotation()
 
         this.cameras.main.startFollow(this.player, false, 0.05, 0.05); // Permet que la caméra suit le joueur
 
