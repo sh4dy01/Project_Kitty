@@ -337,6 +337,12 @@
                  "id":41,
                  "name":"SpawnPoint",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -349,12 +355,18 @@
                  "id":42,
                  "name":"NextLevel",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"right"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1689.14285714286,
-                 "y":3750.85714285714
+                 "x":2170.52813852814,
+                 "y":2130.07792207792
                 }],
          "opacity":1,
          "type":"objectgroup",

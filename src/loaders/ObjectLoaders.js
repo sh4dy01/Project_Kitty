@@ -20,21 +20,11 @@ import { BOTTOM, BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, GREEN_SIZE, PURPLE, RED, TOP_
 export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, colliders, leversUI, levers) {
     /** @type {Phaser.Physics.Matter.Sprite | Phaser.Physics.Matter.Image} */
     let tempObject = null;
-
     const floorTileset = map.addTilesetImage("floor", "floor");  // Affiche les tiles du sol
     const wallTileset = map.addTilesetImage("wall", "wall");  // Affiches les tiles des murs
 
     map.createLayer("floor", floorTileset); // Créé un layer pour le sol
     map.createLayer("wall", wallTileset); // Créé un layer pour les murs
-
-    const nextLevelPoint = map.filterObjects('PlayerPoints', obj => obj.name === 'NextLevel')[0]; // Récupère l'emplacement du prochain niveau depuis Tiled
-    tempObject = matter.add.image(
-        ConvertXCartesianToIsometric(nextLevelPoint.x, nextLevelPoint.y),
-        ConvertYCartesianToIsometric(nextLevelPoint.x, nextLevelPoint.y),
-        "exit-door"
-    )
-    tempObject.setBody(colliders.exit_door) // Ajoute la collision
-    ChangeDepth(tempObject);
 
     /// --- Create all the enemies with their AI and animations --- //
     if(map.createFromObjects('Enemies', {}) != null){
@@ -127,27 +117,6 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
 
     AddMapColliders(map, matter)
     AddTheLevers(map, matter, leversUI, levers)
-}
-
-/**
- * @param {Phaser.Tilemaps.Tilemap} map
- * @param {any} colliders
- * @param {Phaser.Physics.Matter.MatterPhysics} matter
- */
-export function AddTheSpawnPoint(map, colliders, matter) {
-    // --- Créer le point de spawn du joueur --- ///
-    const spawnPoint = map.filterObjects('PlayerPoints', (obj) => obj.name === 'SpawnPoint')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
-
-    /** @type {Phaser.Physics.Matter.Image} */
-    let tempObject = matter.add.image(
-        ConvertXCartesianToIsometric(spawnPoint.x, spawnPoint.y),
-        ConvertYCartesianToIsometric(spawnPoint.x, spawnPoint.y),
-        'checkpoint'
-    )
-    tempObject.setBody(colliders.checkPoint)
-    ChangeDepth(tempObject)
-
-    return tempObject
 }
 
  /**

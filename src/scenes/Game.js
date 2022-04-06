@@ -9,7 +9,7 @@ import EnemyManager from "../classes/EnemyManager";
 import UIManager from "../classes/UIManager";
 
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
-import { AddBoss, AddTheSpawnPoint, LoadAllObjects as AddAllObjectsFromTiled } from "../loaders/ObjectLoaders";
+import { AddBoss, LoadAllObjects as AddAllObjectsFromTiled } from "../loaders/ObjectLoaders";
 import { GREEN, GREEN_SIZE, MAX_LIVES, PLAYER_SIZE, PURPLE, RED, UI_LEVER_OFFSET, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_LEVER_SIZE, PAUSE_SCREEN } from "../helpers/constants";
 import { CreatePlayerAnims } from "../animations/PlayerAnimations";
 import { ChangeDepth } from "../helpers/ChangeDepth";
@@ -42,6 +42,7 @@ export default class Game extends Phaser.Scene {
         */
         this.levers = [];
 
+        this.spawnPoint = null
         this.boss = null
         this.bossManager = new BossManager()
         /**
@@ -57,7 +58,7 @@ export default class Game extends Phaser.Scene {
     create() {
         const map = this.add.tilemap("map"+this.currentLevel);  // Ajoute les emplacements des tiles dans le jeu
         const colliders = this.cache.json.get('colliders'); // Récupère toutes les collisions pour les sprites
-        const spawnPoint = AddTheSpawnPoint(map, colliders, this.matter)
+
         this.boss = AddBoss(map, colliders, this.matter, this.time, this.bossManager)
         
         this.cameras.main.fadeIn(2000, 0, 0, 0);
@@ -79,9 +80,30 @@ export default class Game extends Phaser.Scene {
         CreateRedPhantomAnims(this.anims, RED);
         CreatePlayerAnims(this.anims);
 
+        /**@type {Phaser.Physics.Matter.Image} */
+        let tempObject 
+        map.createFromObjects('PlayerPoints', {}).forEach(
+            /** @param {Phaser.Physics.Matter.Image} point */ 
+            (point)=>{
+            tempObject = this.matter.add.image(
+                ConvertXCartesianToIsometric(point.x, point.y),
+                ConvertYCartesianToIsometric(point.x, point.y),
+                "playerPoints",
+                point.name+".png"
+            ),
+            tempObject.setBody(colliders[point.name+'-'+point.getData('orientation')])
+            ChangeDepth(tempObject);
+            if (point.name === "SpawnPoint") {
+                console.log('spawnpoint');
+                this.spawnPoint = tempObject
+            } else if (point.name === "NextLevel") {
+                this.playerManager.exitDoor = tempObject
+            }}
+        );
+
         this.player = this.matter.add.sprite(
-            spawnPoint.x, 
-            spawnPoint.y, 
+            this.spawnPoint.x, 
+            this.spawnPoint.y, 
             'player', 
             'back-left-up 1.png'
         ).setFlipX(true).setScale(PLAYER_SIZE);

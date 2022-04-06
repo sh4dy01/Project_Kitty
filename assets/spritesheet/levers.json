@@ -4,32 +4,11 @@
 			"image": "levers.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 207,
+				"w": 191,
 				"h": 62
 			},
 			"scale": 1,
 			"frames": [
-				{
-					"filename": "green-lever.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 94,
-						"h": 60
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 94,
-						"h": 60
-					},
-					"frame": {
-						"x": 1,
-						"y": 1,
-						"w": 94,
-						"h": 60
-					}
-				},
 				{
 					"filename": "red-lever.png",
 					"rotated": false,
@@ -45,10 +24,31 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 97,
+						"x": 1,
 						"y": 1,
 						"w": 70,
 						"h": 60
+					}
+				},
+				{
+					"filename": "green-lever.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 78,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 78,
+						"h": 50
+					},
+					"frame": {
+						"x": 73,
+						"y": 1,
+						"w": 78,
+						"h": 50
 					}
 				},
 				{
@@ -66,7 +66,7 @@
 						"h": 21
 					},
 					"frame": {
-						"x": 169,
+						"x": 153,
 						"y": 1,
 						"w": 37,
 						"h": 21
@@ -87,7 +87,7 @@
 						"h": 21
 					},
 					"frame": {
-						"x": 169,
+						"x": 153,
 						"y": 24,
 						"w": 37,
 						"h": 21
@@ -99,6 +99,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:1b87902824cefdf08ceed9b8a5d5c5fa:83b6885079ad9fe1a878dd16ad765044:5aef6f7fdb626947f6c88cca27aa480f$"
+		"smartupdate": "$TexturePacker:SmartUpdate:655b96d59e9465040753e0c5a4140cb7:6c800a906cace2f18d2ca9396bc8d568:5aef6f7fdb626947f6c88cca27aa480f$"
 	}
 }

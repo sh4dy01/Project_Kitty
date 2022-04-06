@@ -136,7 +136,7 @@
             <key>json</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../spritesheet/levers.json</filename>
+                <filename></filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -173,7 +173,7 @@
             <key>trimMargin</key>
             <uint>1</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">None</enum>
+            <enum type="SpriteSettings::TrimMode">Trim</enum>
             <key>tracerTolerance</key>
             <int>200</int>
             <key>heuristicMask</key>
@@ -185,7 +185,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../sprites/props/green-lever.png</key>
+            <key type="filename">../sprites/props/candyshop.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -194,13 +194,14 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>30,19,59,37</rect>
+                <rect>25,52,51,104</rect>
                 <key>scale9Paddings</key>
-                <rect>30,19,59,37</rect>
+                <rect>25,52,51,104</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../sprites/props/red-lever.png</key>
+            <key type="filename">../sprites/props/door-close.png</key>
+            <key type="filename">../sprites/props/door-open.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -209,35 +210,18 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>22,19,44,37</rect>
+                <rect>28,50,55,100</rect>
                 <key>scale9Paddings</key>
-                <rect>22,19,44,37</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../sprites/ui/lever_ui_off.png</key>
-            <key type="filename">../sprites/ui/lever_ui_on.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>9,5,19,11</rect>
-                <key>scale9Paddings</key>
-                <rect>9,5,19,11</rect>
+                <rect>28,50,55,100</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>../sprites/ui/lever_ui_off.png</filename>
-            <filename>../sprites/ui/lever_ui_on.png</filename>
-            <filename>../sprites/props/green-lever.png</filename>
-            <filename>../sprites/props/red-lever.png</filename>
+            <filename>../sprites/props/candyshop.png</filename>
+            <filename>../sprites/props/door-close.png</filename>
+            <filename>../sprites/props/door-open.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
