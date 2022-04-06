@@ -1,0 +1,146 @@
+{
+	"textures": [
+		{
+			"image": "objects.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 452,
+				"h": 202
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "wardrobe-back.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 129,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 129,
+						"h": 200
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 129,
+						"h": 200
+					}
+				},
+				{
+					"filename": "wardrobe-front.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 124,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 124,
+						"h": 200
+					},
+					"frame": {
+						"x": 132,
+						"y": 1,
+						"w": 124,
+						"h": 200
+					}
+				},
+				{
+					"filename": "armchair-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 83,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 83,
+						"h": 125
+					},
+					"frame": {
+						"x": 258,
+						"y": 1,
+						"w": 83,
+						"h": 125
+					}
+				},
+				{
+					"filename": "clock-back.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 53,
+						"h": 175
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 53,
+						"h": 175
+					},
+					"frame": {
+						"x": 343,
+						"y": 1,
+						"w": 53,
+						"h": 175
+					}
+				},
+				{
+					"filename": "lamp-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 68,
+						"h": 70
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 68,
+						"h": 70
+					},
+					"frame": {
+						"x": 258,
+						"y": 128,
+						"w": 68,
+						"h": 70
+					}
+				},
+				{
+					"filename": "clock-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 53,
+						"h": 175
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 53,
+						"h": 175
+					},
+					"frame": {
+						"x": 398,
+						"y": 1,
+						"w": 53,
+						"h": 175
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:6e4b7c80b75be9b0a19705aeee8e3bdc:921ce0a23b69d2854d203e729e652b30:8d6d12ff4d5234f2a4b19e0a906dbf52$"
+	}
+}

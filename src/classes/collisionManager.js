@@ -2,6 +2,10 @@
 import Phaser from "phaser";
 import PlayerManager from "./PlayerManager";
 import SceneManager from "./SceneManager";
+import BossManager from "../classes/BossManager";
+
+import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
+import { ChangeDepth } from "../helpers/ChangeDepth";
 
 export default class CollisionManager {
     /**
@@ -67,6 +71,18 @@ export default class CollisionManager {
             })
         }
     }
+
+
+    CheckCollideWorld(map, colliders, matter, time, bossManager) {
+        this.world.on("collisionstart", (event, bodyA, bodyB) => {
+            if((bodyA.label == "boss" && bodyB.label == "bottomRight") || (bodyA.label == "bottomRight" && bodyB.label == "boss")) {
+                console.log("en bas à droite");
+                bossManager.speed = 0
+                bossManager.direction = "top"
+                bossManager.speed = 1
+            }
+        })
+    }
 }
 
 /**
@@ -83,4 +99,3 @@ export function CheckNextLevel(world, player, playerManager, sceneManager) {
         }
     })
 }
-

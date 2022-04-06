@@ -31,13 +31,15 @@ export default class Game extends Phaser.Scene {
         /**
          * @type {Phaser.Physics.Matter.Sprite[]}
         */
-            this.enemies = [];
+        this.enemies = [];
 
         /**
          * @type {Boolean[]}
         */
-            this.levers = [];
-    
+        this.levers = [];
+
+        this.boss = null
+        this.bossManager = new BossManager()
         /**
          * @type {EnemyManager[]}
         */
@@ -45,14 +47,14 @@ export default class Game extends Phaser.Scene {
         this.sceneManager = new SceneManager(this.scene, this.currentLevel, this.cameras.main);
         this.UIManager = new UIManager(this.currentLevel, data.remainingLife, this.add, this.scale.width, this.scale.height, this.levers);
         this.playerManager = new PlayerManager(this.currentLives, this.sceneManager, this.UIManager);
-        this.collisionManager = new CollisionManager(this.matter.world, this.playerManager, this.sceneManager)
+        this.collisionManager = new CollisionManager(this.matter.world, this.playerManager, this.sceneManager, )
     }
 
     create() {
         const map = this.add.tilemap("map");  // Ajoute les emplacements des tiles dans le jeu
         const colliders = this.cache.json.get('colliders'); // Récupère toutes les collisions pour les sprites
         const spawnPoint = AddTheSpawnPoint(map, colliders, this.matter)
-        const Boss = AddBoss(map, colliders, this.matter, this.time)
+        this.boss = AddBoss(map, colliders, this.matter, this.time, this.bossManager)
         
         this.cameras.main.fadeIn(2000, 0, 0, 0);
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
@@ -85,7 +87,8 @@ export default class Game extends Phaser.Scene {
         this.cameras.main.startFollow(this.player, false, 0.05, 0.05); // Permet que la caméra suit le joueur
 
         this.collisionManager.CheckHitBoxes(this.playerManager, this.player);
-        this.collisionManager.CheckButton(this.UIManager.leversStatus.length)
+        this.collisionManager.CheckButton(this.UIManager.leversStatus.length);
+        this.collisionManager.CheckCollideWorld(map, colliders, this.matter, this.time, this.bossManager);
         
         // this.add.image(0, 0, )
         this.UIManager.AddFilters()

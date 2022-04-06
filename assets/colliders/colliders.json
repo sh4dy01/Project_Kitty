@@ -282,9 +282,9 @@
 			}
 		]
 	},
-	"wardrobe-back": {
+	"wardrobe": {
 		"type": "fromPhysicsEditor",
-		"label": "wardrobe-back",
+		"label": "wardrobe",
 		"isStatic": true,
 		"density": 0.1,
 		"restitution": 0,
@@ -302,30 +302,6 @@
 				"isSensor": false,
 				"vertices": [
 					[ { "x":145, "y":206 }, { "x":49, "y":151 }, { "x":7, "y":173 }, { "x":102, "y":230 } ]
-				]
-			}
-		]
-	},
-	"wardrobe-front": {
-		"type": "fromPhysicsEditor",
-		"label": "wardrobe-front",
-		"isStatic": true,
-		"density": 0.10000000149011612,
-		"restitution": 0,
-		"friction": 0.10000000149011612,
-		"frictionAir": 0.009999999776482582,
-		"frictionStatic": 0.5,
-		"collisionFilter": {
-			"group": 0,
-			"category": 1,
-			"mask": 255
-		},
-		"fixtures": [
-			{
-				"label": "",
-				"isSensor": false,
-				"vertices": [
-					[ { "x":3, "y":154 }, { "x":86, "y":201 }, { "x":121, "y":180 }, { "x":41, "y":133 } ]
 				]
 			}
 		]
@@ -600,6 +576,80 @@
 				"vertices": [
 					[ { "x":81, "y":81 }, { "x":61, "y":69 }, { "x":30, "y":87 }, { "x":49, "y":98 } ]
 				]
+			}
+		]
+	},
+	"armchair": {
+		"type": "fromPhysicsEditor",
+		"label": "armchair",
+		"isStatic": true,
+		"density": 0.1,
+		"restitution": 0,
+		"friction": 0.1,
+		"frictionAir": 0.01,
+		"frictionStatic": 0.5,
+		"collisionFilter": {
+			"group": 0,
+			"category": 1,
+			"mask": 255
+		},
+		"fixtures": [
+			{
+				"label": "",
+				"isSensor": false,
+				"vertices": [
+					[ { "x":80, "y":102 }, { "x":38, "y":82 }, { "x":3, "y":101 }, { "x":42, "y":124 } ]
+				]
+			}
+		]
+	},
+	"clock": {
+		"type": "fromPhysicsEditor",
+		"label": "clock",
+		"isStatic": true,
+		"density": 0.1,
+		"restitution": 0,
+		"friction": 0.1,
+		"frictionAir": 0.01,
+		"frictionStatic": 0.5,
+		"collisionFilter": {
+			"group": 0,
+			"category": 1,
+			"mask": 255
+		},
+		"fixtures": [
+			{
+				"label": "",
+				"isSensor": false,
+				"vertices": [
+					[ { "x":55, "y":160 }, { "x":24, "y":143 }, { "x":-4, "y":156 }, { "x":29, "y":175 } ]
+				]
+			}
+		]
+	},
+	"lamp": {
+		"type": "fromPhysicsEditor",
+		"label": "lamp",
+		"isStatic": true,
+		"density": 0.10000000149011612,
+		"restitution": 0,
+		"friction": 0.10000000149011612,
+		"frictionAir": 0.009999999776482582,
+		"frictionStatic": 0.5,
+		"collisionFilter": {
+			"group": 0,
+			"category": 1,
+			"mask": 255
+		},
+		"fixtures": [
+			{
+				"label": "",
+				"isSensor": false,
+				"circle": {
+					"x": 34.46808510638297,
+					"y": 50.63829787234043,
+					"radius": 7.249781434332274
+				}
 			}
 		]
 	}

@@ -17,37 +17,28 @@ export default class BossManager{
     MoveBoss(boss, manager, colliders){
         const x = boss.x
         const y = boss.y
-        console.log(manager);
         switch (manager.direction) {
             case TOP:
                 boss.setFlipX(true)
                 boss.setVelocity(-manager.speed - OFFSET_ORIENTATION * manager.speed, -manager.speed)
-                boss.play(manager.type+'Back')
-                manager.direction = BOTTOM
             break;
 
             case LEFT:
 
                 boss.setFlipX(false)
                 boss.setVelocity(manager.speed + OFFSET_ORIENTATION * manager.speed, -manager.speed)
-                manager.direction = RIGHT
-                boss.play(manager.type+'Back')
             break;
 
             case RIGHT:
 
                 boss.setFlipX(true)
                 boss.setVelocity(-manager.speed - OFFSET_ORIENTATION * manager.speed, manager.speed)
-                manager.direction = LEFT
-                boss.play(manager.type+'Front')
             break;
 
             case BOTTOM:
 
                 boss.setFlipX(false)
                 boss.setVelocity(manager.speed + OFFSET_ORIENTATION * manager.speed, manager.speed)
-                manager.direction = TOP
-                boss.play(manager.type+'Front')
             break;
 
             default:

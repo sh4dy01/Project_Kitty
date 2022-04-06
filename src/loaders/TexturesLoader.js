@@ -10,6 +10,8 @@ export default class TexturesLoader extends Phaser.Scene {
 
     preload() {
         this.load.atlas('player', 'assets/spritesheet/player.png', 'assets/spritesheet/player.json')
+        this.load.atlas('objects', 'assets/spritesheet/objects.png', 'assets/spritesheet/objects.json')
+        
         this.load.image('life-full', 'assets/sprites/ui/LifeFull.png')
         this.load.image('life-empty', 'assets/sprites/ui/LifeEmpty.png')
 

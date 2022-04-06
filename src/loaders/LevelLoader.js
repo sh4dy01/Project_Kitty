@@ -12,7 +12,7 @@ export default class LevelLoader extends Phaser.Scene {
      * @param {{ remainingLife: Number; level: Number;}} data
     */
     init(data) {
-        if (data.remainingLife === 0 || data.level === 0) {
+        if (data.remainingLife === 0 || data.level === 0 || data == null) {
             this.remainingLife = MAX_LIVES;
             this.level = 0
         } else {
