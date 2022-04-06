@@ -1,6 +1,6 @@
 //@ts-check
 import Phaser from "phaser";
-import { MAX_LIVES, UI_LIFE_OFFSET, UI_LIFE_SIZE } from "../helpers/constants";
+import { MAX_LIVES, UI_LEVER_OFFSET, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_Y_OFFSET } from "../helpers/constants";
 
 export default class UIManager{
     /**
@@ -9,13 +9,18 @@ export default class UIManager{
      * @param {Phaser.GameObjects.GameObjectFactory} add
      * @param {number} gameWidth
      * @param {number} gameHeight
+     * @param {Boolean[]} levers
      */
-    constructor(level, currentLife, add, gameWidth, gameHeight){
+    constructor(level, currentLife, add, gameWidth, gameHeight, levers){
         this.level = level;
         this.currentLife = currentLife
         this.add = add
         this.gameWidth = gameWidth
         this.gameHeight = gameHeight
+        this.leversStatus = levers
+
+        /**@type {Phaser.GameObjects.Image[]} */
+        this.leversImage = []
     }
 
     /**
@@ -46,9 +51,33 @@ export default class UIManager{
         }
     }
 
-    AddFilters() {
-        this.add.image(this.gameWidth/2, this.gameHeight/2, 'night-filter').setScrollFactor(0).setDepth(9998).setScale(1.05)
-        this.add.image(this.gameWidth/2, this.gameHeight/2, 'vignette').setScrollFactor(0).setDepth(9998).setScale(1.05)
+    UpdateLevers() {
+        let i = 0;
+        this.leversStatus.forEach(lever => {
+            console.log();
+            if (lever === false) {
+                this.leversStatus[i] = true
+                this.leversImage[i].setTexture('lever-on')
+
+                return 
+            }
+        });
     }
 
+    AddLeversUI() {
+        for (let i = 1; i-1 < this.leversStatus.length; i++) {
+            if (this.leversStatus[i-1] === false) {
+                console.log(false);
+                this.leversImage.push(this.add.image(this.gameWidth * (3/4) + UI_LEVER_OFFSET * i, this.gameHeight - UI_Y_OFFSET, 'lever-off').setScrollFactor(0).setDepth(9999))
+            } else {
+                console.log('true');
+                this.leversImage.push(this.add.image(this.gameWidth + UI_LEVER_OFFSET * i, this.gameHeight - UI_Y_OFFSET, 'lever-on').setScrollFactor(0).setDepth(9999))
+            }
+        }
+    }
+
+    AddFilters() {
+        this.add.image(this.gameWidth/2, this.gameHeight/2, 'night-filter').setScrollFactor(0).setDepth(99998).setScale(1.05)
+        this.add.image(this.gameWidth/2, this.gameHeight/2, 'vignette').setScrollFactor(0).setDepth(99998).setScale(1.05)
+    }
 }

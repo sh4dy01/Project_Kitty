@@ -9,10 +9,11 @@ import EnemyManager from "../classes/EnemyManager";
 import UIManager from "../classes/UIManager";
 
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
-import { AddTheSpawnPoint, LoadAllObjects as AddAllObjectsFromTiled } from "../loaders/ObjectLoaders";
-import { GREEN, GREEN_SIZE, MAX_LIVES, PLAYER_SIZE, PURPLE, RED, UI_LIFE_OFFSET, UI_LIFE_SIZE } from "../helpers/constants";
+import { AddBoss, AddTheSpawnPoint, LoadAllObjects as AddAllObjectsFromTiled } from "../loaders/ObjectLoaders";
+import { GREEN, GREEN_SIZE, MAX_LIVES, PLAYER_SIZE, PURPLE, RED, UI_LEVER_OFFSET, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_LEVER_SIZE } from "../helpers/constants";
 import { CreatePlayerAnims } from "../animations/PlayerAnimations";
 import { ChangeDepth } from "../helpers/ChangeDepth";
+import BossManager from "../classes/BossManager";
 
 
 export default class Game extends Phaser.Scene {
@@ -27,20 +28,24 @@ export default class Game extends Phaser.Scene {
     init(data) {
         this.currentLevel = data.level;
         this.currentLives = data.remainingLife;
-
-        this.sceneManager = new SceneManager(this.scene, this.currentLevel, this.cameras.main);
-        this.UIManager = new UIManager(this.currentLevel, data.remainingLife, this.add, this.scale.width, this.scale.height);
-        this.playerManager = new PlayerManager(this.currentLives, this.sceneManager);
-
         /**
          * @type {Phaser.Physics.Matter.Sprite[]}
         */
-        this.enemies = [];
+            this.enemies = [];
 
+        /**
+         * @type {Boolean[]}
+        */
+            this.levers = [];
+    
         /**
          * @type {EnemyManager[]}
         */
         this.enemiesAIManager = [];
+
+        this.sceneManager = new SceneManager(this.scene, this.currentLevel, this.cameras.main);
+        this.UIManager = new UIManager(this.currentLevel, data.remainingLife, this.add, this.scale.width, this.scale.height, this.levers);
+        this.playerManager = new PlayerManager(this.currentLives, this.sceneManager, this.UIManager);
     }
 
     create() {
@@ -57,7 +62,7 @@ export default class Game extends Phaser.Scene {
         this.matter.world.disableGravity();
         this.playerManager.colliders = colliders
 
-        AddAllObjectsFromTiled(map, this.enemiesAIManager, this.enemies, this.matter, this.time, colliders)
+        AddAllObjectsFromTiled(map, this.enemiesAIManager, this.enemies, this.matter, this.time, colliders, this.levers)
 
         // --- AJOUTE LES ANIMATIONS  --- //
         CreatePurplePhantomAnims(this.anims, PURPLE);
@@ -72,6 +77,7 @@ export default class Game extends Phaser.Scene {
             'back-left-up 1.png'
         ).setFlipX(true).setScale(PLAYER_SIZE);
         this.player.setBody(colliders.player_top_right)
+        this.player.setFixedRotation()
         ChangeDepth(this.player)
         this.player.setFixedRotation()
 
@@ -80,9 +86,12 @@ export default class Game extends Phaser.Scene {
         CheckHitBoxes(this.matter.world, this.playerManager, this.sceneManager, this.player);
         CheckButton(this.matter.world, this.playerManager)
         
+        // this.add.image(0, 0, )
         this.UIManager.AddFilters()
-        this.debugPlayerInfoText = this.add.text(0, 0, 'Character position: ').setScrollFactor(0); // to remove
         this.UIManager.UpdateLife()
+        this.UIManager.AddLeversUI()
+
+        this.debugPlayerInfoText = this.add.text(0, 0, 'Character position: ').setScrollFactor(0); // to remove
     }
 
     update(t, dt) {

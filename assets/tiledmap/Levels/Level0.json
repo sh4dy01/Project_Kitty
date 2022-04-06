@@ -309,7 +309,7 @@
          "margin":0,
          "name":"wall",
          "spacing":0,
-         "tilecount":3,
+         "tilecount":0,
          "tileheight":106,
          "tilewidth":184
         }],
