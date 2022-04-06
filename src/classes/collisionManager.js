@@ -59,14 +59,14 @@ export default class CollisionManager {
                 if((bodyA.label == "player" && bodyB.label == "lever"+index) || (bodyA.label == "lever"+index && bodyB.label == "player")) {
                     console.log("on button area");
                     this.playerManager.canPress = true;
-                    this.playerManager.canPressButton = index
+                    this.playerManager.canPressButtonNumber = index
                 }
             })
             this.world.on("collisionend", (event,bodyA, bodyB) => {
                 if((bodyA.label == "player" && bodyB.label == "lever"+index) || (bodyA.label == "lever"+index && bodyB.label == "player")) {
                     console.log("exit button area");
                     this.playerManager.canPress = false;
-                    this.playerManager.canPressButton = null
+                    this.playerManager.canPressButtonNumber = null
                 }
             })
         }
