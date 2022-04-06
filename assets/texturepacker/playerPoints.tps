@@ -136,7 +136,7 @@
             <key>json</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename></filename>
+                <filename>../spritesheet/playerPoints.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -185,22 +185,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../sprites/props/candyshop.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>25,52,51,104</rect>
-                <key>scale9Paddings</key>
-                <rect>25,52,51,104</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../sprites/props/door-close.png</key>
+            <key type="filename">../sprites/props/NextLevel.png</key>
             <key type="filename">../sprites/props/door-open.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -216,12 +201,27 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../sprites/props/SpawnPoint.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>25,52,51,104</rect>
+                <key>scale9Paddings</key>
+                <rect>25,52,51,104</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>../sprites/props/candyshop.png</filename>
-            <filename>../sprites/props/door-close.png</filename>
             <filename>../sprites/props/door-open.png</filename>
+            <filename>../sprites/props/NextLevel.png</filename>
+            <filename>../sprites/props/SpawnPoint.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

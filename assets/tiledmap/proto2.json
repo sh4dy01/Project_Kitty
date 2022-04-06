@@ -1,12 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "format":"json",
-         "target":"..\/proto2.json"
-        }
-    },
  "height":64,
  "infinite":false,
  "layers":[
@@ -196,7 +188,7 @@
         {
          "columns":4,
          "firstgid":1,
-         "image":"..\/..\/tiles\/floor.png",
+         "image":"..\/tiles\/floor.png",
          "imageheight":416,
          "imagewidth":728,
          "margin":0,
@@ -209,7 +201,7 @@
         {
          "columns":3,
          "firstgid":17,
-         "image":"..\/..\/tiles\/wall.png",
+         "image":"..\/tiles\/wall.png",
          "imageheight":106,
          "imagewidth":552,
          "margin":0,

@@ -59,8 +59,10 @@ export default class Game extends Phaser.Scene {
         const map = this.add.tilemap("map"+this.currentLevel);  // Ajoute les emplacements des tiles dans le jeu
         const colliders = this.cache.json.get('colliders'); // Récupère toutes les collisions pour les sprites
 
-        this.boss = AddBoss(map, colliders, this.matter, this.time, this.bossManager)
-        
+        if (this.currentLevel === 8) {
+            this.boss = AddBoss(map, colliders, this.matter, this.time, this.bossManager)
+        }
+
         this.cameras.main.fadeIn(2000, 0, 0, 0);
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
             this.playerManager.canMove = true
@@ -90,11 +92,13 @@ export default class Game extends Phaser.Scene {
                 ConvertYCartesianToIsometric(point.x, point.y),
                 "playerPoints",
                 point.name+".png"
-            ),
+            )
             tempObject.setBody(colliders[point.name+'-'+point.getData('orientation')])
             ChangeDepth(tempObject);
+            if (point.getData('orientation') === 'left') {
+                tempObject.setFlipX(true)
+            }
             if (point.name === "SpawnPoint") {
-                console.log('spawnpoint');
                 this.spawnPoint = tempObject
             } else if (point.name === "NextLevel") {
                 this.playerManager.exitDoor = tempObject
