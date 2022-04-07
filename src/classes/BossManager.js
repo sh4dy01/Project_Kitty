@@ -97,11 +97,19 @@ export default class BossManager extends Phaser.Physics.Matter.Sprite{
     }
 
     /** @param {string} direction*/
-    ChangeBody(direction) {
+    ChangeBody(direction, leversStatus) {
         let tempx = this.x
         let tempy = this.y
-        this.speed += BOSS_SPEED_BOSST
-        console.log(direction);
+
+        leversStatus.forEach(levers => {
+            if(levers == true){
+                this.leversOn = true
+            }
+        });
+        if(this.leversOn == true && this.speed<5){
+            this.speed += BOSS_SPEED_BOSST
+            console.log("ttj plus vite");
+        }
 
         if (direction === TOP_LEFT || direction === TOP_RIGHT || direction === BOTTOM_RIGHT || direction === TOP || direction === BOTTOM || direction === BOTTOM_RIGHT || direction === BOTTOM_LEFT || direction === 'right' || direction === 'left') {
             this.setFrame(direction+'.png')

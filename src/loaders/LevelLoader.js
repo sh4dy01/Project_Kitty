@@ -14,7 +14,7 @@ export default class LevelLoader extends Phaser.Scene {
     init(data) {
         if (data.remainingLife === 0 || data.level === 0 || data == null) {
             this.remainingLife = MAX_LIVES;
-            this.level = 0
+            this.level = 8
         } else {
             this.remainingLife = data.remainingLife
             this.level = data.level
@@ -24,7 +24,7 @@ export default class LevelLoader extends Phaser.Scene {
     }
 
     preload() {
-        this.load.tilemapTiledJSON("map"/*+this.level*/, "assets/tiledmap/Levels/level0.json")
+        this.load.tilemapTiledJSON("map"/*+this.level*/, "assets/tiledmap/proto.json")
     }
 
     create() {
