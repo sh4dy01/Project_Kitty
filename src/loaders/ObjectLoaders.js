@@ -121,7 +121,7 @@ export default class ObjectsLoader {
             this.map.createFromObjects('Enemies', {}).forEach(
                 /** @param {Phaser.GameObjects.Sprite} enemy */
                 (enemy, index)=>{
-                    this.enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name, enemy.getData('orientation'))) // Ajoute son manager
+                    this.enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name, this.colliders, enemy.getData('orientation'))) // Ajoute son manager
                     let tempString 
                     let tempObject
                     if (enemy.getData('direction') === TOP_LEFT || enemy.getData('direction') === TOP_RIGHT) {
@@ -135,7 +135,6 @@ export default class ObjectsLoader {
                         enemy.name+'-anim',
                         enemy.name+tempString+'_0.png'
                     )
-                    console.log(enemy.name+'_'+enemy.getData('direction'));
                     tempObject.setBody(this.colliders[enemy.name+'_'+enemy.getData('direction')])
                     this.enemies.push(tempObject)
                     
@@ -161,7 +160,7 @@ export default class ObjectsLoader {
                         case RED:
                             this.time.addEvent({ // Ajoute l'IA RED
                                 callback: this.enemiesAIManager[index].MoveEnemyRed,
-                                args: [this.enemies[index], this.enemiesAIManager[index], this.colliders, player],
+                                args: [this.enemies[index], this.enemiesAIManager[index], player],
                                 loop: true,
                             })
                         break;

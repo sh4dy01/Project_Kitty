@@ -7,10 +7,12 @@ export default class EnemyManager {
     /**
      * @param {String} startDirection
      * @param {String} phantomType
-     * @param {String} [startOrientataion]
+     * @param {any} colliders
+     * @param {String} startOrientataion
      */
-    constructor(startDirection, phantomType, startOrientataion) {
+    constructor(startDirection, phantomType, colliders, startOrientataion) {
         this.type = phantomType
+        this.colliders = colliders
 
         switch (this.type) {
 
@@ -41,17 +43,16 @@ export default class EnemyManager {
     /**
      * @param {Phaser.Physics.Matter.Sprite} enemy
      * @param {EnemyManager} manager
-     * @param {any} colliders
     */
 
     // Déplacement du fantôme vert plutôt classique, allez-retour mais une vitesse de déplacement augmentée
-    MoveEnemyGreen(enemy, manager, colliders) {  
+    MoveEnemyGreen(enemy, manager) {  
         const x = enemy.x
         const y = enemy.y
 
         switch (manager.direction) {
             case TOP_LEFT:
-                ChangeEnemyHitBox(enemy, colliders, TOP_LEFT, manager.type)
+                ChangeEnemyHitBox(enemy, manager.colliders, TOP_LEFT, manager.type)
 
                 enemy.setFlipX(true)
                 enemy.setVelocity(-manager.speed - OFFSET_ORIENTATION * manager.speed, -manager.speed)
@@ -60,7 +61,7 @@ export default class EnemyManager {
             break;
 
             case TOP_RIGHT:
-                ChangeEnemyHitBox(enemy, colliders, TOP_RIGHT, manager.type)
+                ChangeEnemyHitBox(enemy, manager.colliders, TOP_RIGHT, manager.type)
 
                 enemy.setFlipX(false)
                 enemy.setVelocity(manager.speed + OFFSET_ORIENTATION * manager.speed, -manager.speed)
@@ -69,7 +70,7 @@ export default class EnemyManager {
             break;
 
             case BOTTOM_LEFT:
-                ChangeEnemyHitBox(enemy, colliders, BOTTOM_LEFT, manager.type)
+                ChangeEnemyHitBox(enemy, manager.colliders, BOTTOM_LEFT, manager.type)
 
                 enemy.setFlipX(true)
                 enemy.setVelocity(-manager.speed - OFFSET_ORIENTATION * manager.speed, manager.speed)
@@ -78,7 +79,7 @@ export default class EnemyManager {
             break;
 
             case BOTTOM_RIGHT:
-                ChangeEnemyHitBox(enemy, colliders, BOTTOM_RIGHT, manager.type)
+                ChangeEnemyHitBox(enemy, manager.colliders, BOTTOM_RIGHT, manager.type)
 
                 enemy.setFlipX(false)
                 enemy.setVelocity(manager.speed + OFFSET_ORIENTATION * manager.speed, manager.speed)
@@ -97,11 +98,10 @@ export default class EnemyManager {
     /**
      * @param {Phaser.Physics.Matter.Sprite} enemy
      * @param {EnemyManager} manager
-     * @param {any} colliders
     */
 
     // Déplacement du fantôme violet, il faut qu'il se déplace en diagonale
-    MoveEnemyPurple(enemy, manager, colliders) {  
+    MoveEnemyPurple(enemy, manager) {  
 
         const x = enemy.x
         const y = enemy.y
@@ -109,7 +109,7 @@ export default class EnemyManager {
 
         switch (manager.direction) {
             case TOP_LEFT:
-                ChangeEnemyHitBox(enemy, colliders, TOP_LEFT, manager.type)
+                ChangeEnemyHitBox(enemy, manager.colliders, TOP_LEFT, manager.type)
 
                 enemy.setFlipX(true)
                 enemy.setVelocity(-manager.speed - OFFSET_ORIENTATION * manager.speed, -manager.speed)
@@ -126,7 +126,7 @@ export default class EnemyManager {
                 break;
 
             case TOP_RIGHT:
-                ChangeEnemyHitBox(enemy, colliders, TOP_RIGHT, manager.type)
+                ChangeEnemyHitBox(enemy, manager.colliders, TOP_RIGHT, manager.type)
 
                 enemy.setFlipX(false)
                 enemy.setVelocity(manager.speed + OFFSET_ORIENTATION * manager.speed, -manager.speed)
@@ -142,7 +142,7 @@ export default class EnemyManager {
             break;
 
             case BOTTOM_LEFT:
-                ChangeEnemyHitBox(enemy, colliders, BOTTOM_LEFT, manager.type)
+                ChangeEnemyHitBox(enemy, manager.colliders, BOTTOM_LEFT, manager.type)
 
                 enemy.setFlipX(true)
                 enemy.setVelocity(-manager.speed - OFFSET_ORIENTATION * manager.speed, manager.speed)
@@ -158,7 +158,7 @@ export default class EnemyManager {
             break;
 
             case BOTTOM_RIGHT:
-                ChangeEnemyHitBox(enemy, colliders, BOTTOM_RIGHT, manager.type)
+                ChangeEnemyHitBox(enemy, manager.colliders, BOTTOM_RIGHT, manager.type)
 
                 enemy.setFlipX(false)
                 enemy.setVelocity(manager.speed + OFFSET_ORIENTATION * manager.speed, manager.speed)
@@ -180,15 +180,38 @@ export default class EnemyManager {
     /**
      * @param {Phaser.Physics.Matter.Sprite} enemy
      * @param {EnemyManager} manager
-     * @param {any} colliders
      * @param {Phaser.Physics.Matter.Sprite} player
      */
-    MoveEnemyRed(enemy, manager, colliders, player) {
+    MoveEnemyRed(enemy, manager, player) {
         const direction = Math.atan((player.x - enemy.x) / (player.y - enemy.y));
         const speed2 = player.y >= enemy.y ? manager.speed : -manager.speed;
 
-        console.log(speed2 * Math.sin(direction), speed2 * Math.cos(direction));
+        const tempX = enemy.x
+        const tempY = enemy.y
 
+        if ((speed2 * Math.sin(direction) > 0) && speed2 * Math.cos(direction) > 0 && manager.direction !== BOTTOM_RIGHT ) {
+            manager.direction = BOTTOM_RIGHT
+            enemy.play(manager.type+'Front')
+            enemy.setFlipX(false);
+            enemy.setBody(manager.colliders[RED+'_'+manager.direction])            
+        } else if ((speed2 * Math.sin(direction) < 0) && speed2 * Math.cos(direction) > 0 && manager.direction !== BOTTOM_LEFT) {
+            manager.direction = BOTTOM_LEFT
+            enemy.play(manager.type+'Front')
+            enemy.setFlipX(true);
+            enemy.setBody(manager.colliders[RED+'_'+manager.direction])
+        } else if ((speed2 * Math.sin(direction) > 0) && speed2 * Math.cos(direction) < 0 && manager.direction !== TOP_RIGHT) {
+            manager.direction = TOP_RIGHT
+            enemy.play(manager.type+'Back')
+            enemy.setFlipX(false);
+            enemy.setBody(manager.colliders[RED+'_'+manager.direction])
+        } else if ((speed2 * Math.sin(direction) < 0) && speed2 * Math.cos(direction) < 0 && manager.direction !== TOP_LEFT){
+            manager.direction = TOP_LEFT
+            enemy.play(manager.type+'Back')
+            enemy.setFlipX(true);
+            enemy.setBody(manager.colliders[RED+'_'+manager.direction])
+        }
+        enemy.x = tempX
+        enemy.y = tempY
         enemy.setVelocity(speed2 * Math.sin(direction), speed2 * Math.cos(direction))
     }
 }
