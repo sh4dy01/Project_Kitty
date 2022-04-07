@@ -5,8 +5,10 @@ export const LEVEL_MAP = "LevelMap"
 export const PAUSE_SCREEN = "PauseScreen"
 export const INTRO_SCREEN = "IntroScreen"
 export const SOUNDS_LOADER = "SoundsLoader"
+export const OUTRO_SCREEN = "OutroScreen"
+export const CREDITS_SCREEN = "CreditsScreen"
 
-export const MAX_LIVES = 3
+export const MAX_LIVES = 4
 
 export const PLAYER_SIZE = 0.85
 export const GREEN_SIZE = 0.6

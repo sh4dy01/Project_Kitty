@@ -2,11 +2,13 @@ import Phaser from "phaser";
 
 import Game from "./scenes/Game";
 import PauseScreen from "./scenes/Pause";
-import { LEVEL_MAP, PAUSE_SCREEN, TEXTURES_LOADER, INTRO_SCREEN, SOUNDS_LOADER} from "./helpers/Constants";
+import { LEVEL_MAP, PAUSE_SCREEN, TEXTURES_LOADER, INTRO_SCREEN, SOUNDS_LOADER, OUTRO_SCREEN, CREDITS_SCREEN} from "./helpers/Constants";
 import TexturesLoader from "./loaders/TexturesLoader";
 import LevelLoader from "./loaders/LevelLoader";
 import IntroScreen from "./scenes/Intro";
 import SoundsLoader from "./loaders/SoundsLoader";
+import OutroScreen from "./scenes/Outro";
+import CreditsScreen from "./scenes/Credits";
 
 // Initialize Phaser
 const config = {
@@ -17,7 +19,8 @@ const config = {
     physics: {
         default: "matter",
         matter: {
-            gravity: { y: 0}
+            gravity: { y: 0},
+            debug: true
         },
     },
     fps: {
@@ -37,5 +40,9 @@ game.scene.add(TEXTURES_LOADER, TexturesLoader); // Add the textures loader scen
 game.scene.add(LEVEL_MAP, LevelLoader); // Add the level scene
 game.scene.add(PAUSE_SCREEN, PauseScreen); // Add the PauseScene scene
 game.scene.add('Game', Game); // Add the Game scene
+game.scene.add(OUTRO_SCREEN, OutroScreen); // Add the Outro scene
+game.scene.add(CREDITS_SCREEN, CreditsScreen); // Add the Credits scene
 
-game.scene.start(SOUNDS_LOADER); // Start the StartScene scene
+
+
+game.scene.start(CREDITS_SCREEN); 

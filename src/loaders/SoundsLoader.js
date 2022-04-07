@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { INTRO_SCREEN, TEXTURES_LOADER } from '../helpers/Constants';
+import { INTRO_SCREEN, OUTRO_SCREEN, TEXTURES_LOADER } from '../helpers/Constants';
 
 export default class SoundsLoader extends Phaser.Scene {
 
@@ -18,6 +18,6 @@ export default class SoundsLoader extends Phaser.Scene {
     }
 
     create() {
-      this.scene.start(INTRO_SCREEN)
+      this.scene.start(OUTRO_SCREEN)
     }
 }
