@@ -1,5 +1,5 @@
 //@ts-check
-import Phaser from "phaser";
+import Phaser, { Physics } from "phaser";
 import { ChangeEnemyHitBox } from "../helpers/Utilities";
 import { BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, GREEN_SIZE, OFFSET_ORIENTATION, PURPLE, RED, TOP_LEFT, TOP_RIGHT} from "../helpers/Constants";
 
@@ -102,6 +102,7 @@ export default class EnemyManager {
 
     // Déplacement du fantôme violet, il faut qu'il se déplace en diagonale
     MoveEnemyPurple(enemy, manager, colliders) {  
+
         const x = enemy.x
         const y = enemy.y
         const NumbZig = 5;
@@ -180,11 +181,14 @@ export default class EnemyManager {
      * @param {Phaser.Physics.Matter.Sprite} enemy
      * @param {EnemyManager} manager
      * @param {any} colliders
-    */
-
-    // Déplacement du fantôme rouge, il se déplace plus lentement mais à un champ de vision plus important
-    MoveEnemyRed(enemy, manager, colliders) {
+     * @param {Phaser.Physics.Matter.Sprite} player
+     */
+    MoveEnemyRed(enemy, manager, colliders, player) {
+        console.log(player);
+        const direction = Math.atan((player.x - enemy.x) / (player.y - enemy.y));
+        const speed2 = player.y >= enemy.y ? manager.speed : -manager.speed;
         
+        enemy.x = speed2 * Math.sin(direction)
+        enemy.y = speed2 * Math.cos(direction)
     }
 }
-

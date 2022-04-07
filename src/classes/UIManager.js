@@ -46,11 +46,11 @@ export default class UIManager{
 
     UpdateLife() {
         for (let i = 0; i < this.currentLife; i++) {
-            this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-40, 'life-full').setScrollFactor(0).setScale(UI_LIFE_SIZE).setDepth(9999)
+            this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-40, 'ui', 'LifeFull.png').setScrollFactor(0).setDepth(9999)
         }
         if (this.currentLife < MAX_LIVES) {
             for (let i = this.currentLife; i < MAX_LIVES; i++) {
-                this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-40, 'life-empty').setScrollFactor(0).setScale(UI_LIFE_SIZE).setDepth(9999)
+                this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-40, 'ui', 'LifeEmpty.png').setScrollFactor(0).setDepth(9999)
             }
         }
     }
@@ -67,9 +67,9 @@ export default class UIManager{
     AddLeversUI() {
         for (let i = 0; i < this.leversStatus.length; i++) {
             if (this.leversStatus[i] === false) {
-                this.leversUIImage.push(this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-100, 'levers', 'lever_ui_off.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
+                this.leversUIImage.push(this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-100, 'ui', 'lever_ui_off.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
             } else {
-                this.leversUIImage.push(this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-100, 'levers', 'lever_ui_on.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
+                this.leversUIImage.push(this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-100, 'ui', 'lever_ui_on.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
             }
         }
     }

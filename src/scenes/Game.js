@@ -67,7 +67,7 @@ export default class Game extends Phaser.Scene {
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
             this.playerManager.canMove = true
         })
-
+        
         if ( this.currentLevel === 8 || this.currentLevel === 0){
             if (this.currentLevel === 8) {
                 const Boss = map.filterObjects('Specials', (obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
@@ -111,8 +111,6 @@ export default class Game extends Phaser.Scene {
         this.matter.world.disableGravity();
         this.playerManager.colliders = colliders
 
-        AddAllObjectsFromTiled(map, this.enemiesAIManager, this.enemies, this.matter, this.time, colliders, this.leversUI, this.levers, this.boxes, this.entrance)
-
         // --- AJOUTE LES ANIMATIONS  --- //
         CreatePurplePhantomAnims(this.anims, PURPLE);
         CreateGreenPhantomAnims(this.anims, GREEN);
@@ -152,6 +150,8 @@ export default class Game extends Phaser.Scene {
         this.player.setFixedRotation()
         ChangeDepth(this.player)
         this.player.setFixedRotation()
+
+        AddAllObjectsFromTiled(map, this.enemiesAIManager, this.enemies, this.matter, this.time, colliders, this.leversUI, this.levers, this.boxes, this.player)
 
         this.cameras.main.startFollow(this.player, false, 0.05, 0.05); // Permet que la caméra suit le joueur
         

@@ -14,13 +14,13 @@ import { BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, PURPLE, RED, TOP_LEFT, TOP_RIGHT } fr
  * @param {Phaser.Time.Clock} time
  * @param {any} colliders
  * @param {Phaser.Tilemaps.Tilemap} map
- * @param {Boolean[]} [leversUI]
- * @param {Phaser.GameObjects.Image[]} [levers]
- * @param {Phaser.Physics.Matter.Image[]} [boxes]
- * @param {Phaser.GameObjects.GameObject} [entrance]
+ * @param {Boolean[]} leversUI
+ * @param {Phaser.GameObjects.Image[]} levers
+ * @param {Phaser.Physics.Matter.Image[]} boxes
+ * @param {Phaser.Physics.Matter.Sprite} player
  */
 
-export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, colliders, leversUI, levers, boxes, entrance) {
+export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, colliders, leversUI, levers, boxes, player) {
     /** @type {Phaser.Physics.Matter.Sprite | Phaser.Physics.Matter.Image} */
     let tempObject = null;
     const floorTileset = map.addTilesetImage("floor", "floor");  // Affiche les tiles du sol
@@ -48,9 +48,9 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
                     enemy.name+'-anim',
                     enemy.name+tempString+'_0.png'
                 )
+                console.log(enemy.name+'_'+enemy.getData('direction'));
                 tempObject.setBody(colliders[enemy.name+'_'+enemy.getData('direction')])
                 enemies.push(tempObject)
-                
                 
                 switch (enemy.name) {
                     case PURPLE:
@@ -71,14 +71,13 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
                         })
                     break;
 
-                    // case RED:
-                    //     time.addEvent({ // Ajoute l'IA RED
-                    //         delay: enemy.getData('speed'),
-                    //         callback: enemiesAIManager[index].MoveEnemyRed,
-                    //         args: [enemies[index], enemiesAIManager[index], colliders],
-                    //         loop: true,
-                    //     })
-                    // break;
+                    case RED:
+                        time.addEvent({ // Ajoute l'IA RED
+                            callback: enemiesAIManager[index].MoveEnemyRed,
+                            args: [enemies[index], enemiesAIManager[index], colliders, player],
+                            loop: true,
+                        })
+                    break;
 
                     case 'boss':
                        console.log('boss added');
@@ -119,7 +118,7 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
                     object.name+'-'+object.getData('orientation')+".png",
                     {isSensor: true}
                 )
-                tempObject.setScale(0.3)
+                tempObject.setScale(0.2)
                 tempObject.setDepth(tempObject.y)
             } else if (object.name === 'box') {
                 tempObject = matter.add.image(
