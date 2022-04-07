@@ -8,6 +8,7 @@ import EnemyManager from "../classes/EnemyManager";
 import UIManager from "../classes/UIManager";
 import BossManager from "../classes/BossManager";
 import ObjectLoader from "../loaders/ObjectLoaders";
+import SoundsLoader from "../loaders/SoundsLoader";
 
 import { CreatePurplePhantomAnims, CreateGreenPhantomAnims, CreateRedPhantomAnims } from "../animations/PhantomsAnimations";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
@@ -107,6 +108,7 @@ export default class Game extends Phaser.Scene {
             }
         }
 
+        this.currentmap = this.sound.add("ambiant_sfx");
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
         this.pauseKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); // Touche pour mettre le jeu en PAUSE
 
