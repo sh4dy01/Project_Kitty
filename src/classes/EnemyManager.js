@@ -17,6 +17,8 @@ export default class EnemyManager {
             // Vitesse de déplacement du fantôme violet
             case PURPLE:
                 this.speed = 2
+                this.zig = 0;
+                this.orientation = startOrientataion;
             break;
 
             // Vitesse de déplacement du fantôme vert
@@ -34,8 +36,6 @@ export default class EnemyManager {
             break;
         }
         this.direction = startDirection;
-        this.orientation = startOrientataion;
-        this.zig = 0;
     }
 
     /**
@@ -184,11 +184,11 @@ export default class EnemyManager {
      * @param {Phaser.Physics.Matter.Sprite} player
      */
     MoveEnemyRed(enemy, manager, colliders, player) {
-        console.log(player);
         const direction = Math.atan((player.x - enemy.x) / (player.y - enemy.y));
         const speed2 = player.y >= enemy.y ? manager.speed : -manager.speed;
-        
-        enemy.x = speed2 * Math.sin(direction)
-        enemy.y = speed2 * Math.cos(direction)
+
+        console.log(speed2 * Math.sin(direction), speed2 * Math.cos(direction));
+
+        enemy.setVelocity(speed2 * Math.sin(direction), speed2 * Math.cos(direction))
     }
 }
