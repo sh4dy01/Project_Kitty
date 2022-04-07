@@ -26,7 +26,7 @@ export default class Game extends Phaser.Scene {
      * @param {{ level: Number; remainingLife: Number}} data
     */
     init(data) {
-        this.currentLevel = data.level;
+        this.currentLevel = 1;
         this.currentLives = data.remainingLife;
         /**
          * @type {Phaser.Physics.Matter.Sprite[]}
@@ -46,6 +46,7 @@ export default class Game extends Phaser.Scene {
          * @type {Phaser.Physics.Matter.Image[]}
         */
          this.boxes = [];
+         
 
         this.spawnPoint = null
         /**
@@ -66,42 +67,44 @@ export default class Game extends Phaser.Scene {
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
             this.playerManager.canMove = true
         })
-        if(map.filterObjects('specials', (obj) => obj.name === 'boss') != null || map.filterObjects('Specials', (obj) => obj.name === 'entrance') != null){
-        if (this.currentLevel === 8) {
-            const Boss = map.filterObjects('Specials', (obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
-            this.boss = new BossManager({
-                scene: this,
-                x: ConvertXCartesianToIsometric(Boss.x, Boss.y),
-                y: ConvertYCartesianToIsometric(Boss.x, Boss.y),
-                texture: 'boss',
-                frame: 'bottom.png'
-            }, colliders)
 
-            const entrance = map.filterObjects('Specials', (obj) => obj.name === 'entrance')[0];        
-            this.entrance = this.matter.add.image(
-                ConvertXCartesianToIsometric(entrance.x, entrance.y),
-                ConvertYCartesianToIsometric(entrance.x, entrance.y),
-                'boss',
-                'closed.png'
-            )
-            this.entrance.setDepth(this.entrance.y)
-            this.entrance.setBody(colliders.open)
-            this.entrance.isSensor()
-            this.playerManager.entrance = this.entrance
+        if ( this.currentLevel === 8 || this.currentLevel === 0){
+            if (this.currentLevel === 8) {
+                const Boss = map.filterObjects('Specials', (obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
+                this.boss = new BossManager({
+                    scene: this,
+                    x: ConvertXCartesianToIsometric(Boss.x, Boss.y),
+                    y: ConvertYCartesianToIsometric(Boss.x, Boss.y),
+                    texture: 'boss',
+                    frame: 'bottom.png'
+                }, colliders)
+
+                const entrance = map.filterObjects('Specials', (obj) => obj.name === 'entrance')[0];        
+                this.entrance = this.matter.add.image(
+                    ConvertXCartesianToIsometric(entrance.x, entrance.y),
+                    ConvertYCartesianToIsometric(entrance.x, entrance.y),
+                    'boss',
+                    'closed.png'
+                )
+                this.entrance.setDepth(this.entrance.y)
+                this.entrance.setBody(colliders.open)
+                this.entrance.isSensor()
+                this.playerManager.entrance = this.entrance
 
 
-        } else if (this.currentLevel === 0) {
-            const entrance = map.filterObjects('Specials', (obj) => obj.name === 'entrance')[0];        
-            this.entrance = this.matter.add.image(
-                ConvertXCartesianToIsometric(entrance.x, entrance.y),
-                ConvertYCartesianToIsometric(entrance.x, entrance.y),
-                'boss',
-                'open.png'
-            )
-            this.entrance.setBody(colliders.open)
-            this.entrance.setDepth(this.entrance.y)
+            } else if (this.currentLevel === 0) {
+                const entrance = map.filterObjects('Specials', (obj) => obj.name === 'entrance')[0];        
+                this.entrance = this.matter.add.image(
+                    ConvertXCartesianToIsometric(entrance.x, entrance.y),
+                    ConvertYCartesianToIsometric(entrance.x, entrance.y),
+                    'boss',
+                    'open.png'
+                )
+                this.entrance.setBody(colliders.open)
+                this.entrance.setDepth(this.entrance.y)
+            }
         }
-        }
+
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
         this.pauseKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); // Touche pour mettre le jeu en PAUSE
 
@@ -154,12 +157,12 @@ export default class Game extends Phaser.Scene {
         
         this.collisionManager.CheckHitBoxes(this.playerManager, this.player, this.entrance, this.cameras.main);
         this.collisionManager.CheckButton(this.UIManager.leversStatus.length);
-        this.collisionManager.CheckCollideWorld(this.boss);
         
         this.UIManager.AddFilters()
         this.UIManager.UpdateLife()
         this.UIManager.AddLeversUI()
         this.playerManager.CheckIfAllPressed(this.matter.world, this.player)
+        this.collisionManager.CheckCollideWorld(this.boss, this.UIManager.leversStatus);
 
         this.debugPlayerInfoText = this.add.text(0, 0, 'Character position: ').setScrollFactor(0); // to remove
     }

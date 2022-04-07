@@ -85,14 +85,14 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
     }
 
     // --- Créer les différentes safezones du niveau --- //
-    map.createFromObjects('SafeZones', {}).forEach(
-        /** @param {Phaser.Physics.Matter.Sprite} safeZone */ 
-        (safeZone)=>{
+    map.filterObjects('SafeZones', (obj) => obj.name === 'SafeZone').forEach(
+        (safezone)=>{
+        console.log(safezone);
         matter.add.rectangle(
-            ConvertXCartesianToIsometric(safeZone.x, safeZone.y)+(safeZone.width-safeZone.height)/2,
-            ConvertYCartesianToIsometric(safeZone.x, safeZone.y)+safeZone.height/2,
-            safeZone.width,
-            safeZone.height,
+            ConvertXCartesianToIsometric(safezone.x, safezone.y)+(safezone.width-safezone.height)/2,
+            ConvertYCartesianToIsometric(safezone.x, safezone.y)+safezone.height/2,
+            safezone.width,
+            safezone.height,
             { isSensor:true, angle:0.52, label: "safezone", isStatic: true }
         )}
     )
@@ -118,7 +118,7 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
                     'objects',
                     object.name+'-face.png'
                 )
-                tempObject.setDepth(tempObject.y),
+                tempObject.setDepth(tempObject.y)
                 tempObject.setBody(colliders.box)
                 
                 boxes.push(tempObject);

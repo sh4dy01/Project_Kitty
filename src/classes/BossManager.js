@@ -2,7 +2,7 @@
 
 import Phaser, { Scene } from "phaser";
 import { ChangeDepth, ChangeEnemyHitBox } from "../helpers/Utilities";
-import { BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM, RIGHT, OFFSET_ORIENTATION, TOP, LEFT, TOP_LEFT, TOP_RIGHT, SINGLE_DIRECTION_MULTIPLIER, BOSS_SPEED_BOSST} from "../helpers/Constants";
+import { BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM, RIGHT, OFFSET_ORIENTATION, TOP, LEFT, TOP_LEFT, TOP_RIGHT, SINGLE_DIRECTION_MULTIPLIER, BOSS_SPEED_BOSST, MAX_SPEED_BOSS} from "../helpers/Constants";
 
 /**
  * @param {String} startDirection
@@ -97,11 +97,19 @@ export default class BossManager extends Phaser.Physics.Matter.Sprite{
     }
 
     /** @param {string} direction*/
-    ChangeBody(direction) {
+    ChangeBody(direction, leversStatus) {
         let tempx = this.x
         let tempy = this.y
-        this.speed += BOSS_SPEED_BOSST
-        console.log(direction);
+
+        leversStatus.forEach(levers => {
+            if(levers == true){
+                this.leversOn = true
+            }
+        });
+        if(this.leversOn == true && this.speed<MAX_SPEED_BOSS){
+            this.speed += BOSS_SPEED_BOSST
+            console.log("ttj plus vite");
+        }
 
         if (direction === TOP_LEFT || direction === TOP_RIGHT || direction === BOTTOM_RIGHT || direction === TOP || direction === BOTTOM || direction === BOTTOM_RIGHT || direction === BOTTOM_LEFT || direction === 'right' || direction === 'left') {
             this.setFrame(direction+'.png')
