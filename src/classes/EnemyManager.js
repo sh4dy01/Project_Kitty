@@ -16,17 +16,17 @@ export default class EnemyManager {
 
             // Vitesse de déplacement du fantôme violet
             case PURPLE:
-                this.speed = 1
+                this.speed = 2
             break;
 
             // Vitesse de déplacement du fantôme vert
             case GREEN:
-                this.speed = 2
+                this.speed = 4
             break;
 
             // Vitesse de déplacement du fantôme rouge
             case RED:
-                this.speed = 0.5
+                this.speed = 1
             break;
         
             default:

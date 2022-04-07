@@ -18,8 +18,8 @@ import { BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, PURPLE, RED, TOP_LEFT, TOP_RIGHT } fr
  * @param {Phaser.GameObjects.Image[]} [levers]
  * @param {Phaser.Physics.Matter.Image[]} [boxes]
  * @param {Phaser.GameObjects.GameObject} [entrance]
-
  */
+
 export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, colliders, leversUI, levers, boxes, entrance) {
     /** @type {Phaser.Physics.Matter.Sprite | Phaser.Physics.Matter.Image} */
     let tempObject = null;
@@ -34,15 +34,23 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
         map.createFromObjects('Enemies', {}).forEach(
             /** @param {Phaser.GameObjects.Sprite} enemy */
             (enemy, index)=>{
-                if (enemy.name !== 'boss') {
-                    enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name, enemy.getData('orientation'))) // Ajoute son manager
-
-                enemies.push(matter.add.sprite( // Ajoute le sprite de chaque ennemi dans le jeu
+                enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name, enemy.getData('orientation'))) // Ajoute son manager
+                let tempString 
+                let tempObject
+                if (enemy.getData('direction') === TOP_LEFT || enemy.getData('direction') === TOP_RIGHT) {
+                    tempString = '-back'
+                } else {
+                    tempString = '-face'
+                }
+                tempObject = matter.add.sprite( // Ajoute le sprite de chaque ennemi dans le jeu
                     ConvertXCartesianToIsometric(enemy.x, enemy.y),
                     ConvertYCartesianToIsometric(enemy.x, enemy.y),
                     enemy.name+'-anim',
-                    enemy.getData('direction')
-                ))
+                    enemy.name+tempString+'_0.png'
+                )
+                tempObject.setBody(colliders[enemy.name+'_'+enemy.getData('direction')])
+                enemies.push(tempObject)
+                
                 
                 switch (enemy.name) {
                     case PURPLE:
@@ -79,7 +87,7 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
                     default:
                         console.log('wrong name');
                     break;
-                }}
+                }
             }
         )
     }
