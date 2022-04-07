@@ -2,6 +2,7 @@
 import Phaser, { Physics } from "phaser";
 import { ChangeEnemyHitBox } from "../helpers/Utilities";
 import { BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, GREEN_SIZE, OFFSET_ORIENTATION, PURPLE, RED, TOP_LEFT, TOP_RIGHT} from "../helpers/Constants";
+import PlayerManager from "./PlayerManager";
 
 export default class EnemyManager {     
     /**
@@ -181,37 +182,60 @@ export default class EnemyManager {
      * @param {Phaser.Physics.Matter.Sprite} enemy
      * @param {EnemyManager} manager
      * @param {Phaser.Physics.Matter.Sprite} player
+     * @param {PlayerManager} playerManager
      */
-    MoveEnemyRed(enemy, manager, player) {
-        const direction = Math.atan((player.x - enemy.x) / (player.y - enemy.y));
-        const speed2 = player.y >= enemy.y ? manager.speed : -manager.speed;
+    MoveEnemyRed(enemy, manager, player, playerManager) {
+        console.log(playerManager.isSafe);
+        if (playerManager.isSafe === false) {
+            const direction = Math.atan((player.x - enemy.x) / (player.y - enemy.y));
+            const speed2 = player.y >= enemy.y ? manager.speed : -manager.speed;
 
-        const tempX = enemy.x
-        const tempY = enemy.y
+            const tempX = enemy.x
+            const tempY = enemy.y
 
-        if ((speed2 * Math.sin(direction) > 0) && speed2 * Math.cos(direction) > 0 && manager.direction !== BOTTOM_RIGHT ) {
-            manager.direction = BOTTOM_RIGHT
-            enemy.play(manager.type+'Front')
-            enemy.setFlipX(false);
-            enemy.setBody(manager.colliders[RED+'_'+manager.direction])            
-        } else if ((speed2 * Math.sin(direction) < 0) && speed2 * Math.cos(direction) > 0 && manager.direction !== BOTTOM_LEFT) {
-            manager.direction = BOTTOM_LEFT
-            enemy.play(manager.type+'Front')
-            enemy.setFlipX(true);
-            enemy.setBody(manager.colliders[RED+'_'+manager.direction])
-        } else if ((speed2 * Math.sin(direction) > 0) && speed2 * Math.cos(direction) < 0 && manager.direction !== TOP_RIGHT) {
-            manager.direction = TOP_RIGHT
-            enemy.play(manager.type+'Back')
-            enemy.setFlipX(false);
-            enemy.setBody(manager.colliders[RED+'_'+manager.direction])
-        } else if ((speed2 * Math.sin(direction) < 0) && speed2 * Math.cos(direction) < 0 && manager.direction !== TOP_LEFT){
-            manager.direction = TOP_LEFT
-            enemy.play(manager.type+'Back')
-            enemy.setFlipX(true);
-            enemy.setBody(manager.colliders[RED+'_'+manager.direction])
+            if ((speed2 * Math.sin(direction) > 0) && speed2 * Math.cos(direction) > 0 && manager.direction !== BOTTOM_RIGHT ) {
+                manager.direction = BOTTOM_RIGHT
+                if (enemy.anims.isPaused) {
+                    enemy.anims.resume()
+                } else {
+                    enemy.play(manager.type+'Front')
+                }
+                enemy.setFlipX(false);
+                enemy.setBody(manager.colliders[RED+'_'+manager.direction])            
+            } else if ((speed2 * Math.sin(direction) < 0) && speed2 * Math.cos(direction) > 0 && manager.direction !== BOTTOM_LEFT) {
+                manager.direction = BOTTOM_LEFT
+                if (enemy.anims.isPaused) {
+                    enemy.anims.resume()
+                } else {
+                    enemy.play(manager.type+'Front')
+                }
+                enemy.setFlipX(true);
+                enemy.setBody(manager.colliders[RED+'_'+manager.direction])
+            } else if ((speed2 * Math.sin(direction) > 0) && speed2 * Math.cos(direction) < 0 && manager.direction !== TOP_RIGHT) {
+                manager.direction = TOP_RIGHT
+                if (enemy.anims.isPaused) {
+                    enemy.anims.resume()
+                } else {
+                    enemy.play(manager.type+'Back')
+                }
+                enemy.setFlipX(false);
+                enemy.setBody(manager.colliders[RED+'_'+manager.direction])
+            } else if ((speed2 * Math.sin(direction) < 0) && speed2 * Math.cos(direction) < 0 && manager.direction !== TOP_LEFT){
+                manager.direction = TOP_LEFT
+                if (enemy.anims.isPaused) {
+                    enemy.anims.resume()
+                } else {
+                    enemy.play(manager.type+'Back')
+                }
+                enemy.setFlipX(true);
+                enemy.setBody(manager.colliders[RED+'_'+manager.direction])
+            }
+            enemy.x = tempX
+            enemy.y = tempY
+            enemy.setVelocity(speed2 * Math.sin(direction), speed2 * Math.cos(direction))
+        } else {
+            enemy.setVelocity(0, 0)
+            enemy.anims.pause()
         }
-        enemy.x = tempX
-        enemy.y = tempY
-        enemy.setVelocity(speed2 * Math.sin(direction), speed2 * Math.cos(direction))
     }
 }

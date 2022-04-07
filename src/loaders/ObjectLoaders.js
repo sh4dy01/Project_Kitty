@@ -115,7 +115,7 @@ export default class ObjectsLoader {
     /**
      * @param {Phaser.Physics.Matter.Sprite} player
     */
-    AddEnemies(player) {
+    AddEnemies(player, playerManager) {
         /// --- Create all the enemies with their AI and animations --- //
         if(this.map.createFromObjects('Enemies', {}) != null){
             this.map.createFromObjects('Enemies', {}).forEach(
@@ -160,7 +160,7 @@ export default class ObjectsLoader {
                         case RED:
                             this.time.addEvent({ // Ajoute l'IA RED
                                 callback: this.enemiesAIManager[index].MoveEnemyRed,
-                                args: [this.enemies[index], this.enemiesAIManager[index], player],
+                                args: [this.enemies[index], this.enemiesAIManager[index], player, playerManager],
                                 loop: true,
                             })
                         break;

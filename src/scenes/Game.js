@@ -159,11 +159,12 @@ export default class Game extends Phaser.Scene {
         ChangeDepth(this.player)
         this.player.setFixedRotation()
         
-        this.objectLoader.AddEnemies(this.player)
+        this.objectLoader.AddEnemies(this.player, this.playerManager)
         
         this.cameras.main.startFollow(this.player, false, 0.05, 0.05); // Permet que la caméra suit le joueur
         
         this.UIManager.AddFilters();
+        this.UIManager.AddBackGroundUI();
         this.UIManager.UpdateLife();
         this.UIManager.AddLeversUI();
         this.playerManager.CheckIfAllPressed(this.matter.world, this.player);
@@ -190,6 +191,7 @@ export default class Game extends Phaser.Scene {
             this.scene.pause();
             this.scene.launch(PAUSE_SCREEN, {sceneToResume: this})
         }
+
         this.boxes.forEach(box => {
             ChangeDepth(box)
         })
