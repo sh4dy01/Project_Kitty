@@ -4,28 +4,11 @@
     outline: none;
     text-decoration: none;
     border: 0;
-    background-color: black;
-}
-
-h1 {
-    display: none;
-}
-
-head, main, footer {
-    display: none;
-}
-
-#game_section {
-    width: 100vw;
-    height: 70vh;
-    display: flex;
-    justify-content: center;
 }
 
 #game {
     width: 80%;
     height: 90%;
-    background-color: black;
     padding: 20px;
     margin-top: 25px;
 }
