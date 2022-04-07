@@ -78,10 +78,10 @@ export default class ObjectsLoader {
                         'objects',
                         object.name+'-face.png'
                     )
-                    tempObject.setDepth(tempObject.y)
                     tempObject.setBody(this.colliders.box)
                     tempObject.setFixedRotation();
-                    
+                    tempObject.setDepth(tempObject.y)
+
                     this.boxes.push(tempObject);
                 } else {
                     if (object.getData('orientation') === TOP_RIGHT || object.getData('orientation') === TOP_LEFT) {
@@ -108,7 +108,7 @@ export default class ObjectsLoader {
                     }
                 }
             
-                ChangeDepth(tempObject)
+                tempObject.setDepth(tempObject.y)
             }
         );
     }
@@ -193,7 +193,7 @@ export default class ObjectsLoader {
                 'levers',
                 "red-lever.png"
             ).setCircle(60, {label: 'lever'+index, isSensor: true}),
-            ChangeDepth(tempObject)
+            tempObject.setDepth(tempObject.y)
 
             this.leversUI.push(false)
             this.levers.push(tempObject)
@@ -215,7 +215,7 @@ export default class ObjectsLoader {
             "bottom-left.png",
             { label: "boss", isSensor: true }
         ).setScale(2).setFixedRotation()
-        
+        tempObject.setDepth(tempObject.y)
         this.time.addEvent({
             callback: bossManager.MoveBoss,
             args: [tempObject, bossManager , this.colliders],
