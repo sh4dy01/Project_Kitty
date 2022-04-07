@@ -28,8 +28,7 @@ export default class TexturesLoader extends Phaser.Scene {
         this.load.image('pause-screen', 'assets/sprites/ui/pause-screen.png')
 
         this.load.image("floor", "assets/tiles/floor.png");
-        this.load.image("wall", "assets/tiles/wall.png");
-        this.load.image("walls", "assets/tiles/walls.png");
+        this.load.image("wall", "assets/tiles/walls.png");
     }
 
     create() {
