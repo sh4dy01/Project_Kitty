@@ -8,14 +8,13 @@ import EnemyManager from "../classes/EnemyManager";
 import UIManager from "../classes/UIManager";
 import BossManager from "../classes/BossManager";
 import ObjectLoader from "../loaders/ObjectLoaders";
-import SoundsLoader from "../loaders/SoundsLoader";
 
 import { CreatePurplePhantomAnims, CreateGreenPhantomAnims, CreateRedPhantomAnims } from "../animations/PhantomsAnimations";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
 import { GREEN, PLAYER_SIZE, PURPLE, RED, PAUSE_SCREEN } from "../helpers/Constants";
 import { CreatePlayerAnims } from "../animations/PlayerAnimations";
 import { ChangeDepth } from "../helpers/Utilities";
-
+import SoundManager from "../classes/SoundManager";
 
 export default class Game extends Phaser.Scene {
     constructor(){
@@ -26,7 +25,7 @@ export default class Game extends Phaser.Scene {
      * @param {{ level: Number; remainingLife: Number}} data
     */
     init(data) {
-        this.currentLevel = 1;
+        this.currentLevel = data.level;
         this.currentLives = data.remainingLife;
         /**
          * @type {Phaser.Physics.Matter.Sprite[]}
@@ -54,18 +53,21 @@ export default class Game extends Phaser.Scene {
         this.enemiesAIManager = [];
 
         this.sceneManager = new SceneManager(this.scene, this.currentLevel, this.cameras.main);
-        this.UIManager = new UIManager(this.currentLevel, data.remainingLife, this.add, this.scale.width, this.scale.height, this.leversUI, this.levers);
-        this.playerManager = new PlayerManager(this.currentLives, this.sceneManager, this.UIManager);
-        this.collisionManager = new CollisionManager(this.matter.world, this.playerManager, this.sceneManager)
-
-        this.ambient = this.sound.add("ambiant_sfx");
-        this.doorSound = this.sound.add("door");
+        this.UIManager = new UIManager(data.level, data.remainingLife, this.add, this.scale.width, this.scale.height, this.leversUI, this.levers);
+        this.soundManager = new SoundManager(this.sound);
+        this.playerManager = new PlayerManager(data.remainingLife, this.sceneManager, this.UIManager, this.soundManager);
+        this.collisionManager = new CollisionManager(this.matter.world, this.playerManager, this.sceneManager, this.soundManager)
     }
 
     create() {
-        // this.ambient.play()
-        this.currentLevel = 0
-        const map = this.add.tilemap("map"/**+this.level */);  // Ajoute les emplacements des tiles dans le jeu
+        if (!this.sound.get('main').isPlaying) {
+            this.soundManager.ambientMusic.play()
+        }
+        if (this.sound.get('ambiant_sfx')) {
+            this.sound.get('ambiant_sfx').stop()
+        }
+
+        const map = this.add.tilemap("map"+this.currentLevel);  // Ajoute les emplacements des tiles dans le jeu
         const colliders = this.cache.json.get('colliders'); // Récupère toutes les collisions pour les sprites
 
         this.objectLoader = new ObjectLoader(map, this.matter, colliders, this.time, this.boxes, this.levers, this.leversUI, this.enemies, this.enemiesAIManager)
@@ -84,7 +86,8 @@ export default class Game extends Phaser.Scene {
                     y: ConvertYCartesianToIsometric(Boss.x, Boss.y),
                     texture: 'boss',
                     frame: 'bottom.png'
-                }, colliders)
+                }, colliders, this.soundManager.bossSound)
+                this.soundManager.bossSound.play()
 
                 const entrance = map.filterObjects('Specials', (obj) => obj.name === 'entrance')[0];        
                 this.entrance = this.matter.add.image(
@@ -98,18 +101,17 @@ export default class Game extends Phaser.Scene {
                 this.entrance.isSensor()
                 this.playerManager.entrance = this.entrance
 
-
             } else if (this.currentLevel === 0) {
                 const entrance = map.filterObjects('Specials', (obj) => obj.name === 'entrance')[0];        
                 this.entrance = this.matter.add.image(
                     ConvertXCartesianToIsometric(entrance.x, entrance.y),
                     ConvertYCartesianToIsometric(entrance.x, entrance.y),
                     'boss',
-                    'open.png'
+                    'entrance.png'
                 )
                 this.entrance.setBody(colliders.open)
                 this.entrance.setDepth(this.entrance.y)
-            }
+            } 
         }
 
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)

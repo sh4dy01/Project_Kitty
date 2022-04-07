@@ -28,7 +28,7 @@ export default class IntroScreen extends Phaser.Scene {
     preload() {
         this.load.atlas('player', 'assets/spritesheet/player.png', 'assets/spritesheet/player.json')
         this.load.json('colliders', 'assets/colliders/colliders.json') // Ficher JSON contenant toutes les collisions créés par PhysicsEditor
-        this.load.image('intro', 'assets/sprites/scene_depart.png')
+        this.load.image('intro', 'assets/sprites/intro/scene_depart.png')
     }
 
     create() {
@@ -50,7 +50,7 @@ export default class IntroScreen extends Phaser.Scene {
         })
 
         this.player = this.matter.add.sprite(
-            this.scale.width-175, 
+            this.scale.width-150,
             this.scale.height-100, 
             'player', 
             'back-left-up 1.png',

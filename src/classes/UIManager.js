@@ -55,14 +55,14 @@ export default class UIManager{
         }
         if (this.currentLife < MAX_LIVES) {
             for (let i = this.currentLife; i < MAX_LIVES; i++) {
-                this.add.image(70 + UI_LIFE_OFFSET*i, this.gameHeight-40, 'ui', 'LifeEmpty.png').setScrollFactor(0).setDepth(9999).setScale(UI_LIFE_SIZE)
+                this.add.image(70 + UI_LIFE_OFFSET*i, 60, 'ui', 'LifeEmpty.png').setScrollFactor(0).setDepth(9999).setScale(UI_LIFE_SIZE)
             }
         }
     }
 
     /**
      * @param {string | number} index
-     */
+    */
     UpdateLeversUI(index) {
         this.leversStatus[index] = true
         this.leversUIImage[index].setTexture('ui', 'lever_ui_on.png')
