@@ -311,7 +311,7 @@
                         {
                          "name":"orientation",
                          "type":"string",
-                         "value":"bottom-left"
+                         "value":"top-right"
                         }],
                  "rotation":0,
                  "type":"",
@@ -825,8 +825,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":980.380952380951,
-                 "y":5496.95238095238
+                 "x":2257.23809523809,
+                 "y":3784.09523809524
                 }, 
                 {
                  "height":0,
