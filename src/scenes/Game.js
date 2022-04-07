@@ -11,9 +11,9 @@ import BossManager from "../classes/BossManager";
 import { CreatePurplePhantomAnims, CreateGreenPhantomAnims, CreateRedPhantomAnims } from "../animations/PhantomsAnimations";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
 import { AddBoss, LoadAllObjects as AddAllObjectsFromTiled } from "../loaders/ObjectLoaders";
-import { GREEN, PLAYER_SIZE, PURPLE, RED, PAUSE_SCREEN } from "../helpers/constants";
+import { GREEN, PLAYER_SIZE, PURPLE, RED, PAUSE_SCREEN } from "../helpers/Constants";
 import { CreatePlayerAnims } from "../animations/PlayerAnimations";
-import { ChangeDepth } from "../helpers/ChangeDepth";
+import { ChangeDepth } from "../helpers/Utilities";
 
 
 export default class Game extends Phaser.Scene {
@@ -42,9 +42,12 @@ export default class Game extends Phaser.Scene {
         */
         this.levers = [];
 
+        /**
+         * @type {Phaser.Physics.Matter.Image[]}
+        */
+         this.boxes = [];
+
         this.spawnPoint = null
-        this.boss = null
-        this.bossManager = new BossManager()
         /**
          * @type {EnemyManager[]}
         */
@@ -59,14 +62,45 @@ export default class Game extends Phaser.Scene {
         const map = this.add.tilemap("map"/**+this.level */);  // Ajoute les emplacements des tiles dans le jeu
         const colliders = this.cache.json.get('colliders'); // Récupère toutes les collisions pour les sprites
 
-        if (this.currentLevel === 8 || true) {
-            this.boss = AddBoss(map, colliders, this.matter, this.time, this.bossManager)
-        }
-
         this.cameras.main.fadeIn(2000, 0, 0, 0);
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
             this.playerManager.canMove = true
         })
+
+        if (this.currentLevel === 8) {
+            const Boss = map.filterObjects('Specials', (obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
+            this.boss = new BossManager({
+                scene: this,
+                x: ConvertXCartesianToIsometric(Boss.x, Boss.y),
+                y: ConvertYCartesianToIsometric(Boss.x, Boss.y),
+                texture: 'boss',
+                frame: 'bottom.png'
+            }, colliders)
+
+            const entrance = map.filterObjects('Specials', (obj) => obj.name === 'entrance')[0];        
+            this.entrance = this.matter.add.image(
+                ConvertXCartesianToIsometric(entrance.x, entrance.y),
+                ConvertYCartesianToIsometric(entrance.x, entrance.y),
+                'boss',
+                'closed.png'
+            )
+            this.entrance.setDepth(this.entrance.y)
+            this.entrance.setBody(colliders.open)
+            this.entrance.isSensor()
+            this.playerManager.entrance = this.entrance
+
+
+        } else if (this.currentLevel === 0) {
+            const entrance = map.filterObjects('Specials', (obj) => obj.name === 'entrance')[0];        
+            this.entrance = this.matter.add.image(
+                ConvertXCartesianToIsometric(entrance.x, entrance.y),
+                ConvertYCartesianToIsometric(entrance.x, entrance.y),
+                'boss',
+                'open.png'
+            )
+            this.entrance.setBody(colliders.open)
+            this.entrance.setDepth(this.entrance.y)
+        }
 
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
         this.pauseKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); // Touche pour mettre le jeu en PAUSE
@@ -74,7 +108,7 @@ export default class Game extends Phaser.Scene {
         this.matter.world.disableGravity();
         this.playerManager.colliders = colliders
 
-        AddAllObjectsFromTiled(map, this.enemiesAIManager, this.enemies, this.matter, this.time, colliders, this.leversUI, this.levers)
+        AddAllObjectsFromTiled(map, this.enemiesAIManager, this.enemies, this.matter, this.time, colliders, this.leversUI, this.levers, this.boxes, this.entrance)
 
         // --- AJOUTE LES ANIMATIONS  --- //
         CreatePurplePhantomAnims(this.anims, PURPLE);
@@ -117,10 +151,10 @@ export default class Game extends Phaser.Scene {
         this.player.setFixedRotation()
 
         this.cameras.main.startFollow(this.player, false, 0.05, 0.05); // Permet que la caméra suit le joueur
-
-        this.collisionManager.CheckHitBoxes(this.playerManager, this.player);
+        
+        this.collisionManager.CheckHitBoxes(this.playerManager, this.player, this.entrance, this.cameras.main);
         this.collisionManager.CheckButton(this.UIManager.leversStatus.length);
-        this.collisionManager.CheckCollideWorld(this.bossManager);
+        this.collisionManager.CheckCollideWorld(this.boss);
         
         this.UIManager.AddFilters()
         this.UIManager.UpdateLife()
@@ -145,6 +179,9 @@ export default class Game extends Phaser.Scene {
             this.scene.pause();
             this.scene.launch(PAUSE_SCREEN, {sceneToResume: this})
         }
+        this.boxes.forEach(box => {
+            ChangeDepth(box)
+        })
 
         this.playerManager.CheckPlayerInputs(this.player, this.cursors);
         if (this.playerManager.canPress) {

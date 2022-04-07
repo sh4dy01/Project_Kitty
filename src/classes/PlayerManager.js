@@ -1,8 +1,8 @@
 //@ts-check
 import Phaser from "phaser";
-import { ChangeDepth, UpdateLeverTexture } from "../helpers/ChangeDepth";
-import { OFFSET_ORIENTATION, SINGLE_DIRECTION_MULTIPLIER } from "../helpers/constants";
-import CollisionManager, { CheckNextLevel } from "./CollisionManager";
+import { ChangeDepth } from "../helpers/Utilities";
+import { OFFSET_ORIENTATION, SINGLE_DIRECTION_MULTIPLIER } from "../helpers/Constants";
+import { CheckFinalLevel, CheckNextLevel } from "./CollisionManager";
 import SceneManager from "./SceneManager";
 import UIManager from "./UIManager";
 
@@ -30,6 +30,7 @@ export default class PlayerManager {
         this.colliders = null
         /**@type {Phaser.Physics.Matter.Image} */
         this.exitDoor = null
+        this.entrance = null
 
         this.currentLives = currentLife
         this.sceneManager = sceneManager
@@ -110,12 +111,12 @@ export default class PlayerManager {
         }
     }
 
+
+    // Détection de l'activation de tous les boutons
     /**
      * @param {Phaser.Physics.Matter.World} world
      * @param {Phaser.Physics.Matter.Sprite} player
-    */
-
-    // Détection de l'activation de tous les boutons
+     */
     CheckIfAllPressed(world, player) {
         for (let index = 0; index < this.UIManager.leversStatus.length; index++) {
             if (this.UIManager.leversStatus[index] === false) {
@@ -128,8 +129,11 @@ export default class PlayerManager {
         this.allButtonPressed = true;
         this.canLoadNextScene = true;
         this.exitDoor.setTexture('playerPoints', "door-open.png");
-        if (this.canLoadNextScene) {
+        if (this.canLoadNextScene && this.sceneManager.currentLevel !== 8) {
             CheckNextLevel(world, player, this, this.sceneManager)
+        } else {
+            this.entrance.setTexture('boss', 'open.png')
+            CheckFinalLevel(world, player, this, this.sceneManager)
         }
     }
 

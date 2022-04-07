@@ -1,6 +1,6 @@
 //@ts-check
 import Phaser from "phaser";
-import { MAX_LIVES} from "../helpers/constants";
+import { MAX_LIVES} from "../helpers/Constants";
 
 export default class LevelLoader extends Phaser.Scene {
 
@@ -24,7 +24,7 @@ export default class LevelLoader extends Phaser.Scene {
     }
 
     preload() {
-        this.load.tilemapTiledJSON("map"/*+this.level*/, "assets/tiledmap/proto.json")
+        this.load.tilemapTiledJSON("map"/*+this.level*/, "assets/tiledmap/Levels/level0.json")
     }
 
     create() {

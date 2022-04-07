@@ -106,7 +106,7 @@
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
-            <enum type="AlgorithmSettings::AlgorithmId">MaxRects</enum>
+            <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
@@ -277,6 +277,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../sprites/props/table-face.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>60,63,120,125</rect>
+                <key>scale9Paddings</key>
+                <rect>60,63,120,125</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../sprites/props/wardrobe-back.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -320,6 +335,7 @@
             <filename>../sprites/props/wardrobe-face.png</filename>
             <filename>../sprites/props/chimney-face.png</filename>
             <filename>../sprites/props/box-face.png</filename>
+            <filename>../sprites/props/table-face.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

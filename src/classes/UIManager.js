@@ -1,7 +1,7 @@
 //@ts-check
 import Phaser from "phaser";
-import { UpdateLeverTexture } from "../helpers/ChangeDepth";
-import { MAX_LIVES, UI_LEVER_OFFSET, UI_LEVER_SIZE, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_Y_OFFSET } from "../helpers/constants";
+import { UpdateLeverTexture } from "../helpers/Utilities";
+import { MAX_LIVES, UI_LEVER_OFFSET, UI_LEVER_SIZE, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_Y_OFFSET } from "../helpers/Constants";
 
 export default class UIManager{
     /**

@@ -1,7 +1,7 @@
 //@ts-check
 import Phaser from "phaser";
-import { ChangeEnemyHitBox } from "../helpers/ChangeDepth";
-import { BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, GREEN_SIZE, OFFSET_ORIENTATION, PURPLE, RED, TOP_LEFT, TOP_RIGHT} from "../helpers/constants";
+import { ChangeEnemyHitBox } from "../helpers/Utilities";
+import { BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, GREEN_SIZE, OFFSET_ORIENTATION, PURPLE, RED, TOP_LEFT, TOP_RIGHT} from "../helpers/Constants";
 
 export default class EnemyManager {     
     /**

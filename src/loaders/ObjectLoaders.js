@@ -4,8 +4,8 @@ import BossManager from "../classes/BossManager";
 
 import EnemyManager from "../classes/EnemyManager";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
-import { ChangeDepth } from "../helpers/ChangeDepth";
-import { BOTTOM, BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, GREEN_SIZE, PURPLE, RED, TOP_LEFT, TOP_RIGHT } from "../helpers/constants";
+import { ChangeDepth } from "../helpers/Utilities";
+import { BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, PURPLE, RED, TOP_LEFT, TOP_RIGHT } from "../helpers/Constants";
 
 /**
  * @param {EnemyManager[]} enemiesAIManager
@@ -14,10 +14,13 @@ import { BOTTOM, BOTTOM_LEFT, BOTTOM_RIGHT, GREEN, GREEN_SIZE, PURPLE, RED, TOP_
  * @param {Phaser.Time.Clock} time
  * @param {any} colliders
  * @param {Phaser.Tilemaps.Tilemap} map
- * @param {Boolean[]} leversUI
- * @param {Phaser.GameObjects.Image[]} levers
+ * @param {Boolean[]} [leversUI]
+ * @param {Phaser.GameObjects.Image[]} [levers]
+ * @param {Phaser.Physics.Matter.Image[]} [boxes]
+ * @param {Phaser.GameObjects.GameObject} [entrance]
+
  */
-export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, colliders, leversUI, levers) {
+export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, colliders, leversUI, levers, boxes, entrance) {
     /** @type {Phaser.Physics.Matter.Sprite | Phaser.Physics.Matter.Image} */
     let tempObject = null;
     const floorTileset = map.addTilesetImage("floor", "floor");  // Affiche les tiles du sol
@@ -31,8 +34,8 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
         map.createFromObjects('Enemies', {}).forEach(
             /** @param {Phaser.GameObjects.Sprite} enemy */
             (enemy, index)=>{
-
-                enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name, enemy.getData('orientation'))) // Ajoute son manager
+                if (enemy.name !== 'boss') {
+                    enemiesAIManager.push(new EnemyManager(enemy.getData('direction'), enemy.name, enemy.getData('orientation'))) // Ajoute son manager
 
                 enemies.push(matter.add.sprite( // Ajoute le sprite de chaque ennemi dans le jeu
                     ConvertXCartesianToIsometric(enemy.x, enemy.y),
@@ -60,19 +63,23 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
                         })
                     break;
 
-                    case RED:
-                        time.addEvent({ // Ajoute l'IA RED
-                            delay: enemy.getData('speed'),
-                            callback: enemiesAIManager[index].MoveEnemyRed,
-                            args: [enemies[index], enemiesAIManager[index], colliders],
-                            loop: true,
-                        })
+                    // case RED:
+                    //     time.addEvent({ // Ajoute l'IA RED
+                    //         delay: enemy.getData('speed'),
+                    //         callback: enemiesAIManager[index].MoveEnemyRed,
+                    //         args: [enemies[index], enemiesAIManager[index], colliders],
+                    //         loop: true,
+                    //     })
+                    // break;
+
+                    case 'boss':
+                       console.log('boss added');
                     break;
                 
                     default:
                         console.log('wrong name');
                     break;
-                }
+                }}
             }
         )
     }
@@ -95,23 +102,51 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
         /** @param {Phaser.Physics.Matter.Sprite} object */
         (object) => {
             let orientation
-            if (object.getData('orientation') === TOP_RIGHT || object.getData('orientation') === TOP_LEFT) {
-                orientation = "-face"
-            } else if (object.getData('orientation') === BOTTOM_RIGHT || object.getData('orientation') === BOTTOM_LEFT) {
-                orientation = "-back"
-            }
 
-            tempObject = matter.add.image(
-                ConvertXCartesianToIsometric(object.x, object.y),
-                ConvertYCartesianToIsometric(object.x, object.y),
-                'objects',
-                object.name+orientation+".png"
-            )
-            tempObject.setBody(colliders[object.name])
-            ChangeDepth(tempObject)
-            if (object.getData('orientation') === (TOP_LEFT || BOTTOM_RIGHT)) {
-                tempObject.setFlipX(true);
+            if (object.name === 'way' || object.name === 'exit') {
+                tempObject = matter.add.image(
+                    ConvertXCartesianToIsometric(object.x, object.y),
+                    ConvertYCartesianToIsometric(object.x, object.y),
+                    'indicators',
+                    object.name+'-'+object.getData('orientation')+".png",
+                    {isSensor: true}
+                ).setScale(0.3).setDepth(tempObject.y)
+            } else if (object.name === 'box') {
+                tempObject = matter.add.image(
+                    ConvertXCartesianToIsometric(object.x, object.y),
+                    ConvertYCartesianToIsometric(object.x, object.y),
+                    'objects',
+                    object.name+'-face.png'
+                ).setDepth(tempObject.y),
+                tempObject.setBody(colliders.box)
+                
+                boxes.push(tempObject);
+            } else {
+                if (object.getData('orientation') === TOP_RIGHT || object.getData('orientation') === TOP_LEFT) {
+                    orientation = "-face"
+                } else if (object.getData('orientation') === BOTTOM_RIGHT || object.getData('orientation') === BOTTOM_LEFT) {
+                    orientation = "-back"
+                }
+    
+                tempObject = matter.add.image(
+                    ConvertXCartesianToIsometric(object.x, object.y),
+                    ConvertYCartesianToIsometric(object.x, object.y),
+                    'objects',
+                    object.name+orientation+".png"
+                )
+                if ((object.getData('orientation') === TOP_RIGHT || object.getData('orientation') === BOTTOM_LEFT) && colliders[object.name+'-right'] != null) {
+                    tempObject.setBody(colliders[object.name+"-right"])
+                } else if ((object.getData('orientation') === TOP_LEFT || object.getData('orientation') === BOTTOM_RIGHT) && colliders[object.name+'-left'] != null) {
+                    tempObject.setBody(colliders[object.name+'-left'])
+                } else {
+                    tempObject.setBody(colliders[object.name])
+                }
+                if (object.getData('orientation') === (TOP_LEFT || BOTTOM_RIGHT)) {
+                    tempObject.setFlipX(true);
+                }
             }
+           
+            ChangeDepth(tempObject)
         }
     );
 
@@ -157,7 +192,7 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
 export function AddBoss(map, colliders, matter, time, bossManager) {
     // --- Créer le point de spawn du  BOSS --- //
     /** @param {Phaser.GameObjects.Sprite} boss */
-    const Boss = map.filterObjects('Enemies', (/** @type {{ name: string; }} */ obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
+    const Boss = map.filterObjects('Enemies', (obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
 
     let tempObject = matter.add.sprite( // Ajoute le sprite dans le jeu
         ConvertXCartesianToIsometric(Boss.x, Boss.y),

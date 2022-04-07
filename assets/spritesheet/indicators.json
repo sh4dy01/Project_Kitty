@@ -94,7 +94,7 @@
 					}
 				},
 				{
-					"filename": "exit-top.png",
+					"filename": "exit-left.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -115,7 +115,7 @@
 					}
 				},
 				{
-					"filename": "exit-bottom.png",
+					"filename": "exit-right.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -141,6 +141,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:2439b99eb927d950b5cfc5d73c2fb0f6:3d9fcdcd31179cd58dbacdbe1b1506ca:ce747235c3689c52f61007e67a288862$"
+		"smartupdate": "$TexturePacker:SmartUpdate:2374fdecc9230342293bb52a6125c418:cfc5a75b8545d0ef5bd7f970f178623f:ce747235c3689c52f61007e67a288862$"
 	}
 }

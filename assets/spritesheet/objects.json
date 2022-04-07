@@ -4,53 +4,11 @@
 			"image": "objects.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 255,
-				"h": 1287
+				"w": 475,
+				"h": 933
 			},
 			"scale": 1,
 			"frames": [
-				{
-					"filename": "chimney-face.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 210,
-						"h": 250
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 210,
-						"h": 250
-					},
-					"frame": {
-						"x": 1,
-						"y": 1,
-						"w": 210,
-						"h": 250
-					}
-				},
-				{
-					"filename": "wardrobe-back.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 177,
-						"h": 275
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 177,
-						"h": 275
-					},
-					"frame": {
-						"x": 1,
-						"y": 253,
-						"w": 177,
-						"h": 275
-					}
-				},
 				{
 					"filename": "lamp-face.png",
 					"rotated": false,
@@ -66,10 +24,94 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 180,
-						"y": 253,
+						"x": 1,
+						"y": 1,
 						"w": 68,
 						"h": 70
+					}
+				},
+				{
+					"filename": "clock-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 75,
+						"h": 250
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 75,
+						"h": 250
+					},
+					"frame": {
+						"x": 71,
+						"y": 1,
+						"w": 75,
+						"h": 250
+					}
+				},
+				{
+					"filename": "clock-back.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 76,
+						"h": 250
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 76,
+						"h": 250
+					},
+					"frame": {
+						"x": 148,
+						"y": 1,
+						"w": 76,
+						"h": 250
+					}
+				},
+				{
+					"filename": "box-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 130,
+						"h": 150
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 130,
+						"h": 150
+					},
+					"frame": {
+						"x": 226,
+						"y": 1,
+						"w": 130,
+						"h": 150
+					}
+				},
+				{
+					"filename": "armchair-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 116,
+						"h": 175
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 116,
+						"h": 175
+					},
+					"frame": {
+						"x": 358,
+						"y": 1,
+						"w": 116,
+						"h": 175
 					}
 				},
 				{
@@ -88,30 +130,9 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 530,
+						"y": 253,
 						"w": 176,
 						"h": 150
-					}
-				},
-				{
-					"filename": "clock-face.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 75,
-						"h": 250
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 75,
-						"h": 250
-					},
-					"frame": {
-						"x": 179,
-						"y": 530,
-						"w": 75,
-						"h": 250
 					}
 				},
 				{
@@ -129,8 +150,8 @@
 						"h": 150
 					},
 					"frame": {
-						"x": 1,
-						"y": 682,
+						"x": 179,
+						"y": 253,
 						"w": 176,
 						"h": 150
 					}
@@ -151,71 +172,71 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 834,
+						"y": 405,
 						"w": 170,
 						"h": 275
 					}
 				},
 				{
-					"filename": "armchair-face.png",
+					"filename": "wardrobe-back.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 116,
-						"h": 175
+						"w": 177,
+						"h": 275
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 116,
-						"h": 175
-					},
-					"frame": {
-						"x": 1,
-						"y": 1111,
-						"w": 116,
-						"h": 175
-					}
-				},
-				{
-					"filename": "box-face.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 130,
-						"h": 150
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 130,
-						"h": 150
-					},
-					"frame": {
-						"x": 119,
-						"y": 1111,
-						"w": 130,
-						"h": 150
-					}
-				},
-				{
-					"filename": "clock-back.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 76,
-						"h": 250
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 76,
-						"h": 250
+						"w": 177,
+						"h": 275
 					},
 					"frame": {
 						"x": 173,
-						"y": 834,
-						"w": 76,
+						"y": 405,
+						"w": 177,
+						"h": 275
+					}
+				},
+				{
+					"filename": "chimney-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 210,
+						"h": 250
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 210,
+						"h": 250
+					},
+					"frame": {
+						"x": 1,
+						"y": 682,
+						"w": 210,
+						"h": 250
+					}
+				},
+				{
+					"filename": "table-face.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 240,
+						"h": 250
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 240,
+						"h": 250
+					},
+					"frame": {
+						"x": 213,
+						"y": 682,
+						"w": 240,
 						"h": 250
 					}
 				}
@@ -225,6 +246,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:e306deb3f50533ab163d1e9c751c7e66:37c7eaf4a01911c8cecc9fbfcb273528:8d6d12ff4d5234f2a4b19e0a906dbf52$"
+		"smartupdate": "$TexturePacker:SmartUpdate:2b1b6991ef61d85a5324aa29d23bbc06:97ab48161dfe24c54f53782f7e94024b:8d6d12ff4d5234f2a4b19e0a906dbf52$"
 	}
 }

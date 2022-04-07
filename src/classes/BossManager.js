@@ -1,109 +1,127 @@
 //@ts-check
 
-import Phaser from "phaser";
-import { ChangeDepth, ChangeEnemyHitBox } from "../helpers/ChangeDepth";
-import { BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM, RIGHT, OFFSET_ORIENTATION, TOP, LEFT, TOP_LEFT, TOP_RIGHT, SINGLE_DIRECTION_MULTIPLIER} from "../helpers/constants";
+import Phaser, { Scene } from "phaser";
+import { ChangeDepth, ChangeEnemyHitBox } from "../helpers/Utilities";
+import { BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM, RIGHT, OFFSET_ORIENTATION, TOP, LEFT, TOP_LEFT, TOP_RIGHT, SINGLE_DIRECTION_MULTIPLIER, BOSS_SPEED_BOSST} from "../helpers/Constants";
 
 /**
  * @param {String} startDirection
  */
 
-export default class BossManager{
-    constructor(colliders){
-        this.direction = "bottom";
-        this.speed = 2
+export default class BossManager extends Phaser.Physics.Matter.Sprite{
+
+    /**
+     * @param {{ scene: Phaser.Scene; x: number; y: number; texture: string; frame: string; }} config
+     * @param {any} colliders
+     */
+    constructor(config, colliders){
+        super(config.scene.matter.world, config.x, config.y, config.texture, config.frame)
         this.colliders = colliders
+
+		this.setFrictionAir(0.0005)
+		this.setBounce(.1)
+        this.setDepth(config.y)
+
+        const direction = ["left", "bottom-left", "top-left", "right", "bottom-right", "top-right", "top", "bottom"];
+        this.direction = direction[Math.floor(Math.random()*direction.length)];
+        this.setFrame(this.direction+'.png')
+        this.setBody(this.colliders['boss_'+this.direction])
+
+        console.log(this.direction);
+
+        this.speed = 4
+        config.scene.add.existing(this)
     }
 
-    
-    /**
-     * @param {Phaser.Physics.Matter.Sprite} boss
-     * @param {BossManager} manager
-     */
-    MoveBoss(boss, manager){
-        console.log(manager.direction);
-        const x = boss.x
-        const y = boss.y
+    preUpdate(t, dt) {
+		super.preUpdate(t, dt)
 
-        switch (manager.direction) {
+        this.MoveBoss()
+	}
+    
+    MoveBoss(){
+        switch (this.direction) {
             case LEFT:
-                boss.setFlipX(true)
-                boss.setVelocity(-manager.speed - OFFSET_ORIENTATION * manager.speed, -manager.speed)
-                // ChangeEnemyHitBox(boss, this.colliders, LEFT, 'boss')
+                this.setVelocity(-this.speed - OFFSET_ORIENTATION * this.speed, -this.speed)
             break;
 
             case "left-bottom":
-                boss.setFlipX(true)
-                boss.setVelocity(-manager.speed * SINGLE_DIRECTION_MULTIPLIER, 0)
-                // ChangeEnemyHitBox(boss, this.colliders, 'left-bottom', 'boss')
+                this.setVelocity(-this.speed * SINGLE_DIRECTION_MULTIPLIER, 0)
             break;
 
             case "left-top":
-                boss.setFlipX(false)
-                boss.setVelocity(0, -manager.speed * SINGLE_DIRECTION_MULTIPLIER)
-                // ChangeEnemyHitBox(boss, this.colliders, 'left-top', 'boss')
+                this.setVelocity(0, -this.speed * SINGLE_DIRECTION_MULTIPLIER)
             break;
 
             case TOP:
-                boss.setFlipX(false)
-                boss.setVelocity(manager.speed + OFFSET_ORIENTATION * manager.speed, -manager.speed)
-                // ChangeEnemyHitBox(boss, this.colliders, TOP, 'boss')
+                this.setVelocity(this.speed + OFFSET_ORIENTATION * this.speed, -this.speed)
             break;
 
             case "top-left":
-                boss.setFlipX(true)
-                boss.setVelocity(0, -manager.speed * SINGLE_DIRECTION_MULTIPLIER)
-                // ChangeEnemyHitBox(boss, this.colliders, 'top-left', 'boss')
+                this.setVelocity(0, -this.speed * SINGLE_DIRECTION_MULTIPLIER)
             break;
 
             case "top-right":
-                boss.setFlipX(false)
-                boss.setVelocity(+manager.speed * SINGLE_DIRECTION_MULTIPLIER, 0)
-                // ChangeEnemyHitBox(boss, this.colliders, 'top-right', 'boss')
+                this.setVelocity(+this.speed * SINGLE_DIRECTION_MULTIPLIER, 0)
             break;
 
             case BOTTOM:
-                boss.setFlipX(true)
-                boss.setVelocity(-manager.speed - OFFSET_ORIENTATION * manager.speed, manager.speed)
-                // ChangeEnemyHitBox(boss, this.colliders, BOTTOM, 'boss')
+                this.setVelocity(-this.speed - OFFSET_ORIENTATION * this.speed, this.speed)
             break;
 
             case "bottom-left":
-                boss.setFlipX(true)
-                boss.setVelocity(-manager.speed * SINGLE_DIRECTION_MULTIPLIER, 0)
-                // ChangeEnemyHitBox(boss, this.colliders, 'bottom-left', 'boss')
+                this.setVelocity(-this.speed * SINGLE_DIRECTION_MULTIPLIER, 0)
             break;
 
             case "bottom-right":
-                boss.setFlipX(false)
-                boss.setVelocity(0, +manager.speed * SINGLE_DIRECTION_MULTIPLIER)
-                // ChangeEnemyHitBox(boss, this.colliders, "bottom-right", 'boss')
+                this.setVelocity(0, +this.speed * SINGLE_DIRECTION_MULTIPLIER)
             break;
 
             case RIGHT:
-                boss.setFlipX(false)
-                boss.setVelocity(manager.speed + OFFSET_ORIENTATION * manager.speed, manager.speed)
-                // ChangeEnemyHitBox(boss, this.colliders, RIGHT, 'boss')
+                this.setVelocity(this.speed + OFFSET_ORIENTATION * this.speed, this.speed)
             break;
 
             case "right-bottom":
-                boss.setFlipX(true)
-                boss.setVelocity(0, manager.speed * SINGLE_DIRECTION_MULTIPLIER)
-                // ChangeEnemyHitBox(boss, this.colliders, 'right-bottom', 'boss')
+                this.setVelocity(0, this.speed * SINGLE_DIRECTION_MULTIPLIER)
             break;
 
             case "right-top":
-                boss.setFlipX(false)
-                boss.setVelocity(manager.speed * SINGLE_DIRECTION_MULTIPLIER, 0)
-                // ChangeEnemyHitBox(boss, this.colliders, 'right-top', 'boss')
+                this.setVelocity(this.speed * SINGLE_DIRECTION_MULTIPLIER, 0)
             break;
                     
             default:
-                console.log('wrong boss position');
+                console.log('wrong this position');
             break;
         }
-        boss.x = x
-        boss.y = y
-        ChangeDepth(boss)
+        ChangeDepth(this)
+    }
+
+    /** @param {string} direction*/
+    ChangeBody(direction) {
+        let tempx = this.x
+        let tempy = this.y
+        this.speed += BOSS_SPEED_BOSST
+        console.log(direction);
+
+        if (direction === TOP_LEFT || direction === TOP_RIGHT || direction === BOTTOM_RIGHT || direction === TOP || direction === BOTTOM || direction === BOTTOM_RIGHT || direction === BOTTOM_LEFT || direction === 'right' || direction === 'left') {
+            this.setFrame(direction+'.png')
+            this.setBody(this.colliders['boss_'+direction])
+        } else if (direction === 'left-top'){
+            this.setFrame('top.png')
+            this.setBody(this.colliders['boss_top'])
+        } else if (direction === 'right-top') {
+            this.setFrame('right.png')
+            this.setBody(this.colliders['boss_right'])
+        } else if (direction === 'left-bottom') {
+            this.setFrame('bottom-left.png')
+            this.setBody(this.colliders['boss_bottom-left'])
+        } else if (direction === 'right-bottom') {
+            this.setFrame('bottom.png')
+            this.setBody(this.colliders['boss_bottom'])
+        } else {
+            console.log('missing direction');
+        }
+        this.x = tempx
+        this.y = tempy
     }
 }

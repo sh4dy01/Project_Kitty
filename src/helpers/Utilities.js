@@ -1,5 +1,5 @@
 import Phaser from "phaser"
-import { OFFSET_DEPTH } from "./constants"
+import { OFFSET_DEPTH } from "./Constants"
 
 /** 
  * @param {Phaser.Physics.Matter.Sprite | Phaser.Physics.Matter.Image | Phaser.GameObjects.Image} object

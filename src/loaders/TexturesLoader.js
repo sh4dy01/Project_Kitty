@@ -1,6 +1,6 @@
 //@ts-check
 import Phaser from "phaser";
-import { LEVEL_MAP, MAX_LIVES} from "../helpers/constants";
+import { LEVEL_MAP, MAX_LIVES} from "../helpers/Constants";
 
 export default class TexturesLoader extends Phaser.Scene {
 

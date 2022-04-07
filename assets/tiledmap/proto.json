@@ -120,24 +120,6 @@
                  "width":0,
                  "x":2627.58008658009,
                  "y":1793.81385281385
-                }, 
-                {
-                 "height":0,
-                 "id":57,
-                 "name":"lever",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"count",
-                         "type":"int",
-                         "value":0
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2665.67532467533,
-                 "y":1804.20346320346
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -149,10 +131,21 @@
          "draworder":"topdown",
          "id":9,
          "name":"Enemies",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":10,
+         "name":"Specials",
          "objects":[
                 {
                  "height":0,
-                 "id":39,
+                 "id":83,
                  "name":"boss",
                  "point":true,
                  "properties":[
@@ -165,20 +158,20 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":2148.5367965368,
-                 "y":1263.58441558442
+                 "x":1598.28571428571,
+                 "y":1529.71428571429
                 }, 
                 {
                  "height":0,
-                 "id":70,
-                 "name":"red",
+                 "id":84,
+                 "name":"entrance",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1608.36363636364,
-                 "y":1718.90909090909
+                 "x":604,
+                 "y":1340
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -316,6 +309,132 @@
                  "width":0,
                  "x":2614.28571428571,
                  "y":1297.71428571429
+                }, 
+                {
+                 "height":0,
+                 "id":72,
+                 "name":"table",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"top-left"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2366.28571428571,
+                 "y":2457.71428571429
+                }, 
+                {
+                 "height":0,
+                 "id":73,
+                 "name":"exit",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"right"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2686.28571428571,
+                 "y":1529.71428571429
+                }, 
+                {
+                 "height":0,
+                 "id":74,
+                 "name":"way",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"bottom-left"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2332,
+                 "y":1276
+                }, 
+                {
+                 "height":0,
+                 "id":76,
+                 "name":"way",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"top-left"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2201.71428571429,
+                 "y":1150.28571428571
+                }, 
+                {
+                 "height":0,
+                 "id":77,
+                 "name":"way",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"bottom-right"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2388,
+                 "y":1204
+                }, 
+                {
+                 "height":0,
+                 "id":79,
+                 "name":"way",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"top-right"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2254.28571428571,
+                 "y":1097.71428571429
+                }, 
+                {
+                 "height":0,
+                 "id":82,
+                 "name":"exit",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2619.14285714286,
+                 "y":1592.85714285714
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -392,8 +511,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":72,
+ "nextlayerid":11,
+ "nextobjectid":85,
  "orientation":"isometric",
  "renderorder":"right-down",
  "tiledversion":"1.8.2",

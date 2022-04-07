@@ -106,7 +106,7 @@
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
-            <enum type="AlgorithmSettings::AlgorithmId">MaxRects</enum>
+            <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
@@ -136,7 +136,7 @@
             <key>json</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../spritesheet/indicators.json</filename>
+                <filename>../spritesheet/boss.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -173,7 +173,7 @@
             <key>trimMargin</key>
             <uint>1</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">Trim</enum>
+            <enum type="SpriteSettings::TrimMode">None</enum>
             <key>tracerTolerance</key>
             <int>200</int>
             <key>heuristicMask</key>
@@ -185,8 +185,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../sprites/props/indicators/exit-left.png</key>
-            <key type="filename">../sprites/props/indicators/exit-right.png</key>
+            <key type="filename">../sprites/boss/closed.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -195,16 +194,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>40,57,79,113</rect>
+                <rect>18,23,35,46</rect>
                 <key>scale9Paddings</key>
-                <rect>40,57,79,113</rect>
+                <rect>18,23,35,46</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../sprites/props/indicators/way-bottom-left.png</key>
-            <key type="filename">../sprites/props/indicators/way-bottom-right.png</key>
-            <key type="filename">../sprites/props/indicators/way-top-left.png</key>
-            <key type="filename">../sprites/props/indicators/way-top-right.png</key>
+            <key type="filename">../sprites/boss/open.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -213,21 +209,61 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>65,71,130,141</rect>
+                <rect>22,34,43,69</rect>
                 <key>scale9Paddings</key>
-                <rect>65,71,130,141</rect>
+                <rect>22,34,43,69</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sprites/boss/vision/bottom-left.png</key>
+            <key type="filename">../sprites/boss/vision/bottom-right.png</key>
+            <key type="filename">../sprites/boss/vision/bottom.png</key>
+            <key type="filename">../sprites/boss/vision/top-left.png</key>
+            <key type="filename">../sprites/boss/vision/top-right.png</key>
+            <key type="filename">../sprites/boss/vision/top.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>59,59,117,117</rect>
+                <key>scale9Paddings</key>
+                <rect>59,59,117,117</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sprites/boss/vision/left.png</key>
+            <key type="filename">../sprites/boss/vision/right.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>60,59,119,117</rect>
+                <key>scale9Paddings</key>
+                <rect>60,59,119,117</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>../sprites/props/indicators/way-bottom-left.png</filename>
-            <filename>../sprites/props/indicators/way-bottom-right.png</filename>
-            <filename>../sprites/props/indicators/way-top-left.png</filename>
-            <filename>../sprites/props/indicators/way-top-right.png</filename>
-            <filename>../sprites/props/indicators/exit-left.png</filename>
-            <filename>../sprites/props/indicators/exit-right.png</filename>
+            <filename>../sprites/boss/vision/bottom-left.png</filename>
+            <filename>../sprites/boss/vision/bottom.png</filename>
+            <filename>../sprites/boss/vision/left.png</filename>
+            <filename>../sprites/boss/vision/top-left.png</filename>
+            <filename>../sprites/boss/vision/top.png</filename>
+            <filename>../sprites/boss/vision/bottom-right.png</filename>
+            <filename>../sprites/boss/vision/right.png</filename>
+            <filename>../sprites/boss/vision/top-right.png</filename>
+            <filename>../sprites/boss/closed.png</filename>
+            <filename>../sprites/boss/open.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

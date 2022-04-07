@@ -1,4 +1,4 @@
-import { LEVEL_MAP } from "../helpers/constants"
+import { LEVEL_MAP } from "../helpers/Constants"
 
 //@ts-check
 export default class SceneManager {
@@ -42,6 +42,13 @@ export default class SceneManager {
         this.camera.fadeOut(3000, 255, 0, 0)
         this.camera.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
             this.sceneLoader.start(LEVEL_MAP, {remainingLife: this.maxLives, level: 0})}
+        )
+    }
+
+    LoadWinScreen() {
+        this.camera.fadeOut(3000, 0, 150, 0)
+        this.camera.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            this.sceneLoader.start('WinScreen')}
         )
     }
 }
