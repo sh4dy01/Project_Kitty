@@ -732,24 +732,6 @@
                  "width":0,
                  "x":1929.42857142857,
                  "y":3762.57142857143
-                }, 
-                {
-                 "height":0,
-                 "id":108,
-                 "name":"door",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"top-left"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1125.71428571429,
-                 "y":2474.28571428571
                 }],
          "opacity":1,
          "type":"objectgroup",
