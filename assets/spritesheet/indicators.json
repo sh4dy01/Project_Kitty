@@ -4,7 +4,7 @@
 			"image": "indicators.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 1369,
+				"w": 2013,
 				"h": 284
 			},
 			"scale": 1,
@@ -115,6 +115,90 @@
 					}
 				},
 				{
+					"filename": "toilet-bottom-left.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 159,
+						"h": 227
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 159,
+						"h": 227
+					},
+					"frame": {
+						"x": 1210,
+						"y": 1,
+						"w": 159,
+						"h": 227
+					}
+				},
+				{
+					"filename": "toilet-bottom-right.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 159,
+						"h": 227
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 159,
+						"h": 227
+					},
+					"frame": {
+						"x": 1371,
+						"y": 1,
+						"w": 159,
+						"h": 227
+					}
+				},
+				{
+					"filename": "toilet-top-left.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 159,
+						"h": 227
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 159,
+						"h": 227
+					},
+					"frame": {
+						"x": 1532,
+						"y": 1,
+						"w": 159,
+						"h": 227
+					}
+				},
+				{
+					"filename": "toilet-top-right.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 159,
+						"h": 227
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 159,
+						"h": 227
+					},
+					"frame": {
+						"x": 1693,
+						"y": 1,
+						"w": 159,
+						"h": 227
+					}
+				},
+				{
 					"filename": "exit-right.png",
 					"rotated": false,
 					"trimmed": false,
@@ -129,7 +213,7 @@
 						"h": 226
 					},
 					"frame": {
-						"x": 1210,
+						"x": 1854,
 						"y": 1,
 						"w": 158,
 						"h": 226
@@ -141,6 +225,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:2374fdecc9230342293bb52a6125c418:cfc5a75b8545d0ef5bd7f970f178623f:ce747235c3689c52f61007e67a288862$"
+		"smartupdate": "$TexturePacker:SmartUpdate:7f9864d052a793e471668f5d3577eb3f:650d91a866027bf4bb588b4bd5842e94:ce747235c3689c52f61007e67a288862$"
 	}
 }

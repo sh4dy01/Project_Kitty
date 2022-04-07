@@ -111,14 +111,16 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
         (object) => {
             let orientation
 
-            if (object.name === 'way' || object.name === 'exit') {
+            if (object.name === 'way' || object.name === 'exit' || object.name === 'toilet') {
                 tempObject = matter.add.image(
                     ConvertXCartesianToIsometric(object.x, object.y),
                     ConvertYCartesianToIsometric(object.x, object.y),
                     'indicators',
                     object.name+'-'+object.getData('orientation')+".png",
                     {isSensor: true}
-                ).setScale(0.3).setDepth(tempObject.y)
+                )
+                tempObject.setScale(0.3)
+                tempObject.setDepth(tempObject.y)
             } else if (object.name === 'box') {
                 tempObject = matter.add.image(
                     ConvertXCartesianToIsometric(object.x, object.y),
