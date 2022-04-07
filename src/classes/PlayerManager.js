@@ -5,16 +5,18 @@ import { OFFSET_ORIENTATION, SINGLE_DIRECTION_MULTIPLIER } from "../helpers/Cons
 import { CheckFinalLevel, CheckNextLevel } from "./CollisionManager";
 import SceneManager from "./SceneManager";
 import UIManager from "./UIManager";
+import SoundManager from "./SoundManager";
 
 export default class PlayerManager {
     /**
      * @param {Number} currentLife
      * @param {SceneManager} sceneManager
      * @param {UIManager} UIManager
+     * @param {SoundManager} [soundManager]
      */
-    constructor(currentLife, sceneManager, UIManager) {
-        this.walkSpeed = 2.5; // Vitesse de déplacement
-        this.runSpeedMultiplier = 10; // Multiplicateur de vitesse de déplacement
+    constructor(currentLife, sceneManager, UIManager, soundManager) {
+        this.walkSpeed = 1.5; // Vitesse de déplacement
+        this.runSpeedMultiplier = 3; // Multiplicateur de vitesse de déplacement
         this.playerSpeed = this.walkSpeed;
 
         this.isSafe = true;
@@ -27,6 +29,7 @@ export default class PlayerManager {
         this.canLoseLife = true;
         this.canLoadNextScene = true;
 
+
         this.colliders = null
         /**@type {Phaser.Physics.Matter.Image} */
         this.exitDoor = null
@@ -35,6 +38,7 @@ export default class PlayerManager {
         this.currentLives = currentLife
         this.sceneManager = sceneManager
         this.UIManager = UIManager
+        this.soundManager = soundManager
     }
     
     /**
@@ -108,6 +112,7 @@ export default class PlayerManager {
         if(cursors.space.isDown){
             this.UIManager.UpdateLeversUI(this.canPressButtonNumber);
             this.CheckIfAllPressed(world, player);
+            this.soundManager.leverSound.play();
         }
     }
 
@@ -128,6 +133,7 @@ export default class PlayerManager {
         }
         this.allButtonPressed = true;
         this.canLoadNextScene = true;
+        this.soundManager.doorSound.play();
         this.exitDoor.setTexture('playerPoints', "door-open.png");
         if (this.canLoadNextScene && this.sceneManager.currentLevel !== 8) {
             CheckNextLevel(world, player, this, this.sceneManager)
@@ -160,6 +166,7 @@ export default class PlayerManager {
     */
     DetectedPlayer(player) {
         this.StopPlayerMovement(player);
+        this.soundManager.catSound.play()
         this.canLoseLife = false;
         this.canMove = false;
         this.RemoveLife();

@@ -11,10 +11,10 @@ import { BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM, RIGHT, OFFSET_ORIENTATION, TOP, LEFT
 export default class BossManager extends Phaser.Physics.Matter.Sprite{
 
     /**
-     * @param {{ scene: Phaser.Scene; x: number; y: number; texture: string; frame: string; }} config
+     * @param {{scene: Phaser.Scene;x: number;y: number;texture: string;frame: string;}} config
      * @param {any} colliders
      */
-    constructor(config, colliders){
+    constructor(config, colliders, bossSound){
         super(config.scene.matter.world, config.x, config.y, config.texture, config.frame)
         this.colliders = colliders
 
@@ -27,8 +27,8 @@ export default class BossManager extends Phaser.Physics.Matter.Sprite{
         this.setFrame(this.direction+'.png')
         this.setBody(this.colliders['boss_'+this.direction])
 
-        console.log(this.direction);
-
+        this.bossSound = bossSound
+        
         this.speed = 4
         config.scene.add.existing(this)
     }
@@ -55,6 +55,7 @@ export default class BossManager extends Phaser.Physics.Matter.Sprite{
 
             case TOP:
                 this.setVelocity(this.speed + OFFSET_ORIENTATION * this.speed, -this.speed)
+                this.bossSound.play()
             break;
 
             case "top-left":
@@ -67,6 +68,7 @@ export default class BossManager extends Phaser.Physics.Matter.Sprite{
 
             case BOTTOM:
                 this.setVelocity(-this.speed - OFFSET_ORIENTATION * this.speed, this.speed)
+                this.bossSound.play()
             break;
 
             case "bottom-left":
@@ -79,6 +81,7 @@ export default class BossManager extends Phaser.Physics.Matter.Sprite{
 
             case RIGHT:
                 this.setVelocity(this.speed + OFFSET_ORIENTATION * this.speed, this.speed)
+                this.bossSound.play()
             break;
 
             case "right-bottom":

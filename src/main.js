@@ -17,8 +17,7 @@ const config = {
     physics: {
         default: "matter",
         matter: {
-            gravity: { y: 0},
-            debug: true,
+            gravity: { y: 0}
         },
     },
     fps: {
@@ -31,8 +30,8 @@ const config = {
 
 const game = new Phaser.Game(config);
 
-game.scene.add(INTRO_SCREEN, IntroScreen); // Add the StartScene scene
 game.scene.add(SOUNDS_LOADER, SoundsLoader); // Add the SoundsLoader scene
+game.scene.add(INTRO_SCREEN, IntroScreen); // Add the StartScene scene
 game.scene.add(TEXTURES_LOADER, TexturesLoader); // Add the textures loader scene
 
 game.scene.add(LEVEL_MAP, LevelLoader); // Add the level scene
