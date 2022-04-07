@@ -34,6 +34,7 @@ export default class ObjectsLoader {
     AddLayers() {
         const floorTileset = this.map.addTilesetImage("floor", "floor");  // Affiche les tiles du sol
         const wallTileset = this.map.addTilesetImage("wall", "wall");  // Affiches les tiles des murs
+        this.map.addTilesetImage("wall", "wall2")
 
         this.map.createLayer("floor", floorTileset); // Créé un layer pour le sol
         this.map.createLayer("wall", wallTileset); // Créé un layer pour les murs

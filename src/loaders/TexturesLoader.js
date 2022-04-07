@@ -29,6 +29,7 @@ export default class TexturesLoader extends Phaser.Scene {
 
         this.load.image("floor", "assets/tiles/floor.png");
         this.load.image("wall", "assets/tiles/walls.png");
+        this.load.image("wall2", "assets/tiles/walls2.png");
     }
 
     create() {
