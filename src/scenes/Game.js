@@ -26,7 +26,7 @@ export default class Game extends Phaser.Scene {
      * @param {{ level: Number; remainingLife: Number}} data
     */
     init(data) {
-        this.currentLevel = data.level;
+        this.currentLevel = 1;
         this.currentLives = data.remainingLife;
         /**
          * @type {Phaser.Physics.Matter.Sprite[]}
