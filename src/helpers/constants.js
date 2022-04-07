@@ -23,6 +23,7 @@ export const OFFSET_DEPTH = 10;
 export const SINGLE_DIRECTION_MULTIPLIER = 1.7;
 
 export const BOSS_SPEED_BOSST = 0.2
+export const MAX_SPEED_BOSS = 5
 
 export const GREEN = 'green'
 export const PURPLE = 'purple'
