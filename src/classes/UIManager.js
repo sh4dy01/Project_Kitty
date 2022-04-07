@@ -1,7 +1,7 @@
 //@ts-check
 import Phaser from "phaser";
 import { UpdateLeverTexture } from "../helpers/Utilities";
-import { MAX_LIVES, UI_LEVER_OFFSET, UI_LEVER_SIZE, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_Y_OFFSET } from "../helpers/Constants";
+import { MAX_LIVES, UI_LEVER_OFFSET, UI_LEVER_SIZE, UI_LEVER_Y_OFFSET, UI_LIFE_OFFSET, UI_LIFE_SIZE, UI_Y_OFFSET } from "../helpers/Constants";
 
 export default class UIManager{
     /**
@@ -27,6 +27,11 @@ export default class UIManager{
         this.leversSprite = leversSprite
     }
 
+    AddBackGroundUI() {
+        this.add.image(140, this.gameHeight-40, 'ui', 'bg-cat.png').setScrollFactor(0).setDepth(9999).setScale(0.8)
+        this.add.image(180, this.gameHeight-UI_LEVER_Y_OFFSET, 'ui', 'bg-lever.png').setScrollFactor(0).setDepth(9999).setScale(0.7)
+    }
+
     /**
      * @param {Phaser.GameObjects.Text} playerInfoText
      * @param {Phaser.Physics.Matter.Sprite} player
@@ -46,11 +51,11 @@ export default class UIManager{
 
     UpdateLife() {
         for (let i = 0; i < this.currentLife; i++) {
-            this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-40, 'life-full').setScrollFactor(0).setScale(UI_LIFE_SIZE).setDepth(9999)
+            this.add.image(60 + UI_LIFE_OFFSET*i, this.gameHeight-40, 'ui', 'LifeFull.png').setScrollFactor(0).setDepth(9999).setScale(0.8)
         }
         if (this.currentLife < MAX_LIVES) {
             for (let i = this.currentLife; i < MAX_LIVES; i++) {
-                this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-40, 'life-empty').setScrollFactor(0).setScale(UI_LIFE_SIZE).setDepth(9999)
+                this.add.image(60 + UI_LIFE_OFFSET*i, this.gameHeight-40, 'ui', 'LifeEmpty.png').setScrollFactor(0).setDepth(9999).setScale(0.8)
             }
         }
     }
@@ -67,9 +72,9 @@ export default class UIManager{
     AddLeversUI() {
         for (let i = 0; i < this.leversStatus.length; i++) {
             if (this.leversStatus[i] === false) {
-                this.leversUIImage.push(this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-100, 'levers', 'lever_ui_off.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
+                this.leversUIImage.push(this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-UI_LEVER_Y_OFFSET, 'ui', 'lever_ui_off.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
             } else {
-                this.leversUIImage.push(this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-100, 'levers', 'lever_ui_on.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
+                this.leversUIImage.push(this.add.image(50 + UI_LIFE_OFFSET*i, this.gameHeight-UI_LEVER_Y_OFFSET, 'ui', 'lever_ui_on.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
             }
         }
     }

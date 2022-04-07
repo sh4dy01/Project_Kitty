@@ -187,6 +187,10 @@
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">../sprites/props/indicators/exit-left.png</key>
             <key type="filename">../sprites/props/indicators/exit-right.png</key>
+            <key type="filename">../sprites/props/indicators/toilet-bottom-left.png</key>
+            <key type="filename">../sprites/props/indicators/toilet-bottom-right.png</key>
+            <key type="filename">../sprites/props/indicators/toilet-top-left.png</key>
+            <key type="filename">../sprites/props/indicators/toilet-top-right.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -228,6 +232,10 @@
             <filename>../sprites/props/indicators/way-top-right.png</filename>
             <filename>../sprites/props/indicators/exit-left.png</filename>
             <filename>../sprites/props/indicators/exit-right.png</filename>
+            <filename>../sprites/props/indicators/toilet-bottom-left.png</filename>
+            <filename>../sprites/props/indicators/toilet-bottom-right.png</filename>
+            <filename>../sprites/props/indicators/toilet-top-left.png</filename>
+            <filename>../sprites/props/indicators/toilet-top-right.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
