@@ -3,20 +3,20 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level5.json",
+    "activeFile": "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json",
     "expandedProjectPaths": [
+        "D:/Desktop/tiledmap",
+        "D:/Desktop/tiledmap/Levels",
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Temp",
         "D:/Desktop/tiledmap/Temp",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap",
         ".",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels",
-        "D:/Desktop/tiledmap/Levels",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Temp",
-        "D:/Desktop/tiledmap"
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels"
     ],
     "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "C:/Users/maest/AppData/Roaming/Tiled/#corridor": {
@@ -469,18 +469,22 @@
             "scaleInDock": 1
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json": {
-            "scale": 0.25,
+            "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 4380,
-                "y": 3316
+                "x": 2495,
+                "y": 2856
             }
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json#floor": {
             "scaleInDock": 1
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json#wall": {
-            "scaleInDock": 1
+            "scaleInDock": 0.75
+        },
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json#walls": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
         },
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.tmj": {
             "scale": 0.11831501831501831,
@@ -782,25 +786,17 @@
     "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level7.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/Level0.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.tmj",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level2.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level6.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level5.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level4.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level8.json"
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json"
     ],
     "project": "assets.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level8.json",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level4.json",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level5.json",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level6.json",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level2.json",
-        "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.json",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/Level0.json",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level7.json",
         "D:/Documents/Hugo/Gaming Campus/Projets/Mini studio project/assets/tiledmap/Levels/level1.tmj",
@@ -811,7 +807,7 @@
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "Tous les Fichiers (*)",
     "tileset.tileSize": {
-        "height": 156,
+        "height": 161,
         "width": 91
     }
 }

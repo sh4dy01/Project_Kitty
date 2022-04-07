@@ -185,7 +185,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../sprites/boss/closed.png</key>
+            <key type="filename">../sprites/boss/entrance.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -194,13 +194,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>18,23,35,46</rect>
+                <rect>26,36,51,71</rect>
                 <key>scale9Paddings</key>
-                <rect>18,23,35,46</rect>
+                <rect>26,36,51,71</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../sprites/boss/open.png</key>
+            <key type="filename">../sprites/boss/entrance_closed.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -209,9 +209,24 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>22,34,43,69</rect>
+                <rect>15,20,29,39</rect>
                 <key>scale9Paddings</key>
-                <rect>22,34,43,69</rect>
+                <rect>15,20,29,39</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sprites/boss/exit.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>25,42,50,85</rect>
+                <key>scale9Paddings</key>
+                <rect>25,42,50,85</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -262,8 +277,9 @@
             <filename>../sprites/boss/vision/bottom-right.png</filename>
             <filename>../sprites/boss/vision/right.png</filename>
             <filename>../sprites/boss/vision/top-right.png</filename>
-            <filename>../sprites/boss/closed.png</filename>
-            <filename>../sprites/boss/open.png</filename>
+            <filename>../sprites/boss/entrance.png</filename>
+            <filename>../sprites/boss/exit.png</filename>
+            <filename>../sprites/boss/entrance_closed.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
