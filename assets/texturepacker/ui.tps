@@ -210,9 +210,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>163,50,325,100</rect>
+                <rect>81,25,163,50</rect>
                 <key>scale9Paddings</key>
-                <rect>163,50,325,100</rect>
+                <rect>81,25,163,50</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -225,9 +225,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>243,50,485,100</rect>
+                <rect>121,25,243,50</rect>
                 <key>scale9Paddings</key>
-                <rect>243,50,485,100</rect>
+                <rect>121,25,243,50</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -252,10 +252,10 @@
         <array>
             <filename>../sprites/ui/LifeEmpty.png</filename>
             <filename>../sprites/ui/LifeFull.png</filename>
-            <filename>../sprites/ui/bg-cat.png</filename>
-            <filename>../sprites/ui/bg-lever.png</filename>
             <filename>../sprites/ui/lever_ui_off.png</filename>
             <filename>../sprites/ui/lever_ui_on.png</filename>
+            <filename>../sprites/ui/bg-cat.png</filename>
+            <filename>../sprites/ui/bg-lever.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

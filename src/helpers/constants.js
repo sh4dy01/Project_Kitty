@@ -12,12 +12,12 @@ export const PLAYER_SIZE = 0.85
 export const GREEN_SIZE = 0.6
 
 export const UI_Y_OFFSET = 40
-export const UI_LIFE_SIZE = 0.20
-export const UI_LIFE_OFFSET = 80
+export const UI_LIFE_SIZE = 1.1
+export const UI_LIFE_OFFSET = 100
 
-export const UI_LEVER_SIZE = 1.8
-export const UI_LEVER_OFFSET = 85
-export const UI_LEVER_Y_OFFSET = 120
+export const UI_LEVER_SIZE = 1
+export const UI_LEVER_OFFSET = 40
+export const UI_LEVER_Y_OFFSET = 135
 
 export const OFFSET_ORIENTATION = 0.75;
 export const OFFSET_DEPTH = 10;
