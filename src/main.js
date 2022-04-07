@@ -12,6 +12,7 @@ const config = {
     type: Phaser.AUTO,
     width: 1280,
     height: 720,
+    parent: 'game_section',
     physics: {
         default: "matter",
         matter: {
