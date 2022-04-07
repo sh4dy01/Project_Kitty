@@ -24,18 +24,18 @@ export default class CollisionManager {
      */
     CheckHitBoxes(playerManager, player, entrance, camera) {
         this.world.on("collisionstart", (event, bodyA, bodyB) => {
-            if((bodyA.label == "player" && (bodyB.label == "field" || bodyB.label == "boss")) || ((bodyA.label == "field" || bodyA.label == "boss") && bodyB.label == "player")) {
-                if(this.playerManager.isSafe == true){
-                    console.log("hide");
-                }
-                else{
-                    console.log("vue");
-                    if (playerManager.canLoseLife) {
-                        this.playerManager.DetectedPlayer(player)
-                        this.sceneManager.RestartScene(this.playerManager.currentLives);
-                    }
-                }
-            }
+            // if((bodyA.label == "player" && (bodyB.label == "field" || bodyB.label == "boss")) || ((bodyA.label == "field" || bodyA.label == "boss") && bodyB.label == "player")) {
+            //     if(this.playerManager.isSafe == true){
+            //         console.log("hide");
+            //     }
+            //     else{
+            //         console.log("vue");
+            //         if (playerManager.canLoseLife) {
+            //             this.playerManager.DetectedPlayer(player)
+            //             this.sceneManager.RestartScene(this.playerManager.currentLives);
+            //         }
+            //     }
+            // }
 
             // Détecion pour savoir si le joueur est en zone safe ou pas 
             if((bodyA.label == "player" && bodyB.label == "safezone") || (bodyA.label == "safezone" && bodyB.label == "player")) {
@@ -48,10 +48,10 @@ export default class CollisionManager {
             if((bodyA.label == "player" && bodyB.label == "safezone") || (bodyA.label == "safezone" && bodyB.label == "player")) {
                 console.log("not safe");
                 this.playerManager.isSafe = false;
-                if (this.sceneManager.currentLevel === 0 ) {
-                    entrance.setFrame('closed.png')
-                    camera.shake(200, 0.015);
-                }
+                // if (this.sceneManager.currentLevel === 0 ) {
+                //     entrance.setFrame('closed.png')
+                //     camera.shake(200, 0.015);
+                // }
             }
         });
     }

@@ -304,7 +304,7 @@
         {
          "draworder":"topdown",
          "id":6,
-         "name":"Safezones",
+         "name":"SafeZones",
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
@@ -347,7 +347,7 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":10,
+ "nextlayerid":11,
  "nextobjectid":38,
  "orientation":"isometric",
  "renderorder":"right-down",

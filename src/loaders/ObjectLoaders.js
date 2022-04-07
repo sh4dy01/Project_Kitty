@@ -117,7 +117,8 @@ export function LoadAllObjects(map, enemiesAIManager, enemies, matter, time, col
                     ConvertYCartesianToIsometric(object.x, object.y),
                     'objects',
                     object.name+'-face.png'
-                ).setDepth(tempObject.y),
+                )
+                tempObject.setDepth(tempObject.y),
                 tempObject.setBody(colliders.box)
                 
                 boxes.push(tempObject);

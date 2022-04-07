@@ -66,7 +66,7 @@ export default class Game extends Phaser.Scene {
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
             this.playerManager.canMove = true
         })
-
+        if(map.filterObjects('specials', (obj) => obj.name === 'boss') != null || map.filterObjects('Specials', (obj) => obj.name === 'entrance') != null){
         if (this.currentLevel === 8) {
             const Boss = map.filterObjects('Specials', (obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
             this.boss = new BossManager({
@@ -101,7 +101,7 @@ export default class Game extends Phaser.Scene {
             this.entrance.setBody(colliders.open)
             this.entrance.setDepth(this.entrance.y)
         }
-
+        }
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
         this.pauseKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); // Touche pour mettre le jeu en PAUSE
 
