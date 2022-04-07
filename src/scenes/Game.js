@@ -68,7 +68,7 @@ export default class Game extends Phaser.Scene {
             this.playerManager.canMove = true
         })
 
-        if(map.filterObjects('specials', (obj) => obj.name === 'boss') != null || map.filterObjects('Specials', (obj) => obj.name === 'entrance') != null){
+        if ( this.currentLevel === 8 || this.currentLevel === 0){
             if (this.currentLevel === 8) {
                 const Boss = map.filterObjects('Specials', (obj) => obj.name === 'boss')[0]; // Récupère l'emplacement de spawn du joueur depuis Tiled
                 this.boss = new BossManager({
