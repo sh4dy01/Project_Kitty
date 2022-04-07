@@ -4,14 +4,13 @@
     outline: none;
     text-decoration: none;
     border: 0;
+    background-color: #D3D3D3;
 }
 
-#game {
-    width: 80%;
-    height: 90%;
-    padding: 20px;
-    margin-top: 25px;
+h1 {
+    margin-bottom: 0!important;
 }
+
 
 ul {
     list-style: none;

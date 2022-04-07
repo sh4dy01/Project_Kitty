@@ -4,6 +4,7 @@ export const TEXTURES_LOADER = "TexturesLoader"
 export const LEVEL_MAP = "LevelMap"
 export const PAUSE_SCREEN = "PauseScreen"
 export const INTRO_SCREEN = "IntroScreen"
+export const SOUNDS_LOADER = "SoundsLoader"
 
 export const MAX_LIVES = 3
 

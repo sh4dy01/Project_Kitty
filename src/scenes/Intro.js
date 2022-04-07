@@ -6,6 +6,7 @@ import SceneManager from "../classes/SceneManager";
 import UIManager from "../classes/UIManager";
 import { MAX_LIVES, PAUSE_SCREEN, PLAYER_SIZE } from "../helpers/Constants";
 import { ChangeDepth } from "../helpers/Utilities";
+import SoundsLoader from "../loaders/SoundsLoader";
 
 export default class IntroScreen extends Phaser.Scene {
     constructor() {
