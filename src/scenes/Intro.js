@@ -1,10 +1,11 @@
 //@ts-check
 import Phaser from "phaser";
+
 import { CreatePlayerAnims } from "../animations/PlayerAnimations";
 import PlayerManager from "../classes/PlayerManager";
 import SceneManager from "../classes/SceneManager";
 import UIManager from "../classes/UIManager";
-import { MAX_LIVES, PAUSE_SCREEN, PLAYER_SIZE } from "../helpers/Constants";
+import { MAX_LIVES, OFFSET_ORIENTATION, PAUSE_SCREEN, PLAYER_SIZE, TEXTURES_LOADER } from "../helpers/Constants";
 import { ChangeDepth } from "../helpers/Utilities";
 import SoundsLoader from "../loaders/SoundsLoader";
 
@@ -20,16 +21,27 @@ export default class IntroScreen extends Phaser.Scene {
         this.sceneManager = new SceneManager(this.scene, this.currentLevel, this.cameras.main);
         this.UIManager = new UIManager(this.currentLevel, this.currentLives, this.add, this.scale.width, this.scale.height);
         this.playerManager = new PlayerManager(this.currentLives, this.sceneManager, this.UIManager);
+
+        this.ambient = this.sound.add('ambiant_sfx')
     }
 
     preload() {
         this.load.atlas('player', 'assets/spritesheet/player.png', 'assets/spritesheet/player.json')
         this.load.json('colliders', 'assets/colliders/colliders.json') // Ficher JSON contenant toutes les collisions créés par PhysicsEditor
+        this.load.image('intro', 'assets/sprites/scene_depart.png')
     }
 
     create() {
-        const colliders = this.cache.json.get('colliders');
+        this.ambient.play()
 
+        this.matter.world.setBounds()
+        this.matter.world.disableGravity();
+
+        this.cameras.main.zoom = 1.2
+
+        this.add.image(this.scale.width/2, this.scale.height/2, 'intro')
+        this.matter.add.rectangle(this.scale.width/2-100, this.scale.height/2-80, 200, 50, {isSensor: true, angle: 2.6, label: 'NextLevel'})
+        
         CreatePlayerAnims(this.anims);
 
         this.cameras.main.fadeIn(2000, 0, 0, 0);
@@ -38,22 +50,30 @@ export default class IntroScreen extends Phaser.Scene {
         })
 
         this.player = this.matter.add.sprite(
-            0, 
-            0, 
+            this.scale.width-175, 
+            this.scale.height-100, 
             'player', 
-            'back-left-up 1.png'
-        ).setScale(PLAYER_SIZE);
-        this.player.setBody(colliders.player_top_right)
-        this.player.setFixedRotation()
+            'back-left-up 1.png',
+            {isSensor: true, label: 'player'}
+        ).setScale(0.2);
         ChangeDepth(this.player)
         this.player.setFixedRotation()
 
+        this.playerManager.canLoadNextScene = true
+        this.playerManager.walkSpeed = 0.6
+
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
-        this.pauseKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); // Touche pour mettre le jeu en PAUSE
 
-        this.matter.world.disableGravity();
-
-        this.cameras.main.startFollow(this.player, false, 0.05, 0.05); // Permet que la caméra suit le joueur
+        this.matter.world.on("collisionstart", (event, bodyA, bodyB) => {
+            if((bodyA.label == "player" && bodyB.label == "NextLevel") || (bodyA.label == "NextLevel" && bodyB.label == "player")) {
+                this.playerManager.StopPlayerMovement(this.player)
+                this.cameras.main.fadeOut(2000, 0, 0, 0)
+                this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                    this.scene.start(TEXTURES_LOADER);
+                    this.sound.stopAll()
+                })
+            }
+        })
     }
 
     update() {
@@ -63,10 +83,15 @@ export default class IntroScreen extends Phaser.Scene {
             return
         }
         
-        if (this.pauseKey.isDown) {
-            this.scene.pause();
-            this.scene.launch(PAUSE_SCREEN, {sceneToResume: this})
+        if (this.cursors.up.isDown || this.cursors.left.isDown ) {
+            this.player.play('playerTopLeft', true) 
+            this.player.setVelocity(-this.playerManager.walkSpeed - OFFSET_ORIENTATION * this.playerManager.walkSpeed, -this.playerManager.walkSpeed);
+        } else if (this.cursors.down.isDown || this.cursors.right.isDown) {
+            this.player.setVelocity(this.playerManager.walkSpeed + OFFSET_ORIENTATION * this.playerManager.walkSpeed, this.playerManager.walkSpeed );
+            this.player.play('playerBottomRight', true)
+        } else {
+            this.player.setVelocity(0);
+            this.player.stop()
         }
-        this.playerManager.CheckPlayerInputs(this.player, this.cursors);
     }
 }
