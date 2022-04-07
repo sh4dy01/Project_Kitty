@@ -4314,7 +4314,7 @@
                         {
                          "name":"orientation",
                          "type":"string",
-                         "value":"right"
+                         "value":"left"
                         }],
                  "rotation":0,
                  "type":"",
