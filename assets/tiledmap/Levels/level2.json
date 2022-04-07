@@ -1153,6 +1153,24 @@
                  "width":0,
                  "x":2526.28571428571,
                  "y":2223.04761904762
+                }, 
+                {
+                 "height":0,
+                 "id":131,
+                 "name":"door",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"top-right"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1603.42857142857,
+                 "y":3937.90476190476
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1219,7 +1237,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":131,
+ "nextobjectid":132,
  "orientation":"isometric",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",
