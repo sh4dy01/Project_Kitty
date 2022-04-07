@@ -10,8 +10,8 @@ export default class UIManager{
      * @param {Phaser.GameObjects.GameObjectFactory} add
      * @param {number} gameWidth
      * @param {number} gameHeight
-     * @param {Boolean[]} leversUI
-     * @param {Phaser.GameObjects.Image[]} leversSprite
+     * @param {Boolean[]} [leversUI]
+     * @param {Phaser.GameObjects.Image[]} [leversSprite]
 
      */
     constructor(level, currentLife, add, gameWidth, gameHeight, leversUI, leversSprite){

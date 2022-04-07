@@ -3,7 +3,6 @@ import Phaser from 'phaser'
 
 /** 
  * @param {Phaser.Animations.AnimationManager} anims 
- * @param {String} phantom 
 */
 export function CreatePlayerAnims(anims) {
     const framerate = 3

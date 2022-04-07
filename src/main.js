@@ -2,9 +2,10 @@ import Phaser from "phaser";
 
 import Game from "./scenes/Game";
 import PauseScreen from "./scenes/Pause";
-import { LEVEL_MAP, PAUSE_SCREEN, TEXTURES_LOADER} from "./helpers/Constants";
+import { LEVEL_MAP, PAUSE_SCREEN, TEXTURES_LOADER, INTRO_SCREEN} from "./helpers/Constants";
 import TexturesLoader from "./loaders/TexturesLoader";
 import LevelLoader from "./loaders/LevelLoader";
+import IntroScreen from "./scenes/Intro";
 
 // Initialize Phaser
 const config = {
@@ -28,6 +29,7 @@ const config = {
 
 const game = new Phaser.Game(config);
 
+game.scene.add(INTRO_SCREEN, IntroScreen); // Add the StartScene scene
 game.scene.add(TEXTURES_LOADER, TexturesLoader); // Add the Game scene
 game.scene.add(LEVEL_MAP, LevelLoader); // Add the StartScene scene
 game.scene.add(PAUSE_SCREEN, PauseScreen); // Add the StartScene scene
