@@ -18,7 +18,6 @@ import { ChangeDepth } from "../helpers/Utilities";
 
 
 export default class Game extends Phaser.Scene {
-
     constructor(){
         super('game')
     }
@@ -46,21 +45,26 @@ export default class Game extends Phaser.Scene {
         /**
          * @type {Phaser.Physics.Matter.Image[]}
         */
-         this.boxes = [];
+        this.boxes = [];
          
-
         this.spawnPoint = null
         /**
          * @type {EnemyManager[]}
         */
         this.enemiesAIManager = [];
+
         this.sceneManager = new SceneManager(this.scene, this.currentLevel, this.cameras.main);
         this.UIManager = new UIManager(this.currentLevel, data.remainingLife, this.add, this.scale.width, this.scale.height, this.leversUI, this.levers);
         this.playerManager = new PlayerManager(this.currentLives, this.sceneManager, this.UIManager);
         this.collisionManager = new CollisionManager(this.matter.world, this.playerManager, this.sceneManager)
+
+        this.ambient = this.sound.add("ambiant_sfx");
+        this.doorSound = this.sound.add("door");
     }
 
     create() {
+        // this.ambient.play()
+        this.currentLevel = 0
         const map = this.add.tilemap("map"/**+this.level */);  // Ajoute les emplacements des tiles dans le jeu
         const colliders = this.cache.json.get('colliders'); // Récupère toutes les collisions pour les sprites
 
@@ -108,7 +112,6 @@ export default class Game extends Phaser.Scene {
             }
         }
 
-        // this.currentmap = this.sound.add("ambiant_sfx");
         this.cursors = this.input.keyboard.createCursorKeys(); // Assigne les touches prédéfinis (flèches directionnelles, shift, alt, espace)
         this.pauseKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); // Touche pour mettre le jeu en PAUSE
 

@@ -32,10 +32,11 @@ const config = {
 const game = new Phaser.Game(config);
 
 game.scene.add(INTRO_SCREEN, IntroScreen); // Add the StartScene scene
-// game.scene.add(SOUNDS_LOADER, SoundsLoader); // Add the SoundsLoader scene
+game.scene.add(SOUNDS_LOADER, SoundsLoader); // Add the SoundsLoader scene
 game.scene.add(TEXTURES_LOADER, TexturesLoader); // Add the textures loader scene
+
 game.scene.add(LEVEL_MAP, LevelLoader); // Add the level scene
 game.scene.add(PAUSE_SCREEN, PauseScreen); // Add the PauseScene scene
 game.scene.add('Game', Game); // Add the Game scene
 
-game.scene.start(TEXTURES_LOADER); // Start the StartScene scene
+game.scene.start(SOUNDS_LOADER); // Start the StartScene scene

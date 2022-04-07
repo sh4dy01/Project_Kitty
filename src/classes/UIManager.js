@@ -70,8 +70,10 @@ export default class UIManager{
     }
 
     AddLeversUI() {
-        for (let i = 0; i < this.leversStatus.length; i++) {
-            this.leversUIImage.push(this.add.image(52 + UI_LEVER_OFFSET*i, UI_LEVER_Y_OFFSET, 'ui', 'lever_ui_off.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
+        if (this.leversStatus.length !== 0) {
+            for (let i = 0; i < this.leversStatus.length; i++) {
+                this.leversUIImage.push(this.add.image(52 + UI_LEVER_OFFSET*i, UI_LEVER_Y_OFFSET, 'ui', 'lever_ui_off.png').setScrollFactor(0).setDepth(9999).setScale(UI_LEVER_SIZE))
+            }
         }
     }
 

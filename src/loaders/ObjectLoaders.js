@@ -34,9 +34,10 @@ export default class ObjectsLoader {
     AddLayers() {
         const floorTileset = this.map.addTilesetImage("floor", "floor");  // Affiche les tiles du sol
         const wallTileset = this.map.addTilesetImage("wall", "wall");  // Affiches les tiles des murs
+        const wallTileset2 = this.map.addTilesetImage("wall", "wall2");  // Affiches les tiles des murs
 
         this.map.createLayer("floor", floorTileset); // Créé un layer pour le sol
-        this.map.createLayer("wall", wallTileset); // Créé un layer pour les murs
+        this.map.createLayer("wall", wallTileset, wallTileset2); // Créé un layer pour les murs
     }
 
     AddSafeZones() {
