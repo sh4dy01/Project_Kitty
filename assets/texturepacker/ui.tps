@@ -254,8 +254,8 @@
             <filename>../sprites/ui/LifeFull.png</filename>
             <filename>../sprites/ui/lever_ui_off.png</filename>
             <filename>../sprites/ui/lever_ui_on.png</filename>
-            <filename>../sprites/ui/bg-cat.png</filename>
             <filename>../sprites/ui/bg-lever.png</filename>
+            <filename>../sprites/ui/bg-cat.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

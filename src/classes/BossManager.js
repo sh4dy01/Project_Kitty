@@ -2,7 +2,7 @@
 
 import Phaser, { Scene } from "phaser";
 import { ChangeDepth, ChangeEnemyHitBox } from "../helpers/Utilities";
-import { BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM, RIGHT, OFFSET_ORIENTATION, TOP, LEFT, TOP_LEFT, TOP_RIGHT, SINGLE_DIRECTION_MULTIPLIER, BOSS_SPEED_BOSST, MAX_SPEED_BOSS} from "../helpers/Constants";
+import { BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM, RIGHT, OFFSET_ORIENTATION, TOP, LEFT, TOP_LEFT, TOP_RIGHT, SINGLE_DIRECTION_MULTIPLIER, BOSS_SPEED_BOSST, BOSS_MAX_SPEED_BOSS} from "../helpers/Constants";
 
 /**
  * @param {String} startDirection
@@ -109,7 +109,7 @@ export default class BossManager extends Phaser.Physics.Matter.Sprite{
                 this.leversOn = true
             }
         });
-        if(this.leversOn == true && this.speed<MAX_SPEED_BOSS){
+        if(this.leversOn == true && this.speed<BOSS_MAX_SPEED_BOSS){
             this.speed += BOSS_SPEED_BOSST
             console.log("ttj plus vite");
         }

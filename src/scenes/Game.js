@@ -11,7 +11,7 @@ import ObjectLoader from "../loaders/ObjectLoaders";
 
 import { CreatePurplePhantomAnims, CreateGreenPhantomAnims, CreateRedPhantomAnims } from "../animations/PhantomsAnimations";
 import { ConvertXCartesianToIsometric, ConvertYCartesianToIsometric } from "../helpers/CartesianToIsometric";
-import { GREEN, PLAYER_SIZE, PURPLE, RED, PAUSE_SCREEN } from "../helpers/Constants";
+import { GREEN, PLAYER_SIZE, PURPLE, RED } from "../helpers/Constants";
 import { CreatePlayerAnims } from "../animations/PlayerAnimations";
 import { ChangeDepth } from "../helpers/Utilities";
 import SoundManager from "../classes/SoundManager";
@@ -99,7 +99,7 @@ export default class Game extends Phaser.Scene {
                 this.entrance.setDepth(this.entrance.y)
                 this.entrance.setBody(colliders.open)
                 this.entrance.isSensor()
-                this.playerManager.entrance = this.entrance
+                this.playerManager.exitDoor = this.entrance
 
             } else if (this.currentLevel === 0) {
                 const entrance = map.filterObjects('Specials', (obj) => obj.name === 'entrance')[0];        
@@ -109,7 +109,7 @@ export default class Game extends Phaser.Scene {
                     'boss',
                     'entrance.png'
                 )
-                this.entrance.setBody(colliders.open)
+                this.entrance.setBody(colliders.closed)
                 this.entrance.setDepth(this.entrance.y)
             } 
         }
@@ -148,11 +148,13 @@ export default class Game extends Phaser.Scene {
                 this.playerManager.exitDoor = tempObject
             }}
         );
-
+        
         this.objectLoader.AddMapColliders()
-        this.objectLoader.AddTheLevers()
         this.objectLoader.AddObstacles()
         this.objectLoader.AddLayers()
+
+        this.objectLoader.AddTheLevers()
+        
         this.objectLoader.AddSafeZones()
 
         this.player = this.matter.add.sprite(
@@ -180,7 +182,7 @@ export default class Game extends Phaser.Scene {
         this.collisionManager.CheckHitBoxes(this.playerManager, this.player, this.entrance, this.cameras.main);
         this.collisionManager.CheckButton(this.UIManager.leversStatus.length);
 
-        this.debugPlayerInfoText = this.add.text(0, 0, 'Character position: ').setScrollFactor(0); // to remove
+        // this.debugPlayerInfoText = this.add.text(0, 0, 'Character position: ').setScrollFactor(0); // to remove
     }
 
     update(t, dt) {
@@ -194,11 +196,6 @@ export default class Game extends Phaser.Scene {
             ChangeDepth(enemy)
         });
 
-        if (this.pauseKey.isDown) {
-            this.scene.pause();
-            this.scene.launch(PAUSE_SCREEN, {sceneToResume: this})
-        }
-
         this.boxes.forEach(box => {
             ChangeDepth(box)
         })
@@ -207,6 +204,6 @@ export default class Game extends Phaser.Scene {
         if (this.playerManager.canPress) {
             this.playerManager.UseButton(this.cursors, this.matter.world, this.player);
         }
-        this.UIManager.UpdatePlayerInfoText(this.debugPlayerInfoText, this.player, this.playerManager.canLoadNextScene, this.playerManager.isSafe);
+        // this.UIManager.UpdatePlayerInfoText(this.debugPlayerInfoText, this.player, this.playerManager.canLoadNextScene, this.playerManager.isSafe);
     }
 }

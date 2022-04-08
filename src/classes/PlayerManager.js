@@ -135,10 +135,12 @@ export default class PlayerManager {
         this.canLoadNextScene = true;
         this.soundManager.doorSound.play();
         this.exitDoor.setTexture('playerPoints', "door-open.png");
+
         if (this.canLoadNextScene && this.sceneManager.currentLevel !== 8) {
             CheckNextLevel(world, player, this, this.sceneManager)
         } else {
-            this.entrance.setTexture('boss', 'open.png')
+            this.exitDoor.setTexture('boss', 'exit.png')
+            this.exitDoor.setFlipX(true);
             CheckFinalLevel(world, player, this, this.sceneManager)
         }
     }

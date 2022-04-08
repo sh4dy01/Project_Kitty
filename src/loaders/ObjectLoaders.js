@@ -38,6 +38,7 @@ export default class ObjectsLoader {
 
         this.map.createLayer("floor", floorTileset); // Créé un layer pour le sol
         this.map.createLayer("wall", [wallTileset, wallTileset2]); // Créé un layer pour les murs
+
     }
 
     AddSafeZones() {
@@ -81,7 +82,7 @@ export default class ObjectsLoader {
                     )
                     tempObject.setBody(this.colliders.box)
                     tempObject.setFixedRotation();
-                    tempObject.setDepth(tempObject.y)
+                    ChangeDepth(object)
 
                     this.boxes.push(tempObject);
                 } else {
@@ -104,7 +105,7 @@ export default class ObjectsLoader {
                     } else {
                         tempObject.setBody(this.colliders[object.name])
                     }
-                    if (object.getData('orientation') === (TOP_LEFT || BOTTOM_RIGHT)) {
+                    if (object.getData('orientation') === TOP_LEFT || object.getData('orientation') === BOTTOM_RIGHT) {
                         tempObject.setFlipX(true);
                     }
                 }

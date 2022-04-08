@@ -1,6 +1,6 @@
 //@ts-check
 import Phaser from "phaser";
-import { LEVEL_MAP, MAX_LIVES} from "../helpers/Constants";
+import { INTRO_SCREEN, LEVEL_MAP, MAX_LIVES, OUTRO_SCREEN} from "../helpers/Constants";
 
 export default class TexturesLoader extends Phaser.Scene {
 
@@ -33,6 +33,6 @@ export default class TexturesLoader extends Phaser.Scene {
     }
 
     create() {
-        this.scene.start(LEVEL_MAP, {remainingLife: MAX_LIVES, level: 0})
+        this.scene.start(INTRO_SCREEN )
     }
 }

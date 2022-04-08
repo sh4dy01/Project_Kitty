@@ -2,11 +2,12 @@
 
 export const TEXTURES_LOADER = "TexturesLoader"
 export const LEVEL_MAP = "LevelMap"
-export const PAUSE_SCREEN = "PauseScreen"
 export const INTRO_SCREEN = "IntroScreen"
 export const SOUNDS_LOADER = "SoundsLoader"
 export const OUTRO_SCREEN = "OutroScreen"
 export const CREDITS_SCREEN = "CreditsScreen"
+export const SPLASH_SCREEN = "SplashScreen"
+
 
 export const MAX_LIVES = 4
 
@@ -25,8 +26,8 @@ export const OFFSET_ORIENTATION = 0.75;
 export const OFFSET_DEPTH = 10;
 export const SINGLE_DIRECTION_MULTIPLIER = 1.7;
 
-export const BOSS_SPEED_BOSST = 0.2
-export const MAX_SPEED_BOSS = 5
+export const BOSS_SPEED_BOSST = 0.25
+export const BOSS_MAX_SPEED_BOSS = 10
 
 export const GREEN = 'green'
 export const PURPLE = 'purple'

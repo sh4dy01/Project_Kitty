@@ -1,4 +1,4 @@
-import { LEVEL_MAP } from "../helpers/Constants"
+import { LEVEL_MAP, OUTRO_SCREEN } from "../helpers/Constants"
 
 //@ts-check
 export default class SceneManager {
@@ -48,7 +48,7 @@ export default class SceneManager {
     LoadWinScreen() {
         this.camera.fadeOut(3000, 0, 150, 0)
         this.camera.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-            this.sceneLoader.start('WinScreen')}
+            this.sceneLoader.start(OUTRO_SCREEN)}
         )
     }
 }

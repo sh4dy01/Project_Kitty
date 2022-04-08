@@ -18,6 +18,6 @@ export default class SoundsLoader extends Phaser.Scene {
     }
 
     create() {
-      this.scene.start(OUTRO_SCREEN)
+      this.scene.start(TEXTURES_LOADER)
     }
 }

@@ -5,9 +5,8 @@ import { CreatePlayerAnims } from "../animations/PlayerAnimations";
 import PlayerManager from "../classes/PlayerManager";
 import SceneManager from "../classes/SceneManager";
 import UIManager from "../classes/UIManager";
-import { CREDITS_SCREEN, MAX_LIVES, OFFSET_ORIENTATION, PAUSE_SCREEN, PLAYER_SIZE, TEXTURES_LOADER } from "../helpers/Constants";
+import { CREDITS_SCREEN, MAX_LIVES, OFFSET_ORIENTATION } from "../helpers/Constants";
 import { ChangeDepth } from "../helpers/Utilities";
-import SoundsLoader from "../loaders/SoundsLoader";
 
 export default class OutroScreen extends Phaser.Scene {
     constructor() {
@@ -25,12 +24,8 @@ export default class OutroScreen extends Phaser.Scene {
         this.ambient = this.sound.add('ambiant_sfx');
     }
 
-    preload() {
-        this.load.atlas('player', 'assets/spritesheet/player.png', 'assets/spritesheet/player.json')
-        this.load.image('intro', 'assets/sprites/intro/scene_depart.png')
-    }
-
     create() {
+        this.sound.stopAll()
         this.ambient.play()
 
         this.matter.world.setBounds()
@@ -39,7 +34,6 @@ export default class OutroScreen extends Phaser.Scene {
         this.cameras.main.zoom = 1.2
 
         this.add.image(this.scale.width/2, this.scale.height/2, 'intro')
-        this.matter.add.rectangle(this.scale.width-100, this.scale.height, 200, 50, {isSensor: true, angle: 2.6, label: 'NextLevel'})
         
         CreatePlayerAnims(this.anims);
 
@@ -70,7 +64,6 @@ export default class OutroScreen extends Phaser.Scene {
                 this.cameras.main.fadeOut(2000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                     this.scene.start(CREDITS_SCREEN);
-                    this.sound.stopAll()
                 })
             }
         })

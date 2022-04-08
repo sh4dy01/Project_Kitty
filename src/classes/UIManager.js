@@ -28,7 +28,7 @@ export default class UIManager{
     }
 
     AddBackGroundUI() {
-        this.add.image(170, 60, 'ui', 'bg-cat.png').setScrollFactor(0).setDepth(9997).setScale(1)
+        this.add.image(215, 60, 'ui', 'bg-lever.png').setScrollFactor(0).setDepth(9997).setScale(0.92)
         this.add.image(115, UI_LEVER_Y_OFFSET, 'ui', 'bg-lever.png').setScrollFactor(0).setDepth(9997).setScale(0.4)
     }
 

@@ -31,7 +31,7 @@ export default class EnemyManager {
 
             // Vitesse de déplacement du fantôme rouge
             case RED:
-                this.speed = 1
+                this.speed = 1.2
             break;
         
             default:
@@ -185,7 +185,6 @@ export default class EnemyManager {
      * @param {PlayerManager} playerManager
      */
     MoveEnemyRed(enemy, manager, player, playerManager) {
-        console.log(playerManager.isSafe);
         if (playerManager.isSafe === false) {
             const direction = Math.atan((player.x - enemy.x) / (player.y - enemy.y));
             const speed2 = player.y >= enemy.y ? manager.speed : -manager.speed;

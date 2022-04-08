@@ -5,9 +5,8 @@ import { CreatePlayerAnims } from "../animations/PlayerAnimations";
 import PlayerManager from "../classes/PlayerManager";
 import SceneManager from "../classes/SceneManager";
 import UIManager from "../classes/UIManager";
-import { MAX_LIVES, OFFSET_ORIENTATION, PAUSE_SCREEN, PLAYER_SIZE, TEXTURES_LOADER } from "../helpers/Constants";
+import { LEVEL_MAP, MAX_LIVES, OFFSET_ORIENTATION } from "../helpers/Constants";
 import { ChangeDepth } from "../helpers/Utilities";
-import SoundsLoader from "../loaders/SoundsLoader";
 
 export default class IntroScreen extends Phaser.Scene {
     constructor() {
@@ -69,7 +68,7 @@ export default class IntroScreen extends Phaser.Scene {
                 this.playerManager.StopPlayerMovement(this.player)
                 this.cameras.main.fadeOut(2000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-                    this.scene.start(TEXTURES_LOADER);
+                    this.scene.start(LEVEL_MAP, {remainingLife: MAX_LIVES, level: 0});
                     this.sound.stopAll()
                 })
             }
