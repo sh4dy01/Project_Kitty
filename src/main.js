@@ -20,7 +20,7 @@ const config = {
         default: "matter",
         matter: {
             gravity: { y: 0},
-            debug: true
+            debug: false
         },
     },
     fps: {
