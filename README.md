@@ -24,7 +24,7 @@ Pour la production de nos magnifiques assets/UI, les étudiants de la [Gaming Ar
 
 Pour le pôle développement, tous issue de la première année à la [Gaming Tech School](https://gamingcampus.fr/ecoles/ecole-developpeur-jeux-video-g-tech.html) : 
 
-- Hugo MAESTRACCI (lead)
+- Hugo MAESTRACCI (moi en tant que lead)
 - Manuiva ATENI
 - Quentin RIPOT
 - Nathanaël VOGT
