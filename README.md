@@ -1,35 +1,29 @@
-# Informations
+# Kitty's Bizarre Adventure
+## Overview
+This game marks the culmination of my first year at the Gaming Tech School. 
+In this interdisciplinary project, our team of 11 students formed a MINI STUDIO and embarked on the creation of our first 2D game. 
+Adhering to specific constraints, such as an 11-day development cycle (including brainstorming), an isometric view, and an amusement park theme, we utilized the Phaser Framework.
 
-Le jeu a été développé pour cloturer ma première année à la [Gaming Tech School](https://gamingcampus.fr/ecoles/ecole-developpeur-jeux-video-g-tech.html).
+## The Team
+### Business
 
-Pour ce projet interdisciplinaire, notre équipe de 11 étudiants devait constituer UN MINI STUDIO et devait imaginer leur premier jeu 2D.  
-Nous devions respecter certaines contraintes comme : 
-1. 11 jours de développement (brainstorm compris)
-2. Vue isométrique
-3. Parc d'attraction en guise de thème
-4. Framework Phaser
+* Emile LEVERGER
+* Mathys LIMOUZA
+* Rémi LUCAS
+* Edgar MAURANNE
 
-## L'équipe
+### Art
 
-Pour ce qui du plan de communication ainsi que de la gestion de projet nous avions les étudiants de 2ème année à la [Gaming Business School](https://gamingcampus.fr/ecoles/ecole-commerce-jeux-video-g-business.html) :
-- Emile LEVERGER
-- Mathys LIMOUZA
-- Rémi LUCAS
-- Edgar MAURANNE
+* Anais WATELOT (Lead)
+* Nicolas BRINGE
 
-Pour la production de nos magnifiques assets/UI, les étudiants de la [Gaming Art School](https://gamingcampus.fr/ecoles/ecole-game-art-g-art.html) :
+### Developers
 
-- Anais WATELOT (lead)
-- Nicolas BRINGE
-
-Pour le pôle développement, tous issue de la première année à la [Gaming Tech School](https://gamingcampus.fr/ecoles/ecole-developpeur-jeux-video-g-tech.html) : 
-
-- Hugo MAESTRACCI (moi en tant que lead)
-- Manuiva ATENI
-- Quentin RIPOT
-- Nathanaël VOGT
-- Mériadeg DUREL
-
-## Tester le jeu
-
-https://sh4dy01.itch.io/kittys-bizarre-adventure
+* Hugo MAESTRACCI (Lead)
+* Manuiva ATENI
+* Quentin RIPOT
+* Nathanaël VOGT
+* Mériadeg DUREL
+  
+## How to play
+Test our creation on [itch.io](https://sh4dy01.itch.io/kittys-bizarre-adventure).
