@@ -1,7 +1,7 @@
 # Kitty's Bizarre Adventure
 ## Overview
-This game marks the culmination of my first year at the Gaming Tech School. 
-In this interdisciplinary project, our team of 11 students formed a MINI STUDIO and embarked on the creation of our first 2D game. 
+This game marks the culmination of my first year at the Gaming Tech School.   
+In this interdisciplinary project, our team of 11 students formed a MINI STUDIO and embarked on the creation of our first 2D game.   
 Adhering to specific constraints, such as an 11-day development cycle (including brainstorming), an isometric view, and an amusement park theme, we utilized the Phaser Framework.
 
 ## The Team
